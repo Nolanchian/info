@@ -132,7 +132,7 @@ function kvTable(obj, fields) {
 
 function section(id, title, ...content) {
   return el("section", { class: "sec", id, "data-filterable": true },
-    el("h2", {}, title, el("span", { class: "count" })), content);
+    el("h2", {}, title), content);
 }
 
 /* ── 介紹頁 ── */
