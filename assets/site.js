@@ -11,7 +11,8 @@ const PAGES = [
 const page = document.body.dataset.page;
 const isEditing = new URLSearchParams(location.search).has("edit");
 let site = null;
-let loadedSha = null;
+let loadedSnapshot = "";
+const normalizeJson = (text) => JSON.stringify(JSON.parse(text));
 let dirty = false;
 let activeTag = "";
 
@@ -120,7 +121,7 @@ function dataTable({ list, columns, fields, newRow, rowProps }) {
   const head = el("tr", {}, el("th", {}, "#"), columns.map((c) => el("th", {}, c.label)));
   const body = list.map((row, i) => el("tr", rowProps ? rowProps(row, i) : {},
     el("td", { class: "num" }, pad(i + 1)),
-    columns.map((c) => el("td", { class: c.className }, c.view(row)))));
+    columns.map((c) => el("td", { class: c.className, "data-label": c.label }, c.view(row)))));
   return el("table", { class: "stack" }, el("thead", {}, head), el("tbody", {}, body));
 }
 
@@ -178,11 +179,12 @@ function profileTables() {
       list: site.talks ??= [],
       columns: [
         { label: "日期", className: "nowrap", view: (r) => r.date },
-        { label: "場次", view: (r) => r.title },
-        { label: "地點", view: (r) => r.venue },
+        { label: "場次", view: (r) => [r.event, r.venue && el("span", { class: "sub" }, r.venue)] },
+        { label: "講題", view: (r) => r.title },
+        { label: "", className: "nowrap", view: (r) => safeUrl(r.photos) && el("a", { class: "mini", href: safeUrl(r.photos), target: "_blank", rel: "noopener" }, "照片") },
       ],
-      fields: [{ field: "date", label: "日期" }, { field: "title", label: "場次" }, { field: "venue", label: "地點" }],
-      newRow: () => ({ date: "", title: "", venue: "" }),
+      fields: [{ field: "date", label: "日期" }, { field: "event", label: "場次" }, { field: "title", label: "講題" }, { field: "venue", label: "地點" }, { field: "photos", label: "照片連結" }],
+      newRow: () => ({ date: "", event: "", title: "", venue: "", photos: "" }),
     })),
     section("achievements", "倡議成果", dataTable({
       list: site.achievements,
@@ -194,6 +196,33 @@ function profileTables() {
 }
 
 /* ── 研究頁 ── */
+// 還缺 = 規定 − 已修 − 修習中（以本學期全數通過計），超修不倒扣
+function requirementSection(courses, requirements, sumCredits) {
+  const rows = requirements.map((req) => {
+    const list = courses.filter((c) => c.category === req.category);
+    const done = sumCredits(list.filter((c) => !c.status));
+    const ongoing = sumCredits(list.filter((c) => c.status));
+    const required = Number(req.required) || 0;
+    return { ...req, done, ongoing, missing: Math.max(0, required - done - ongoing) };
+  });
+  const total = (key) => rows.reduce((sum, r) => sum + (Number(r[key]) || 0), 0);
+  const table = dataTable({
+    list: rows,
+    columns: [
+      { label: "類別", className: "nowrap", view: (r) => r.category },
+      { label: "規定", className: "nowrap hide-narrow", view: (r) => r.required },
+      { label: "已修", className: "nowrap hide-narrow", view: (r) => r.done },
+      { label: "修習中", className: "nowrap hide-narrow", view: (r) => r.ongoing || "" },
+      { label: "還缺", className: "nowrap lbl", view: (r) => (r.missing ? el("b", { class: "missing" }, r.missing) : "✓") },
+      { label: "待補", view: (r) => r.todo },
+    ],
+  });
+  const totalRequired = total("required");
+  const note = el("p", { class: "hint" },
+    `畢業最低 ${totalRequired} 學分・已修 ${total("done")}＋修習中 ${total("ongoing")}・還缺 ${total("missing")} 學分（以本學期全數通過計）`);
+  return section("requirements", "畢業學分檢核", note, table);
+}
+
 function researchPage() {
   const skills = section("skills", "研究工具", dataTable({
     list: site.skills ??= [],
@@ -206,8 +235,13 @@ function researchPage() {
     newRow: () => ({ name: "", text: "", url: "", courses: "" }),
   }));
   const courses = site.courses ??= [];
+  const requirements = site.requirements ??= [];
   if (isEditing) {
-    return [skills, section("courses", "修課紀錄", dataTable({
+    return [skills, section("requirements", "畢業學分檢核", dataTable({
+      list: requirements,
+      fields: [{ field: "category", label: "類別（需與修課類別同名）" }, { field: "required", label: "規定學分" }, { field: "todo", label: "待補" }],
+      newRow: () => ({ category: "", required: "", todo: "" }),
+    })), section("courses", "修課紀錄", dataTable({
       list: courses,
       fields: [{ field: "category", label: "類別" }, { field: "title", label: "課程" }, { field: "credits", label: "學分" }, { field: "teacher", label: "授課老師" }, { field: "status", label: "狀態（空白＝已修）" }],
       newRow: () => ({ category: courses.at(-1)?.category ?? "", title: "", credits: "", teacher: "", status: "" }),
@@ -223,7 +257,7 @@ function researchPage() {
   };
   const categories = [...new Set(courses.map((c) => c.category))];
   const summary = el("p", { class: "hint", id: "courses" }, `修課紀錄：${courses.length} 門・${creditText(courses)}`);
-  return [skills, summary, ...categories.map((cat, i) => {
+  return [skills, requirementSection(courses, requirements, sumCredits), summary, ...categories.map((cat, i) => {
     const list = courses.filter((c) => c.category === cat);
     return section(`course-${i + 1}`, `${cat}・${creditText(list)}`, dataTable({
       list,
@@ -479,10 +513,15 @@ async function save() {
   try {
     const current = await ghFetch(token);
     if (!current.ok) throw new Error(explainGithubError(current.status));
-    const { sha } = await current.json();
-    if (loadedSha && sha !== loadedSha && !confirm("GitHub 上的內容在你開始編輯後被改過，要用你的版本覆蓋嗎？")) {
-      setStatus("已取消儲存", "dirty");
-      return;
+    const { sha, content } = await current.json();
+    // 不論頁面是從哪裡載入的，都拿 GitHub 上的現況和開啟時的內容比對，避免舊頁面蓋掉別人剛存的修改
+    if (normalizeJson(fromBase64(content)) !== loadedSnapshot) {
+      const overwrite = confirm("GitHub 上的內容比你開啟這頁時還新（可能有人剛存過）。\n\n按「取消」：先下載你的版本，再重新整理頁面合併（建議）\n按「確定」：直接覆蓋，對方的修改會消失");
+      if (!overwrite) {
+        downloadBlob(new Blob([serialize()], { type: "application/json" }), "site-我的版本.json");
+        setStatus("已取消儲存：你的版本已下載，請重新整理後再改", "err");
+        return;
+      }
     }
     site.updated = today();
     const response = await ghFetch(token, {
@@ -490,7 +529,7 @@ async function save() {
       body: JSON.stringify({ message: "透過編輯模式更新網站內容", content: toBase64(serialize()), sha, branch: REPO.branch }),
     });
     if (!response.ok) throw new Error(explainGithubError(response.status));
-    loadedSha = (await response.json()).content.sha;
+    loadedSnapshot = normalizeJson(serialize());
     dirty = false;
     setStatus("已儲存到 GitHub，約 1 分鐘後線上版更新", "ok");
   } catch (error) {
@@ -507,7 +546,6 @@ async function loadSite() {
       const response = await ghFetch(token);
       if (response.ok) {
         const json = await response.json();
-        loadedSha = json.sha;
         return JSON.parse(fromBase64(json.content));
       }
     } catch {
@@ -525,6 +563,7 @@ window.addEventListener("beforeunload", (event) => {
 
 try {
   site = await loadSite();
+  loadedSnapshot = JSON.stringify(site);
   buildShell();
   if (isEditing) {
     document.body.classList.add("editing");

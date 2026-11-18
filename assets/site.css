@@ -19,6 +19,8 @@ button,input,select{font:inherit}
 .topbar nav{display:flex;gap:2px;margin-left:auto}
 .topbar nav a{color:var(--cream);text-decoration:none;font-weight:700;padding:5px 12px;white-space:nowrap}
 main > .hint{margin:0 0 8px;font-weight:700}
+.missing{color:#b3261e}
+.sec > .hint{margin:8px 0 0;font-weight:700}
 .status-tag{font-size:12px;font-weight:900;padding:0 6px;background:var(--mustard);border:1.5px solid var(--ink)}
 .topbar nav a:hover{background:#333;color:var(--cream)}
 .topbar nav a[aria-current="page"]{background:var(--lime);color:var(--ink)}
@@ -135,6 +137,8 @@ dialog .row{display:flex;gap:8px;justify-content:flex-end}
   table.stack td{border:none;padding:1px 4px}
   table.stack td.num{grid-row:span 4}
   table.stack td:not(.num){grid-column:2}
+  table.stack td.hide-narrow{display:none}
+  table.stack td.lbl::before{content:attr(data-label) "　";font-size:12px;color:var(--muted)}
   .topbar nav a{padding:5px 8px}
 }
 @media (max-width:480px){
