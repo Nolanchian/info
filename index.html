@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>王晉謙 Nolan Wang</title>
+<meta name="description" content="下一代人本交通促進會 創會理事長。下了車，你我都是行人。">
+<meta property="og:title" content="王晉謙 Nolan Wang">
+<meta property="og:description" content="下一代人本交通促進會 創會理事長。下了車，你我都是行人。">
+<meta property="og:image" content="https://nolanchian.github.io/info/assets/portrait.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --olive:#47663A; --cream:#F4EFE2; --ink:#161616;
+  --mustard:#E3B547; --pink:#E8B4A8; --blue:#9DC0C4; --lime:#C5F04A;
+  --paper:#FBF8F0;
+  --shadow:6px 6px 0 var(--ink);
+  --wrap:1120px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{
+  font-family:"Noto Sans TC",system-ui,sans-serif;
+  color:var(--ink); background-color:var(--cream);
+  /* 網點紋理：協會圖卡的招牌底紋 */
+  background-image:radial-gradient(rgba(22,22,22,.09) 1px,transparent 1.3px);
+  background-size:9px 9px;
+  line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+a{color:inherit}
+img{display:block;max-width:100%}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 16px}
+
+/* ── 導覽列 ── */
+.nav{position:sticky;top:0;z-index:20;background:var(--ink);color:var(--cream)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
+.nav .brand{font-weight:900;letter-spacing:.04em;text-decoration:none}
+.nav ul{display:flex;gap:4px;list-style:none}
+.nav ul a{display:block;padding:6px 12px;font-weight:700;text-decoration:none;font-size:15px}
+.nav ul a:hover,.nav ul a.on{background:var(--lime);color:var(--ink)}
+
+/* ── 撕紙標題條 ── */
+.tear{
+  display:inline-block;background:var(--olive);color:#fff;
+  font-weight:900;padding:.18em .7em .24em;
+  filter:drop-shadow(5px 5px 0 var(--ink));
+}
+.tear>span{display:block}
+.tear-shape{
+  clip-path:polygon(0% 8%,4% 0%,9% 6%,15% 1%,21% 7%,28% 0%,34% 5%,41% 1%,47% 8%,54% 2%,60% 6%,67% 0%,73% 7%,80% 2%,86% 6%,93% 0%,100% 5%,
+    99% 50%,100% 94%,95% 100%,89% 93%,82% 99%,76% 94%,69% 100%,62% 95%,56% 100%,49% 93%,42% 99%,36% 94%,29% 100%,22% 95%,15% 100%,9% 94%,3% 100%,0% 93%,1% 50%);
+}
+.tear.mustard{background:var(--mustard);color:var(--ink)}
+.tear.pink{background:var(--pink);color:var(--ink)}
+.tear.blue{background:var(--blue);color:var(--ink)}
+
+.section{padding:88px 0 24px}
+.section-head{text-align:center;margin-bottom:40px}
+.section-head .tear{font-size:clamp(28px,4.4vw,40px)}
+
+/* ── 米白面板 ── */
+.panel{background:var(--paper);border:3px solid var(--ink);box-shadow:var(--shadow)}
+
+/* ── Hero ── */
+.hero{padding:64px 0 24px}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+.hero-name{font-size:clamp(52px,8vw,92px);line-height:1.05}
+.hero-en{margin-top:14px;font-weight:900;font-size:22px;letter-spacing:.08em}
+.slogan{position:relative;display:inline-block;margin-top:28px;font-size:clamp(22px,3vw,30px);font-weight:900}
+.slogan svg{position:absolute;left:-2%;bottom:-10px;width:104%;height:18px;z-index:-1}
+.roles{margin-top:30px;list-style:none;display:grid;gap:10px}
+.roles li{display:flex;gap:12px;align-items:baseline;font-weight:700;font-size:17px}
+.roles li::before{content:"";flex:none;width:10px;height:10px;background:var(--olive);border:2px solid var(--ink);transform:translateY(-1px)}
+.hero-photo{position:relative;max-width:380px;justify-self:end}
+.hero-photo .frame{border:3px solid var(--ink);box-shadow:10px 10px 0 var(--ink);background:var(--ink)}
+.hero-photo .tag{position:absolute;left:-18px;bottom:28px;font-size:18px}
+
+/* ── 引言 ── */
+.quote{margin-top:72px;padding:36px 40px;font-size:clamp(18px,2.2vw,21px);font-weight:500;text-align:center}
+.quote strong{font-weight:900;background:linear-gradient(transparent 62%,var(--lime) 62%)}
+
+/* ── 經歷 ── */
+.timeline{list-style:none;display:grid;gap:22px}
+.year{display:grid;grid-template-columns:150px 1fr;gap:24px;align-items:start}
+.year-label{text-align:center;padding:10px 0;background:var(--ink);color:var(--cream);border:3px solid var(--ink);box-shadow:4px 4px 0 var(--olive)}
+.year-label b{display:block;font-size:30px;font-weight:900;line-height:1.1}
+.year-label small{font-weight:700;font-size:14px;letter-spacing:.1em}
+.year .panel{padding:18px 24px}
+.year .panel ul{list-style:none;display:grid;gap:6px}
+.year .panel li{font-weight:500}
+.year .panel li a{font-weight:700;text-decoration-thickness:2px;text-underline-offset:3px}
+
+/* ── 倡議紀錄 ── */
+.notes{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:56px}
+.note{padding:22px 22px 24px;border-top:12px solid var(--olive)}
+.note:nth-child(3n+2){border-top-color:var(--mustard)}
+.note:nth-child(3n){border-top-color:var(--blue)}
+.note p{font-weight:500}
+
+/* ── 工具 ── */
+.tools{display:grid;grid-template-columns:repeat(2,1fr);gap:32px}
+.tool{display:flex;flex-direction:column}
+.tool .shot{aspect-ratio:16/10;overflow:hidden;border-bottom:3px solid var(--ink);background:var(--ink)}
+.tool .shot img{width:100%;height:100%;object-fit:cover;object-position:top}
+.tool .body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:10px;flex:1}
+.tool h3{font-size:22px;font-weight:900;line-height:1.4}
+.tool p{font-size:15px}
+.tool .links{margin-top:auto;display:flex;gap:10px;flex-wrap:wrap;padding-top:6px}
+.btn{display:inline-block;padding:6px 16px;font-weight:900;font-size:15px;text-decoration:none;border:2.5px solid var(--ink);background:var(--lime);box-shadow:3px 3px 0 var(--ink);transition:transform .1s,box-shadow .1s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--ink)}
+.btn.ghost{background:var(--paper)}
+.more{margin-top:40px;padding:22px 26px;display:grid;gap:10px}
+.more h3{font-size:18px;font-weight:900}
+.more li{list-style:none;font-weight:500}
+.more a{font-weight:700;text-decoration-thickness:2px;text-underline-offset:3px}
+
+/* ── 資料庫 ── */
+.filters{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;align-items:center;margin-bottom:26px}
+.chip{font:inherit;font-weight:900;font-size:15px;padding:6px 16px;border:2.5px solid var(--ink);background:var(--paper);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--cream)}
+.search{font:inherit;font-size:15px;padding:7px 12px;border:2.5px solid var(--ink);background:#fff;min-width:220px}
+.search:focus{outline:3px solid var(--lime);outline-offset:0}
+.res-list{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.res{padding:16px 20px;display:grid;gap:6px}
+.res .top{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.pill{font-size:13px;font-weight:900;padding:1px 10px;border:2px solid var(--ink)}
+.pill.dataset{background:var(--blue)}
+.pill.website{background:var(--mustard)}
+.pill.learning{background:var(--pink)}
+.res h3{font-size:18px;font-weight:900;line-height:1.45}
+.res h3 a{text-decoration:none;background:linear-gradient(transparent 70%,var(--lime) 70%)}
+.res h3 a:hover{background:var(--lime)}
+.res .src{font-size:14px;color:#444}
+.res .tags{display:flex;gap:6px;flex-wrap:wrap}
+.res .tags span{font-size:13px;font-weight:700;color:var(--olive)}
+.res .tags span::before{content:"#"}
+.res-meta{text-align:center;margin-top:22px;font-size:14px;font-weight:700}
+.empty{text-align:center;padding:30px;font-weight:700}
+
+/* ── Footer ── */
+footer{margin-top:96px;background:var(--olive);color:var(--cream);padding:40px 0;text-align:center}
+footer .slogan{margin-top:0;color:#fff}
+footer p{margin-top:18px;font-weight:700;font-size:14px}
+footer a{font-weight:900}
+
+@media (max-width:860px){
+  .hero .wrap{grid-template-columns:1fr;gap:40px}
+  .hero-photo{max-width:420px;margin:0 auto}
+  .notes{grid-template-columns:1fr 1fr}
+  .tools,.res-list{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .nav ul a{padding:6px 8px;font-size:14px}
+  .nav .brand{font-size:15px}
+  .section{padding-top:64px}
+  .quote{padding:26px 20px}
+  .year{grid-template-columns:1fr;gap:10px}
+  .year-label{display:flex;gap:12px;align-items:baseline;justify-content:center}
+  .notes{grid-template-columns:1fr}
+  .hero-photo .tag{left:-8px}
+  .search{min-width:0;width:100%}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">王晉謙 Nolan</a>
+    <ul>
+      <li><a href="#about">介紹</a></li>
+      <li><a href="#tools">工具</a></li>
+      <li><a href="#library">資料庫</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <h1 class="tear tear-shape hero-name"><span>王晉謙</span></h1>
+      <p class="hero-en">NOLAN WANG</p>
+      <p class="slogan">下了車，你我都是行人
+        <svg viewBox="0 0 300 18" preserveAspectRatio="none" aria-hidden="true"><path d="M3 11 C 60 5, 120 15, 180 8 S 270 6, 297 10" stroke="#C5F04A" stroke-width="12" fill="none" stroke-linecap="round"/></svg>
+      </p>
+      <ul class="roles">
+        <li>下一代人本交通促進會 創會理事長</li>
+        <li>臺北市政府青年事務諮詢委員會委員</li>
+        <li>《2026縣市首長候選人交通改善承諾白皮書》主編</li>
+        <li>在MoSOR Lab擔任兼任研究助理</li>
+      </ul>
+    </div>
+    <div class="hero-photo">
+      <div class="frame"><img src="assets/portrait.jpg" alt="王晉謙於記者會發言" width="800" height="1000"></div>
+      <span class="tear tear-shape mustard tag"><span>國立臺灣師範大學 地理學系</span></span>
+    </div>
+  </div>
+  <div class="wrap">
+    <p class="panel quote">在諸多議題海當中，我想回到一個根，也就是<strong>以台灣本土年輕人的力量，讓台灣的社會能夠接受民眾的聲音，捍衛每個人生活當中的正義</strong>，這是未來我想持續做下去的事情。</p>
+  </div>
+</header>
+
+<main>
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="section-head"><h2 class="tear tear-shape"><span>經歷</span></h2></div>
+    <ol class="timeline">
+      <li class="year">
+        <div class="year-label"><b>2026</b><small>大二</small></div>
+        <div class="panel"><ul>
+          <li>《2026縣市首長候選人交通改善承諾白皮書》主編</li>
+          <li>2026年全台議員選區互動式地圖 <a href="https://ngtu.org/whitepaper#tracker" target="_blank" rel="noopener">ngtu.org/whitepaper</a></li>
+          <li>Vibe Coding 使用VSCode中的Claude插件製作出下一代人本交通促進會官網：<a href="https://ngtu.org" target="_blank" rel="noopener">ngtu.org</a></li>
+          <li>在MoSOR Lab擔任兼任研究助理</li>
+          <li>於2026 g0v分享倡議經驗</li>
+        </ul></div>
+      </li>
+      <li class="year">
+        <div class="year-label"><b>2025</b><small>大一</small></div>
+        <div class="panel"><ul>
+          <li>與高雄市政府合辦《道出心聲——高雄交通學生論壇》</li>
+          <li>2025年我們發起「525保護下一代大遊行」</li>
+        </ul></div>
+      </li>
+      <li class="year">
+        <div class="year-label"><b>2024</b><small>高三</small></div>
+        <div class="panel"><ul>
+          <li>全台串聯抗議交通部全面取消罰鍰在1200元以下的交通違規記點</li>
+          <li>下一代人本交通促進會 成立大會 2024.8.20</li>
+        </ul></div>
+      </li>
+      <li class="year">
+        <div class="year-label"><b>2023</b><small>高二</small></div>
+        <div class="panel"><ul>
+          <li>舉辦722高雄行人路權大遊行 超過兩千人參與 嘖嘖募資達標114% 超過47萬 <a href="https://www.zeczec.com/projects/student-pedestrian-union" target="_blank" rel="noopener">嘖嘖專案</a></li>
+        </ul></div>
+      </li>
+      <li class="year">
+        <div class="year-label"><b>2022</b><small>高一</small></div>
+        <div class="panel"><ul>
+          <li>18歲公民權環島倡議志工</li>
+        </ul></div>
+      </li>
+    </ol>
+
+    <div class="notes">
+      <div class="panel note"><p>自2026.4.23發佈白皮書以來，到9.21為止，已經有267位候選人、19個跨領域民間團體連署</p></div>
+      <div class="panel note"><p>我們在2024年主辦317行人大富翁，成功將10項微罪項目縮減至5項。</p></div>
+      <div class="panel note"><p>成功在道安會報爭取高雄道明中學後門「憲政路」直接增設實體人行道</p></div>
+      <div class="panel note"><p>主辦高雄道出心聲工作坊，讓南部在地同學能有直接向交通局陳情溝通的管道</p></div>
+      <div class="panel note"><p>與高雄市交通局、鳳山國中合作製作人本交通繪本</p></div>
+      <div class="panel note"><p>2025、2026育成高中地理探究課程進行人本交通教育</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="tools">
+  <div class="wrap">
+    <div class="section-head"><h2 class="tear tear-shape mustard"><span>工具</span></h2></div>
+    <div class="tools">
+      <article class="panel tool">
+        <div class="shot"><img src="assets/tools/timeschedule.jpg" alt="時程表產生器畫面" loading="lazy"></div>
+        <div class="body">
+          <h3>時程表產生器</h3>
+          <p>在瀏覽器排甘特式時程表：日／週／月時間軸、專案分色、拖曳編輯，可下載 PDF 或 JPG 放進企劃書。</p>
+          <div class="links"><a class="btn" href="https://nolanchian.github.io/timeschedule/" target="_blank" rel="noopener">開啟</a><a class="btn ghost" href="https://github.com/Nolanchian/timeschedule" target="_blank" rel="noopener">GitHub</a></div>
+        </div>
+      </article>
+      <article class="panel tool">
+        <div class="shot"><img src="assets/tools/convert.jpg" alt="快速轉檔器畫面" loading="lazy"></div>
+        <div class="body">
+          <h3>快速轉檔器</h3>
+          <p>RAW（CR3）、JPG、PNG 快速批次轉成 JPG、PNG、WebP。</p>
+          <div class="links"><a class="btn" href="https://nolanchian.github.io/convert/" target="_blank" rel="noopener">開啟</a><a class="btn ghost" href="https://github.com/Nolanchian/convert" target="_blank" rel="noopener">GitHub</a></div>
+        </div>
+      </article>
+      <article class="panel tool">
+        <div class="shot"><img src="assets/tools/kaohsiung-sidewalk-map.jpg" alt="高雄市人行道電箱障礙地圖畫面" loading="lazy"></div>
+        <div class="body">
+          <h3>高雄市人行道電箱障礙地圖</h3>
+          <p>標示高雄市各路段人行道上的電箱障礙位置，依人行道淨寬分級標色，協助辨識最需優先改善的路段。</p>
+          <div class="links"><a class="btn" href="https://nolanchian.github.io/kaohsiung-sidewalk-map/" target="_blank" rel="noopener">開啟</a><a class="btn ghost" href="https://github.com/Nolanchian/kaohsiung-sidewalk-map" target="_blank" rel="noopener">GitHub</a></div>
+        </div>
+      </article>
+      <article class="panel tool">
+        <div class="shot"><img src="assets/tools/stat-framework.jpg" alt="社會統計總複習畫面" loading="lazy"></div>
+        <div class="body">
+          <h3>社會統計總複習</h3>
+          <p>信賴區間 (CI)・單母體假設檢定・雙母體假設檢定・單因子 ANOVA・二因子 ANOVA・χ² 適合度檢定・χ² 獨立性／同質性檢定・單迴歸・多元迴歸・統計控制・淨相關係數</p>
+          <div class="links"><a class="btn" href="https://nolanchian.github.io/stat-framework/" target="_blank" rel="noopener">開啟</a><a class="btn ghost" href="https://github.com/Nolanchian/stat-framework" target="_blank" rel="noopener">GitHub</a></div>
+        </div>
+      </article>
+    </div>
+    <div class="panel more">
+      <h3>其他作品</h3>
+      <ul>
+        <li><a href="https://ngtu.org" target="_blank" rel="noopener">下一代人本交通促進會官網 ngtu.org</a></li>
+        <li><a href="https://ngtu.org/whitepaper#tracker" target="_blank" rel="noopener">2026年全台議員選區互動式地圖</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="library">
+  <div class="wrap">
+    <div class="section-head"><h2 class="tear tear-shape blue"><span>資料庫</span></h2></div>
+    <div class="filters" role="group" aria-label="篩選類型">
+      <button class="chip" data-type="all" aria-pressed="true">全部</button>
+      <button class="chip" data-type="dataset" aria-pressed="false">資料集</button>
+      <button class="chip" data-type="website" aria-pressed="false">網站</button>
+      <button class="chip" data-type="learning" aria-pressed="false">學習資源</button>
+      <input class="search" type="search" placeholder="搜尋標題、來源、標籤" aria-label="搜尋資料庫">
+    </div>
+    <ul class="res-list" id="res-list"></ul>
+    <p class="res-meta" id="res-meta"></p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="slogan">下了車，你我都是行人</p>
+    <p>© 2026 王晉謙 Nolan Wang ・ <a href="https://github.com/Nolanchian" target="_blank" rel="noopener">GitHub</a> ・ <a href="https://ngtu.org" target="_blank" rel="noopener">ngtu.org</a></p>
+  </div>
+</footer>
+
+<script type="module">
+const TYPE_LABEL = { dataset: "資料集", website: "網站", learning: "學習資源" };
+const listEl = document.getElementById("res-list");
+const metaEl = document.getElementById("res-meta");
+const searchEl = document.querySelector(".search");
+const chips = [...document.querySelectorAll(".chip")];
+let items = [];
+let activeType = "all";
+
+const escapeHtml = (text) => String(text ?? "").replace(/[&<>"']/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]));
+
+function renderItem(item) {
+  const title = item.url
+    ? `<a href="${escapeHtml(item.url)}" target="_blank" rel="noopener">${escapeHtml(item.title)}</a>`
+    : escapeHtml(item.title);
+  const tags = (item.tags ?? []).map((tag) => `<span>${escapeHtml(tag)}</span>`).join("");
+  return `<li class="panel res">
+    <div class="top"><span class="pill ${escapeHtml(item.type)}">${TYPE_LABEL[item.type] ?? item.type}</span><span class="src">${escapeHtml(item.source)}</span></div>
+    <h3>${title}</h3>
+    ${item.note ? `<p>${escapeHtml(item.note)}</p>` : ""}
+    ${tags ? `<div class="tags">${tags}</div>` : ""}
+  </li>`;
+}
+
+function render() {
+  const keyword = searchEl.value.trim().toLowerCase();
+  const visible = items.filter((item) => {
+    if (activeType !== "all" && item.type !== activeType) return false;
+    if (!keyword) return true;
+    return [item.title, item.source, item.note, ...(item.tags ?? [])].join(" ").toLowerCase().includes(keyword);
+  });
+  listEl.innerHTML = visible.length ? visible.map(renderItem).join("") : `<li class="empty">沒有符合的項目</li>`;
+  metaEl.textContent = `共 ${visible.length} 筆`;
+}
+
+chips.forEach((chip) => chip.addEventListener("click", () => {
+  activeType = chip.dataset.type;
+  chips.forEach((c) => c.setAttribute("aria-pressed", String(c === chip)));
+  render();
+}));
+searchEl.addEventListener("input", render);
+
+try {
+  const response = await fetch("data/resources.json", { cache: "no-store" });
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  const data = await response.json();
+  items = data.items ?? [];
+  render();
+  if (data.updated) metaEl.textContent += `・更新於 ${data.updated}`;
+} catch (error) {
+  listEl.innerHTML = `<li class="empty">資料庫讀取失敗（data/resources.json）：${escapeHtml(error.message)}</li>`;
+}
+
+// 導覽列跟著捲動位置標示目前區塊
+const navLinks = [...document.querySelectorAll(".nav ul a")];
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    navLinks.forEach((link) => link.classList.toggle("on", link.getAttribute("href") === `#${entry.target.id}`));
+  });
+}, { rootMargin: "-45% 0px -50% 0px" });
+document.querySelectorAll("main section").forEach((section) => observer.observe(section));
+</script>
+</body>
+</html>
