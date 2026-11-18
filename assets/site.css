@@ -19,6 +19,21 @@ button,input,select{font:inherit}
 .topbar nav{display:flex;gap:2px;margin-left:auto}
 .topbar nav a{color:var(--cream);text-decoration:none;font-weight:700;padding:5px 12px;white-space:nowrap}
 main > .hint{margin:0 0 8px;font-weight:700}
+/* 排課 */
+.planner-bar{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;margin-bottom:18px;padding:10px 14px;background:var(--paper);border:2px solid var(--ink)}
+.planner-bar .hint{font-size:13px;color:var(--muted)}
+.planner-picks{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.tt-wrap{overflow-x:auto;margin-top:8px}
+.timetable{table-layout:fixed;min-width:620px;border:2px solid var(--ink)}
+.timetable th,.timetable td{border:1px solid var(--line);text-align:center;vertical-align:middle;padding:4px}
+.timetable thead th{background:var(--olive);color:#fff;font-size:14px}
+.timetable thead th:first-child{width:62px}
+.tt-time b{display:block;font-size:14px}
+.tt-time small{font-size:11px;color:var(--muted);font-weight:400}
+.tt-course{background:#fff;font-size:13px;line-height:1.45}
+.tt-course b,.tt-course span{display:block}
+.tt-tag{font-weight:700;color:var(--olive)}
+tr.picked{background:#eef6d8}
 .missing{color:#b3261e}
 .sub-row{padding-left:1em;color:var(--muted)}
 .sec > .hint{margin:8px 0 0;font-weight:700}

@@ -428,5 +428,146 @@
       "venue": "景觀學會",
       "photos": ""
     }
-  ]
+  ],
+  "planner": {
+    "term": "115-2",
+    "candidates": [
+      {
+        "title": "壘球初級",
+        "teacher": "",
+        "room": "",
+        "credits": "1",
+        "counts": "基本能力課程",
+        "time": "一1-2"
+      },
+      {
+        "title": "藤球初級",
+        "teacher": "",
+        "room": "",
+        "credits": "1",
+        "counts": "基本能力課程",
+        "time": "一3-4"
+      },
+      {
+        "title": "計量地理",
+        "teacher": "陳哲銘",
+        "room": "",
+        "credits": "3",
+        "counts": "必修（地理系）",
+        "time": "二2-4"
+      },
+      {
+        "title": "地形學",
+        "teacher": "林宗儀",
+        "room": "",
+        "credits": "3",
+        "counts": "必修（地理系）",
+        "time": "二7-9"
+      },
+      {
+        "title": "地理資訊系統",
+        "teacher": "吳秉昇",
+        "room": "",
+        "credits": "3",
+        "counts": "必修（地理系）",
+        "time": "四3-5"
+      },
+      {
+        "title": "當代社會與文化關鍵議題",
+        "teacher": "何家騏",
+        "room": "",
+        "credits": "2",
+        "counts": "博雅課程/社會科學",
+        "time": "三3-4"
+      },
+      {
+        "title": "臺灣原住民社會發展",
+        "teacher": "汪明輝",
+        "room": "",
+        "credits": "2",
+        "counts": "博雅課程/社會科學",
+        "time": "三3-4"
+      },
+      {
+        "title": "3D列印與創新應用",
+        "teacher": "沈林琥",
+        "room": "",
+        "credits": "2",
+        "counts": "博雅課程/自然科學",
+        "time": "三3-4"
+      },
+      {
+        "title": "日常生活藥理學",
+        "teacher": "呂國棟",
+        "room": "",
+        "credits": "2",
+        "counts": "博雅課程/自然科學",
+        "time": "五3-4"
+      },
+      {
+        "title": "運算思維與程式設計",
+        "teacher": "",
+        "room": "",
+        "credits": "2",
+        "counts": "跨域探索|博雅課程/邏輯運算",
+        "time": "四3-4"
+      },
+      {
+        "title": "遊戲程式設計",
+        "teacher": "劉建成",
+        "room": "",
+        "credits": "2",
+        "counts": "博雅課程/邏輯運算",
+        "time": "四6-7"
+      },
+      {
+        "title": "自然資源保育",
+        "teacher": "廖學誠",
+        "room": "",
+        "credits": "3",
+        "counts": "必選修（地理系）",
+        "time": "一7-9"
+      },
+      {
+        "title": "日常生活地理學",
+        "teacher": "吳鄭重",
+        "room": "",
+        "credits": "3",
+        "counts": "必選修（地理系）",
+        "time": "三7-9"
+      },
+      {
+        "title": "遙測學",
+        "teacher": "",
+        "room": "",
+        "credits": "3",
+        "counts": "必選修（地理系）",
+        "time": "二A-C"
+      },
+      {
+        "title": "都市與區域計畫",
+        "teacher": "吳鄭重",
+        "room": "",
+        "credits": "3",
+        "counts": "必選修（地理系）",
+        "time": "三A-C"
+      },
+      {
+        "title": "國家公園與世界遺產",
+        "teacher": "",
+        "room": "",
+        "credits": "2",
+        "counts": "必選修（地理系）",
+        "time": "五6-7"
+      },
+      {
+        "title": "電腦輔助地理教學",
+        "teacher": "",
+        "room": "",
+        "credits": "2",
+        "counts": "必選修（地理系）",
+        "time": "四9-10"
+      }
+    ]
+  }
 }
