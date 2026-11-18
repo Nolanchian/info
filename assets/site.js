@@ -183,19 +183,30 @@ function profileTables() {
 }
 
 /* ── 工具頁 ── */
+function toolCard(tool) {
+  const url = safeUrl(tool.url);
+  const image = safeUrl(tool.image);
+  return el("article", { class: "card" },
+    image && el("a", { class: "shot", href: url || null, target: "_blank", rel: "noopener", tabindex: "-1" },
+      el("img", { src: image, alt: `${tool.title}畫面`, loading: "lazy" })),
+    el("div", { class: "body" },
+      el("h3", {}, link(tool.title, tool.url)),
+      el("p", {}, tool.text),
+      el("div", { class: "links" },
+        url && el("a", { class: "mini primary", href: url, target: "_blank", rel: "noopener" }, "開啟"),
+        safeUrl(tool.repo) && el("a", { class: "mini", href: safeUrl(tool.repo), target: "_blank", rel: "noopener" }, "GitHub"))));
+}
+
 function toolsPage() {
-  return [
-    section("tools", "工具", dataTable({
+  const toolList = isEditing
+    ? dataTable({
       list: site.tools,
-      columns: [
-        { label: "工具", view: (r) => [el("b", {}, link(r.title, r.url)), el("span", { class: "sub" }, r.text)] },
-        { label: "連結", className: "nowrap", view: (r) => [
-          safeUrl(r.url) && el("a", { class: "mini primary", href: safeUrl(r.url), target: "_blank", rel: "noopener" }, "開啟"), " ",
-          safeUrl(r.repo) && el("a", { class: "mini", href: safeUrl(r.repo), target: "_blank", rel: "noopener" }, "GitHub")] },
-      ],
-      fields: [{ field: "title", label: "名稱" }, { field: "text", label: "說明" }, { field: "url", label: "網址" }, { field: "repo", label: "GitHub" }],
-      newRow: () => ({ title: "", text: "", url: "", repo: "" }),
-    })),
+      fields: [{ field: "title", label: "名稱" }, { field: "image", label: "圖片路徑" }, { field: "text", label: "說明" }, { field: "url", label: "網址" }, { field: "repo", label: "GitHub" }],
+      newRow: () => ({ title: "", image: "", text: "", url: "", repo: "" }),
+    })
+    : el("div", { class: "cards" }, site.tools.map(toolCard));
+  return [
+    section("tools", "工具", toolList),
     section("works", "其他作品", dataTable({
       list: site.works,
       columns: [{ label: "作品", view: (r) => [link(r.title, r.url), r.text && el("span", { class: "sub" }, r.text)] }],
@@ -283,13 +294,13 @@ function downloadBlob(blob, filename) {
 function applyFilter() {
   if (isEditing) return;
   const keyword = document.getElementById("search").value.trim().toLowerCase();
-  document.querySelectorAll("main tbody tr").forEach((tr) => {
+  document.querySelectorAll("main tbody tr, main .card").forEach((tr) => {
     const matchKeyword = !keyword || tr.textContent.toLowerCase().includes(keyword);
     const matchTag = !activeTag || (tr.dataset.tags ?? "").split("|").includes(activeTag);
     tr.classList.toggle("is-hidden", !(matchKeyword && matchTag));
   });
   document.querySelectorAll("main .sec[data-filterable]").forEach((sec) => {
-    const rows = [...sec.querySelectorAll("tbody tr")];
+    const rows = [...sec.querySelectorAll("tbody tr, .card")];
     const shown = rows.filter((r) => !r.classList.contains("is-hidden")).length;
     sec.classList.toggle("is-hidden", rows.length > 0 && shown === 0);
     const count = sec.querySelector("h2 .count");

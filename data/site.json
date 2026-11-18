@@ -8,66 +8,323 @@
     "quote": "在諸多議題海當中，我想回到一個根，也就是以台灣本土年輕人的力量，讓台灣的社會能夠接受民眾的聲音，捍衛每個人生活當中的正義，這是未來我想持續做下去的事情。"
   },
   "roles": [
-    { "text": "下一代人本交通促進會 創會理事長" },
-    { "text": "臺北市政府青年事務諮詢委員會委員" },
-    { "text": "《2026縣市首長候選人交通改善承諾白皮書》主編" },
-    { "text": "在MoSOR Lab擔任兼任研究助理" }
+    {
+      "text": "下一代人本交通促進會 創會理事長"
+    },
+    {
+      "text": "臺北市政府青年事務諮詢委員會委員"
+    },
+    {
+      "text": "《2026縣市首長候選人交通改善承諾白皮書》主編"
+    },
+    {
+      "text": "在MoSOR Lab擔任兼任研究助理"
+    }
   ],
   "links": [
-    { "title": "GitHub", "url": "https://github.com/Nolanchian" },
-    { "title": "下一代人本交通促進會", "url": "https://ngtu.org" }
+    {
+      "title": "GitHub",
+      "url": "https://github.com/Nolanchian"
+    },
+    {
+      "title": "下一代人本交通促進會",
+      "url": "https://ngtu.org"
+    }
   ],
   "timeline": [
-    { "year": "2026", "stage": "大二", "text": "《2026縣市首長候選人交通改善承諾白皮書》主編", "url": "https://ngtu.org/whitepaper" },
-    { "year": "2026", "stage": "大二", "text": "2026年全台議員選區互動式地圖", "url": "https://ngtu.org/whitepaper#tracker" },
-    { "year": "2026", "stage": "大二", "text": "Vibe Coding 使用VSCode中的Claude插件製作出下一代人本交通促進會官網：ngtu.org", "url": "https://ngtu.org" },
-    { "year": "2026", "stage": "大二", "text": "在MoSOR Lab擔任兼任研究助理", "url": "" },
-    { "year": "2026", "stage": "大二", "text": "於2026 g0v分享倡議經驗", "url": "" },
-    { "year": "2025", "stage": "大一", "text": "與高雄市政府合辦《道出心聲——高雄交通學生論壇》", "url": "" },
-    { "year": "2025", "stage": "大一", "text": "2025年我們發起「525保護下一代大遊行」", "url": "" },
-    { "year": "2024", "stage": "高三", "text": "全台串聯抗議交通部全面取消罰鍰在1200元以下的交通違規記點", "url": "" },
-    { "year": "2024", "stage": "高三", "text": "下一代人本交通促進會 成立大會 2024.8.20", "url": "" },
-    { "year": "2023", "stage": "高二", "text": "舉辦722高雄行人路權大遊行 超過兩千人參與 嘖嘖募資達標114% 超過47萬", "url": "https://www.zeczec.com/projects/student-pedestrian-union" },
-    { "year": "2022", "stage": "高一", "text": "18歲公民權環島倡議志工", "url": "" }
+    {
+      "year": "2026",
+      "stage": "大二",
+      "text": "《2026縣市首長候選人交通改善承諾白皮書》主編",
+      "url": "https://ngtu.org/whitepaper"
+    },
+    {
+      "year": "2026",
+      "stage": "大二",
+      "text": "2026年全台議員選區互動式地圖",
+      "url": "https://ngtu.org/whitepaper#tracker"
+    },
+    {
+      "year": "2026",
+      "stage": "大二",
+      "text": "Vibe Coding 使用VSCode中的Claude插件製作出下一代人本交通促進會官網：ngtu.org",
+      "url": "https://ngtu.org"
+    },
+    {
+      "year": "2026",
+      "stage": "大二",
+      "text": "在MoSOR Lab擔任兼任研究助理",
+      "url": ""
+    },
+    {
+      "year": "2026",
+      "stage": "大二",
+      "text": "於2026 g0v分享倡議經驗",
+      "url": ""
+    },
+    {
+      "year": "2025",
+      "stage": "大一",
+      "text": "與高雄市政府合辦《道出心聲——高雄交通學生論壇》",
+      "url": ""
+    },
+    {
+      "year": "2025",
+      "stage": "大一",
+      "text": "2025年我們發起「525保護下一代大遊行」",
+      "url": ""
+    },
+    {
+      "year": "2024",
+      "stage": "高三",
+      "text": "全台串聯抗議交通部全面取消罰鍰在1200元以下的交通違規記點",
+      "url": ""
+    },
+    {
+      "year": "2024",
+      "stage": "高三",
+      "text": "下一代人本交通促進會 成立大會 2024.8.20",
+      "url": ""
+    },
+    {
+      "year": "2023",
+      "stage": "高二",
+      "text": "舉辦722高雄行人路權大遊行 超過兩千人參與 嘖嘖募資達標114% 超過47萬",
+      "url": "https://www.zeczec.com/projects/student-pedestrian-union"
+    },
+    {
+      "year": "2022",
+      "stage": "高一",
+      "text": "18歲公民權環島倡議志工",
+      "url": ""
+    }
   ],
   "achievements": [
-    { "text": "自2026.4.23發佈白皮書以來，到9.21為止，已經有267位候選人、19個跨領域民間團體連署" },
-    { "text": "我們在2024年主辦317行人大富翁，成功將10項微罪項目縮減至5項。" },
-    { "text": "成功在道安會報爭取高雄道明中學後門「憲政路」直接增設實體人行道" },
-    { "text": "主辦高雄道出心聲工作坊，讓南部在地同學能有直接向交通局陳情溝通的管道" },
-    { "text": "與高雄市交通局、鳳山國中合作製作人本交通繪本" },
-    { "text": "2025、2026育成高中地理探究課程進行人本交通教育" }
+    {
+      "text": "自2026.4.23發佈白皮書以來，到9.21為止，已經有267位候選人、19個跨領域民間團體連署"
+    },
+    {
+      "text": "我們在2024年主辦317行人大富翁，成功將10項微罪項目縮減至5項。"
+    },
+    {
+      "text": "成功在道安會報爭取高雄道明中學後門「憲政路」直接增設實體人行道"
+    },
+    {
+      "text": "主辦高雄道出心聲工作坊，讓南部在地同學能有直接向交通局陳情溝通的管道"
+    },
+    {
+      "text": "與高雄市交通局、鳳山國中合作製作人本交通繪本"
+    },
+    {
+      "text": "2025、2026育成高中地理探究課程進行人本交通教育"
+    }
   ],
   "tools": [
-    { "title": "時程表產生器", "text": "在瀏覽器排甘特式時程表：日／週／月時間軸、專案分色、拖曳編輯，可下載 PDF 或 JPG 放進企劃書。", "url": "https://nolanchian.github.io/timeschedule/", "repo": "https://github.com/Nolanchian/timeschedule" },
-    { "title": "快速轉檔器", "text": "RAW（CR3）、JPG、PNG 快速批次轉成 JPG、PNG、WebP。", "url": "https://nolanchian.github.io/convert/", "repo": "https://github.com/Nolanchian/convert" },
-    { "title": "高雄市人行道電箱障礙地圖", "text": "標示高雄市各路段人行道上的電箱障礙位置，依人行道淨寬分級標色，協助辨識最需優先改善的路段。", "url": "https://nolanchian.github.io/kaohsiung-sidewalk-map/", "repo": "https://github.com/Nolanchian/kaohsiung-sidewalk-map" },
-    { "title": "社會統計總複習", "text": "信賴區間 (CI)・單母體假設檢定・雙母體假設檢定・單因子 ANOVA・二因子 ANOVA・χ² 適合度檢定・χ² 獨立性／同質性檢定・單迴歸・多元迴歸・統計控制・淨相關係數", "url": "https://nolanchian.github.io/stat-framework/", "repo": "https://github.com/Nolanchian/stat-framework" }
+    {
+      "title": "時程表產生器",
+      "image": "assets/tools/timeschedule.jpg",
+      "text": "在瀏覽器排甘特式時程表：日／週／月時間軸、專案分色、拖曳編輯，可下載 PDF 或 JPG 放進企劃書。",
+      "url": "https://nolanchian.github.io/timeschedule/",
+      "repo": "https://github.com/Nolanchian/timeschedule"
+    },
+    {
+      "title": "快速轉檔器",
+      "image": "assets/tools/convert.jpg",
+      "text": "RAW（CR3）、JPG、PNG 快速批次轉成 JPG、PNG、WebP。",
+      "url": "https://nolanchian.github.io/convert/",
+      "repo": "https://github.com/Nolanchian/convert"
+    },
+    {
+      "title": "高雄市人行道電箱障礙地圖",
+      "image": "assets/tools/kaohsiung-sidewalk-map.jpg",
+      "text": "標示高雄市各路段人行道上的電箱障礙位置，依人行道淨寬分級標色，協助辨識最需優先改善的路段。",
+      "url": "https://nolanchian.github.io/kaohsiung-sidewalk-map/",
+      "repo": "https://github.com/Nolanchian/kaohsiung-sidewalk-map"
+    },
+    {
+      "title": "社會統計總複習",
+      "image": "assets/tools/stat-framework.jpg",
+      "text": "信賴區間 (CI)・單母體假設檢定・雙母體假設檢定・單因子 ANOVA・二因子 ANOVA・χ² 適合度檢定・χ² 獨立性／同質性檢定・單迴歸・多元迴歸・統計控制・淨相關係數",
+      "url": "https://nolanchian.github.io/stat-framework/",
+      "repo": "https://github.com/Nolanchian/stat-framework"
+    }
   ],
   "works": [
-    { "title": "下一代人本交通促進會官網 ngtu.org", "text": "", "url": "https://ngtu.org" },
-    { "title": "2026年全台議員選區互動式地圖", "text": "", "url": "https://ngtu.org/whitepaper#tracker" }
+    {
+      "title": "下一代人本交通促進會官網 ngtu.org",
+      "text": "",
+      "url": "https://ngtu.org"
+    },
+    {
+      "title": "2026年全台議員選區互動式地圖",
+      "text": "",
+      "url": "https://ngtu.org/whitepaper#tracker"
+    }
   ],
   "categories": [
-    { "id": "dataset", "label": "資料集" },
-    { "id": "website", "label": "網站" },
-    { "id": "learning", "label": "學習資源" }
+    {
+      "id": "dataset",
+      "label": "資料集"
+    },
+    {
+      "id": "website",
+      "label": "網站"
+    },
+    {
+      "id": "learning",
+      "label": "學習資源"
+    }
   ],
   "resources": [
-    { "type": "dataset", "title": "道安資訊查詢網", "url": "https://roadsafety.tw/", "source": "交通部", "tags": ["道安", "死亡統計"], "note": "各國交通死亡率比較圖的資料來源" },
-    { "type": "dataset", "title": "IRTAD Road Safety Annual Report", "url": "https://www.itf-oecd.org/irtad", "source": "OECD / ITF", "tags": ["道安", "國際比較"], "note": "" },
-    { "type": "dataset", "title": "NHTSA 美國公路交通安全管理局", "url": "https://www.nhtsa.gov/", "source": "National Highway Traffic Safety Administration", "tags": ["道安", "國際比較"], "note": "" },
-    { "type": "dataset", "title": "高雄市人行道電箱資料", "url": "https://nolanchian.github.io/kaohsiung-sidewalk-map/", "source": "高雄市政府工務局（由李雅慧議員辦公室質詢提供，2026）", "tags": ["人行道", "高雄"], "note": "" },
-    { "type": "dataset", "title": "twgeojson 台灣行政區界 GeoJSON", "url": "https://github.com/ronnywang/twgeojson", "source": "ronnywang", "tags": ["GIS", "行政區"], "note": "" },
-    { "type": "dataset", "title": "政府資料開放平臺", "url": "https://data.gov.tw/", "source": "數位發展部", "tags": ["開放資料"], "note": "" },
-    { "type": "website", "title": "中央選舉委員會", "url": "https://www.cec.gov.tw/", "source": "中選會", "tags": ["選舉", "選區"], "note": "" },
-    { "type": "website", "title": "OpenStreetMap", "url": "https://www.openstreetmap.org/", "source": "OpenStreetMap contributors", "tags": ["GIS", "底圖"], "note": "" },
-    { "type": "website", "title": "g0v 零時政府", "url": "https://g0v.tw/", "source": "g0v", "tags": ["公民科技"], "note": "" },
-    { "type": "learning", "title": "MUTCD", "url": "https://mutcd.fhwa.dot.gov/", "source": "U.S. FHWA", "tags": ["交通工程", "標誌標線"], "note": "" },
-    { "type": "learning", "title": "Towards Safe System Infrastructure", "url": "", "source": "Tingvall (2023)，C.R.O.W.", "tags": ["安全系統", "零死亡願景"], "note": "" },
-    { "type": "learning", "title": "A Ladder of Citizen Participation", "url": "https://doi.org/10.1080/01944366908977225", "source": "Arnstein (1969)", "tags": ["公民參與"], "note": "" },
-    { "type": "learning", "title": "Street-Level Bureaucracy, 30th Anniversary Edition", "url": "", "source": "Lipsky (2010)", "tags": ["公共行政"], "note": "" },
-    { "type": "learning", "title": "社會統計總複習", "url": "https://nolanchian.github.io/stat-framework/", "source": "Nolan", "tags": ["統計"], "note": "" }
+    {
+      "type": "dataset",
+      "title": "道安資訊查詢網",
+      "url": "https://roadsafety.tw/",
+      "source": "交通部",
+      "tags": [
+        "道安",
+        "死亡統計"
+      ],
+      "note": "各國交通死亡率比較圖的資料來源"
+    },
+    {
+      "type": "dataset",
+      "title": "IRTAD Road Safety Annual Report",
+      "url": "https://www.itf-oecd.org/irtad",
+      "source": "OECD / ITF",
+      "tags": [
+        "道安",
+        "國際比較"
+      ],
+      "note": ""
+    },
+    {
+      "type": "dataset",
+      "title": "NHTSA 美國公路交通安全管理局",
+      "url": "https://www.nhtsa.gov/",
+      "source": "National Highway Traffic Safety Administration",
+      "tags": [
+        "道安",
+        "國際比較"
+      ],
+      "note": ""
+    },
+    {
+      "type": "dataset",
+      "title": "高雄市人行道電箱資料",
+      "url": "https://nolanchian.github.io/kaohsiung-sidewalk-map/",
+      "source": "高雄市政府工務局（由李雅慧議員辦公室質詢提供，2026）",
+      "tags": [
+        "人行道",
+        "高雄"
+      ],
+      "note": ""
+    },
+    {
+      "type": "dataset",
+      "title": "twgeojson 台灣行政區界 GeoJSON",
+      "url": "https://github.com/ronnywang/twgeojson",
+      "source": "ronnywang",
+      "tags": [
+        "GIS",
+        "行政區"
+      ],
+      "note": ""
+    },
+    {
+      "type": "dataset",
+      "title": "政府資料開放平臺",
+      "url": "https://data.gov.tw/",
+      "source": "數位發展部",
+      "tags": [
+        "開放資料"
+      ],
+      "note": ""
+    },
+    {
+      "type": "website",
+      "title": "中央選舉委員會",
+      "url": "https://www.cec.gov.tw/",
+      "source": "中選會",
+      "tags": [
+        "選舉",
+        "選區"
+      ],
+      "note": ""
+    },
+    {
+      "type": "website",
+      "title": "OpenStreetMap",
+      "url": "https://www.openstreetmap.org/",
+      "source": "OpenStreetMap contributors",
+      "tags": [
+        "GIS",
+        "底圖"
+      ],
+      "note": ""
+    },
+    {
+      "type": "website",
+      "title": "g0v 零時政府",
+      "url": "https://g0v.tw/",
+      "source": "g0v",
+      "tags": [
+        "公民科技"
+      ],
+      "note": ""
+    },
+    {
+      "type": "learning",
+      "title": "MUTCD",
+      "url": "https://mutcd.fhwa.dot.gov/",
+      "source": "U.S. FHWA",
+      "tags": [
+        "交通工程",
+        "標誌標線"
+      ],
+      "note": ""
+    },
+    {
+      "type": "learning",
+      "title": "Towards Safe System Infrastructure",
+      "url": "",
+      "source": "Tingvall (2023)，C.R.O.W.",
+      "tags": [
+        "安全系統",
+        "零死亡願景"
+      ],
+      "note": ""
+    },
+    {
+      "type": "learning",
+      "title": "A Ladder of Citizen Participation",
+      "url": "https://doi.org/10.1080/01944366908977225",
+      "source": "Arnstein (1969)",
+      "tags": [
+        "公民參與"
+      ],
+      "note": ""
+    },
+    {
+      "type": "learning",
+      "title": "Street-Level Bureaucracy, 30th Anniversary Edition",
+      "url": "",
+      "source": "Lipsky (2010)",
+      "tags": [
+        "公共行政"
+      ],
+      "note": ""
+    },
+    {
+      "type": "learning",
+      "title": "社會統計總複習",
+      "url": "https://nolanchian.github.io/stat-framework/",
+      "source": "Nolan",
+      "tags": [
+        "統計"
+      ],
+      "note": ""
+    }
   ],
   "updated": "2026-11-18"
 }
