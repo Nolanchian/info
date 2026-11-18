@@ -73,6 +73,22 @@ function fromBase64(base64) {
 
 /* ── 編輯用元件 ── */
 function editor(row, field) {
+  if (field.kind === "multi") {
+    // 勾選多個值，存成「a|b」
+    const selected = new Set(String(row[field.field] ?? "").split("|").map((s) => s.trim()).filter(Boolean));
+    const options = field.options();
+    // 舊資料裡不在選項清單的值也保留顯示，避免存檔時默默消失
+    for (const value of selected) if (!options.some((o) => o.id === value)) options.push({ id: value, label: value });
+    return el("div", { class: "multi", role: "group", "aria-label": field.label }, options.map((opt) => {
+      const box = el("input", { type: "checkbox", checked: selected.has(opt.id) });
+      box.addEventListener("change", () => {
+        if (box.checked) selected.add(opt.id); else selected.delete(opt.id);
+        row[field.field] = options.map((o) => o.id).filter((id) => selected.has(id)).join("|");
+        markDirty();
+      });
+      return el("label", {}, box, opt.label);
+    }));
+  }
   if (field.kind === "select") {
     const select = el("select", { class: "cell", "aria-label": field.label },
       field.options().map((opt) => el("option", { value: opt.id }, opt.label)));
@@ -313,6 +329,17 @@ function plannerNeeds() {
     }));
 }
 
+// 排課「算入」的選項：畢業學分檢核裡最細的類別（有領域就用領域），含已補滿的
+function requirementOptions() {
+  const reqs = site.requirements ?? [];
+  const hasDomain = new Set(reqs.filter((r) => r.domain).map((r) => r.category));
+  return reqs
+    .filter((r) => r.domain || !hasDomain.has(r.category))
+    .map((r) => (r.domain
+      ? { id: `${r.category}/${r.domain}`, label: `${r.category.replace("課程", "")}・${r.domain}` }
+      : { id: r.category, label: r.category }));
+}
+
 function plannerCandidates() {
   const taken = new Set((site.courses ?? []).map((c) => c.title));
   return (site.planner?.candidates ?? []).map((c, id) => ({
@@ -434,7 +461,7 @@ function plannerPage() {
         list: planner.candidates,
         fields: [
           { field: "title", label: "課程" }, { field: "teacher", label: "老師" }, { field: "room", label: "地點" },
-          { field: "credits", label: "學分" }, { field: "counts", label: "算入（多個用 | 分隔）" }, { field: "time", label: "時間（例：二2-4）" },
+          { field: "credits", label: "學分" }, { field: "counts", label: "算入（可複選）", kind: "multi", options: requirementOptions }, { field: "time", label: "時間（例：二2-4）" },
         ],
         newRow: () => ({ title: "", teacher: "", room: "", credits: "", counts: "", time: "" }),
       })),
@@ -481,7 +508,7 @@ function plannerPage() {
       { label: "課程", view: (c) => [el("b", {}, c.title), c.teacher && el("span", { class: "sub" }, c.teacher), c.taken && el("span", { class: "status-tag" }, "已修／修習中")] },
       { label: "時間", className: "nowrap", view: (c) => c.time },
       { label: "學分", className: "nowrap", view: (c) => c.credits },
-      { label: "算入", view: (c) => c.options.join("／") },
+      { label: "算入", view: (c) => c.options.map((id) => requirementOptions().find((o) => o.id === id)?.label ?? id).join("／") },
       { label: "", className: "nowrap", view: modeSelect },
     ],
   });

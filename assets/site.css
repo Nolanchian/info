@@ -19,6 +19,8 @@ button,input,select{font:inherit}
 .topbar nav{display:flex;gap:2px;margin-left:auto}
 .topbar nav a{color:var(--cream);text-decoration:none;font-weight:700;padding:5px 12px;white-space:nowrap}
 main > .hint{margin:0 0 8px;font-weight:700}
+.multi{display:grid;gap:2px;min-width:170px;font-size:13px}
+.multi label{display:flex;gap:6px;align-items:center;white-space:nowrap;cursor:pointer}
 /* 排課 */
 .planner-bar{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;margin-bottom:18px;padding:10px 14px;background:var(--paper);border:2px solid var(--ink)}
 .planner-bar .hint{font-size:13px;color:var(--muted)}
