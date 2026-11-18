@@ -262,11 +262,11 @@
     },
     {
       "type": "website",
-      "title": "g0v 零時政府",
-      "url": "https://g0v.tw/",
-      "source": "g0v",
+      "title": "通學路上：體驗孩童上學考驗",
+      "url": "https://www.twreporter.org/a/school-zone-safety-pov-game?utm_source=facebook&utm_medium=social&fbclid=IwY2xjawVqqERleHRuA2FlbQIxMABwZG9mAWJyaWQRMU5ZcmFycW9iQlVwM2ZNMTNzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEf4hiitSsvRYbC4dq537Np98VLvHFje1cyVN_Ys4YAvOr7mVkT0wHj2MLXb_U_aem_yCZ716nrsKhLU9uf5LuQmQ",
+      "source": "報導者",
       "tags": [
-        "公民科技"
+        "POV遊戲"
       ],
       "note": ""
     },
@@ -309,16 +309,6 @@
       "source": "Lipsky (2010)",
       "tags": [
         "公共行政"
-      ],
-      "note": ""
-    },
-    {
-      "type": "learning",
-      "title": "社會統計總複習",
-      "url": "https://nolanchian.github.io/stat-framework/",
-      "source": "Nolan",
-      "tags": [
-        "統計"
       ],
       "note": ""
     }
