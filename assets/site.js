@@ -3,6 +3,7 @@ const REPO = { owner: "Nolanchian", repo: "info", path: "data/site.json", branch
 const TOKEN_KEY = "info-gh-token";
 const PAGES = [
   { id: "profile", href: "index.html", label: "介紹" },
+  { id: "research", href: "research.html", label: "研究" },
   { id: "tools", href: "tools.html", label: "工具" },
   { id: "library", href: "library.html", label: "資料庫" },
 ];
@@ -173,6 +174,16 @@ function profileTables() {
       fields: [{ field: "year", label: "年份" }, { field: "stage", label: "階段" }, { field: "text", label: "內容" }, { field: "url", label: "連結" }],
       newRow: () => ({ year: String(new Date().getFullYear()), stage: "", text: "", url: "" }),
     })),
+    section("talks", "演講經歷", dataTable({
+      list: site.talks ??= [],
+      columns: [
+        { label: "日期", className: "nowrap", view: (r) => r.date },
+        { label: "場次", view: (r) => r.title },
+        { label: "地點", view: (r) => r.venue },
+      ],
+      fields: [{ field: "date", label: "日期" }, { field: "title", label: "場次" }, { field: "venue", label: "地點" }],
+      newRow: () => ({ date: "", title: "", venue: "" }),
+    })),
     section("achievements", "倡議成果", dataTable({
       list: site.achievements,
       columns: [{ label: "內容", view: (r) => r.text }],
@@ -180,6 +191,42 @@ function profileTables() {
       newRow: () => ({ text: "" }),
     })),
   ];
+}
+
+/* ── 研究頁 ── */
+function researchPage() {
+  const skills = section("skills", "研究工具", dataTable({
+    list: site.skills ??= [],
+    columns: [
+      { label: "工具", className: "nowrap", view: (r) => el("b", {}, r.name) },
+      { label: "應用", view: (r) => link(r.text, r.url) },
+      { label: "相關課程", view: (r) => r.courses },
+    ],
+    fields: [{ field: "name", label: "工具" }, { field: "text", label: "應用" }, { field: "url", label: "連結" }, { field: "courses", label: "相關課程" }],
+    newRow: () => ({ name: "", text: "", url: "", courses: "" }),
+  }));
+  const courses = site.courses ??= [];
+  if (isEditing) {
+    return [skills, section("courses", "修課紀錄", dataTable({
+      list: courses,
+      fields: [{ field: "category", label: "類別" }, { field: "title", label: "課程" }, { field: "credits", label: "學分" }, { field: "teacher", label: "授課老師" }],
+      newRow: () => ({ category: courses.at(-1)?.category ?? "", title: "", credits: "", teacher: "" }),
+    }))];
+  }
+  const sumCredits = (list) => list.reduce((total, c) => total + (Number(c.credits) || 0), 0);
+  const categories = [...new Set(courses.map((c) => c.category))];
+  const summary = el("p", { class: "hint", id: "courses" }, `修課紀錄：共 ${courses.length} 門・${sumCredits(courses)} 學分`);
+  return [skills, summary, ...categories.map((cat, i) => {
+    const list = courses.filter((c) => c.category === cat);
+    return section(`course-${i + 1}`, `${cat}・${sumCredits(list)} 學分`, dataTable({
+      list,
+      columns: [
+        { label: "課程", view: (r) => r.title },
+        { label: "學分", className: "nowrap", view: (r) => r.credits },
+        { label: "授課老師", className: "nowrap", view: (r) => r.teacher },
+      ],
+    }));
+  })];
 }
 
 /* ── 工具頁 ── */
@@ -321,7 +368,7 @@ function navHref(href) {
 
 function buildShell() {
   const topbar = el("header", { class: "topbar" }, el("div", { class: "in" },
-    el("a", { class: "brand", href: navHref("index.html") }, `${site.profile.name} ${site.profile.nameEn}`),
+    el("a", { class: "brand", href: navHref("index.html") }, site.profile.name, el("span", { class: "en" }, ` ${site.profile.nameEn}`)),
     el("nav", {}, PAGES.map((p) => el("a", { href: navHref(p.href), "aria-current": p.id === page ? "page" : null }, p.label)))));
   const search = el("input", { type: "search", id: "search", placeholder: "搜尋本頁", "aria-label": "搜尋本頁", oninput: applyFilter, hidden: isEditing });
   const layout = el("div", { class: "layout" },
@@ -336,7 +383,7 @@ function buildShell() {
 }
 
 function render() {
-  const builders = { profile: profilePage, tools: toolsPage, library: libraryPage };
+  const builders = { profile: profilePage, research: researchPage, tools: toolsPage, library: libraryPage };
   const main = document.getElementById("main");
   main.replaceChildren(...builders[page]());
   document.getElementById("toc").replaceChildren(...[...main.querySelectorAll(".sec[id]")]
