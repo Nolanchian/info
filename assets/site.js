@@ -209,21 +209,29 @@ function researchPage() {
   if (isEditing) {
     return [skills, section("courses", "修課紀錄", dataTable({
       list: courses,
-      fields: [{ field: "category", label: "類別" }, { field: "title", label: "課程" }, { field: "credits", label: "學分" }, { field: "teacher", label: "授課老師" }],
-      newRow: () => ({ category: courses.at(-1)?.category ?? "", title: "", credits: "", teacher: "" }),
+      fields: [{ field: "category", label: "類別" }, { field: "title", label: "課程" }, { field: "credits", label: "學分" }, { field: "teacher", label: "授課老師" }, { field: "status", label: "狀態（空白＝已修）" }],
+      newRow: () => ({ category: courses.at(-1)?.category ?? "", title: "", credits: "", teacher: "", status: "" }),
     }))];
   }
   const sumCredits = (list) => list.reduce((total, c) => total + (Number(c.credits) || 0), 0);
+  const creditText = (list) => {
+    const done = list.filter((c) => !c.status);
+    const ongoing = list.filter((c) => c.status);
+    if (!ongoing.length) return `${sumCredits(done)} 學分`;
+    if (!done.length) return `修習中 ${sumCredits(ongoing)} 學分`;
+    return `已修 ${sumCredits(done)}＋修習中 ${sumCredits(ongoing)} 學分`;
+  };
   const categories = [...new Set(courses.map((c) => c.category))];
-  const summary = el("p", { class: "hint", id: "courses" }, `修課紀錄：共 ${courses.length} 門・${sumCredits(courses)} 學分`);
+  const summary = el("p", { class: "hint", id: "courses" }, `修課紀錄：${courses.length} 門・${creditText(courses)}`);
   return [skills, summary, ...categories.map((cat, i) => {
     const list = courses.filter((c) => c.category === cat);
-    return section(`course-${i + 1}`, `${cat}・${sumCredits(list)} 學分`, dataTable({
+    return section(`course-${i + 1}`, `${cat}・${creditText(list)}`, dataTable({
       list,
       columns: [
         { label: "課程", view: (r) => r.title },
         { label: "學分", className: "nowrap", view: (r) => r.credits },
         { label: "授課老師", className: "nowrap", view: (r) => r.teacher },
+        { label: "狀態", className: "nowrap", view: (r) => r.status && el("span", { class: "status-tag" }, r.status) },
       ],
     }));
   })];
@@ -388,7 +396,7 @@ function render() {
   main.replaceChildren(...builders[page]());
   document.getElementById("toc").replaceChildren(...[...main.querySelectorAll(".sec[id]")]
     .filter((sec) => sec.querySelector("h2"))
-    .map((sec) => el("li", {}, el("a", { href: `#${sec.id}` }, sec.querySelector("h2").firstChild.textContent))));
+    .map((sec) => el("li", {}, el("a", { href: `#${sec.id}` }, sec.querySelector("h2").firstChild.textContent.split("・")[0]))));
   applyFilter();
 }
 
