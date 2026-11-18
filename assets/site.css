@@ -20,6 +20,7 @@ button,input,select{font:inherit}
 .topbar nav a{color:var(--cream);text-decoration:none;font-weight:700;padding:5px 12px;white-space:nowrap}
 main > .hint{margin:0 0 8px;font-weight:700}
 .missing{color:#b3261e}
+.sub-row{padding-left:1em;color:var(--muted)}
 .sec > .hint{margin:8px 0 0;font-weight:700}
 .status-tag{font-size:12px;font-weight:900;padding:0 6px;background:var(--mustard);border:1.5px solid var(--ink)}
 .topbar nav a:hover{background:#333;color:var(--cream)}

@@ -199,17 +199,18 @@ function profileTables() {
 // 還缺 = 規定 − 已修 − 修習中（以本學期全數通過計），超修不倒扣
 function requirementSection(courses, requirements, sumCredits) {
   const rows = requirements.map((req) => {
-    const list = courses.filter((c) => c.category === req.category);
+    const list = courses.filter((c) => c.category === req.category && (!req.domain || c.domain === req.domain));
     const done = sumCredits(list.filter((c) => !c.status));
     const ongoing = sumCredits(list.filter((c) => c.status));
     const required = Number(req.required) || 0;
     return { ...req, done, ongoing, missing: Math.max(0, required - done - ongoing) };
   });
-  const total = (key) => rows.reduce((sum, r) => sum + (Number(r[key]) || 0), 0);
+  // 有填領域的是類別底下的細項，總計只算類別本身，避免重複計算
+  const total = (key) => rows.filter((r) => !r.domain).reduce((sum, r) => sum + (Number(r[key]) || 0), 0);
   const table = dataTable({
     list: rows,
     columns: [
-      { label: "類別", className: "nowrap", view: (r) => r.category },
+      { label: "類別", className: "nowrap", view: (r) => (r.domain ? el("span", { class: "sub-row" }, `└ ${r.domain}`) : r.category) },
       { label: "規定", className: "nowrap hide-narrow", view: (r) => r.required },
       { label: "已修", className: "nowrap hide-narrow", view: (r) => r.done },
       { label: "修習中", className: "nowrap hide-narrow", view: (r) => r.ongoing || "" },
@@ -239,12 +240,12 @@ function researchPage() {
   if (isEditing) {
     return [skills, section("requirements", "畢業學分檢核", dataTable({
       list: requirements,
-      fields: [{ field: "category", label: "類別（需與修課類別同名）" }, { field: "required", label: "規定學分" }, { field: "todo", label: "待補" }],
-      newRow: () => ({ category: "", required: "", todo: "" }),
+      fields: [{ field: "category", label: "類別（需與修課類別同名）" }, { field: "domain", label: "領域（選填）" }, { field: "required", label: "規定學分" }, { field: "todo", label: "待補" }],
+      newRow: () => ({ category: "", domain: "", required: "", todo: "" }),
     })), section("courses", "修課紀錄", dataTable({
       list: courses,
-      fields: [{ field: "category", label: "類別" }, { field: "title", label: "課程" }, { field: "credits", label: "學分" }, { field: "teacher", label: "授課老師" }, { field: "status", label: "狀態（空白＝已修）" }],
-      newRow: () => ({ category: courses.at(-1)?.category ?? "", title: "", credits: "", teacher: "", status: "" }),
+      fields: [{ field: "category", label: "類別" }, { field: "domain", label: "領域（博雅用）" }, { field: "title", label: "課程" }, { field: "credits", label: "學分" }, { field: "teacher", label: "授課老師" }, { field: "status", label: "狀態（空白＝已修）" }],
+      newRow: () => ({ category: courses.at(-1)?.category ?? "", domain: "", title: "", credits: "", teacher: "", status: "" }),
     }))];
   }
   const sumCredits = (list) => list.reduce((total, c) => total + (Number(c.credits) || 0), 0);
@@ -259,14 +260,16 @@ function researchPage() {
   const summary = el("p", { class: "hint", id: "courses" }, `修課紀錄：${courses.length} 門・${creditText(courses)}`);
   return [skills, requirementSection(courses, requirements, sumCredits), summary, ...categories.map((cat, i) => {
     const list = courses.filter((c) => c.category === cat);
+    const hasDomain = list.some((c) => c.domain);
     return section(`course-${i + 1}`, `${cat}・${creditText(list)}`, dataTable({
       list,
       columns: [
+        hasDomain && { label: "領域", className: "nowrap", view: (r) => r.domain },
         { label: "課程", view: (r) => r.title },
         { label: "學分", className: "nowrap", view: (r) => r.credits },
         { label: "授課老師", className: "nowrap", view: (r) => r.teacher },
         { label: "狀態", className: "nowrap", view: (r) => r.status && el("span", { class: "status-tag" }, r.status) },
-      ],
+      ].filter(Boolean),
     }));
   })];
 }
