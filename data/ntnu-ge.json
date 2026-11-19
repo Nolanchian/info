@@ -1,0 +1,1679 @@
+{
+ "source": "國立臺灣師範大學 通識課程架構表暨通識課程總表 115.06.30（109 學年度起入學適用）",
+ "courses": {
+  "01UG003": {
+   "title": "西洋古典音樂",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "01UG004": {
+   "title": "音樂鑑賞",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "01UG005": {
+   "title": "歌劇大師經典作品賞析",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "01UG006": {
+   "title": "臺灣小說選讀",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "01UG008": {
+   "title": "旅行文學",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "01UG010": {
+   "title": "華人文化產業與全球化",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "01UG011": {
+   "title": "亞裔美國文學與電影的藝術形式",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "01UG012": {
+   "title": "舞蹈鑑賞",
+   "domain": "人文藝術",
+   "credits": 3,
+   "cross": false
+  },
+  "01UG014": {
+   "title": "藝術鑑賞與視覺文化",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": true
+  },
+  "01UG016": {
+   "title": "戲劇鑑賞",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "01UG017": {
+   "title": "劇本寫作與賞析",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "01UG018": {
+   "title": "民間文學與說唱藝術",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "01UG021": {
+   "title": "文學與電影",
+   "domain": "人文藝術",
+   "credits": 3,
+   "cross": false
+  },
+  "01UG022": {
+   "title": "紅樓夢的文學與戲曲藝術",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "01UG025": {
+   "title": "認識臺灣的聲音",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "01UG027": {
+   "title": "日本美術鑑賞",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "01UG028": {
+   "title": "認識藝術史",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "01UG029": {
+   "title": "古典詩選讀",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "01UG031": {
+   "title": "戲曲旋轉門",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "01UG032": {
+   "title": "古典小說與人生",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "01UG033": {
+   "title": "音樂與戲劇",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": true
+  },
+  "01UG035": {
+   "title": "現當代中文女性詩歌",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "01UG036": {
+   "title": "文化生產中的高齡化議題與社會實踐",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "01UG037": {
+   "title": "高行健與表演藝術",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "01UG038": {
+   "title": "音樂與我",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "01UG039": {
+   "title": "鋼琴黃金年代",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "01UG040": {
+   "title": "台灣美術",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "01UG041": {
+   "title": "好萊塢與東亞",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "01UG042": {
+   "title": "認識錄像藝術：從電影院到美術館",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "01UG043": {
+   "title": "認識二戰後藝術：跨國境視野",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "02UG001": {
+   "title": "哲學入門",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "02UG002": {
+   "title": "思考方法",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "02UG004": {
+   "title": "多元視野的道德判斷",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "02UG005": {
+   "title": "道德推理",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "02UG007": {
+   "title": "中國哲人的生命與心靈",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "02UG008": {
+   "title": "中國古代思想的現代意義",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "02UG009": {
+   "title": "認識自我",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "02UG010": {
+   "title": "人生哲學與批判性思考",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "02UG011": {
+   "title": "從精神分析看生命潛則",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "02UG013": {
+   "title": "論語今讀",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "02UG014": {
+   "title": "西遊記與人生",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "02UG015": {
+   "title": "生物哲學導論",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "02UG016": {
+   "title": "華人心理、社會與文化：漢語哲學下的批",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "02UG017": {
+   "title": "全球文學理論與文學",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "02UG018": {
+   "title": "人文實驗室：自我的探索、思辨與建構",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "02UG019": {
+   "title": "佛學中的人生智慧",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "02UG020": {
+   "title": "經典與情緒素養",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "03UG002": {
+   "title": "現代民主政治",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "03UG003": {
+   "title": "多元文化",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "03UG005": {
+   "title": "現代公民與法律",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "03UG006": {
+   "title": "憲法與人權",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "03UG012": {
+   "title": "臺灣流行文化",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": true
+  },
+  "03UG017": {
+   "title": "人權探索與公民行動",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "03UG020": {
+   "title": "當代臺灣政治議題的探索",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "03UG021": {
+   "title": "媒體素養教育與行動方案",
+   "domain": "社會科學",
+   "credits": 3,
+   "cross": false
+  },
+  "03UG024": {
+   "title": "環境與傳播",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "03UG027": {
+   "title": "女性文學、性別平等理論與婦運",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "03UG029": {
+   "title": "管理與電影",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "03UG031": {
+   "title": "鑑識科學概論",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "03UG033": {
+   "title": "飲食文化與食育",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "03UG034": {
+   "title": "愛情學",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "03UG035": {
+   "title": "社會議題與社會改革",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "03UG037": {
+   "title": "公民環境素養",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "03UG038": {
+   "title": "環境、地理與心理",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "03UG039": {
+   "title": "跨文化素養通論",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": true
+  },
+  "03UG041": {
+   "title": "管理學入門",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": true
+  },
+  "03UG042": {
+   "title": "科技產業營業秘密保護與智慧財產權",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "03UG043": {
+   "title": "國際企業策略",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "03UG044": {
+   "title": "理性與情緒：社會科學的視野",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "03UG045": {
+   "title": "當代社會與文化關鍵議題",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "03UG046": {
+   "title": "國際人權法之在地實踐",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "03UG047": {
+   "title": "生活中的 SDGs",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "03UG048": {
+   "title": "策略管理 101",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "03UG049": {
+   "title": "社區方案規劃與實踐",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "03UG050": {
+   "title": "從影劇看語言、身分與社會",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "03UG051": {
+   "title": "與 AI 對話：從電影探究人智未來",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "03UG052": {
+   "title": "機器人＋愛與戰爭",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "03UG053": {
+   "title": "校園性別事件解析",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "04UG001": {
+   "title": "中國社會生活史",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "04UG002": {
+   "title": "中國近代歷史人物",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "04UG003": {
+   "title": "文明的探索",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": true
+  },
+  "04UG006": {
+   "title": "歷史、影像與真相",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "04UG007": {
+   "title": "西方文明史",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "04UG008": {
+   "title": "歷史文化與現代生活",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "04UG012": {
+   "title": "認識臺灣的原住民",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "04UG013": {
+   "title": "臺灣歷史與電影",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "04UG015": {
+   "title": "臺灣歷史與文化",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "04UG017": {
+   "title": "近代歐洲插畫裡的中國圖像",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "04UG020": {
+   "title": "跟著文學去環島",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "04UG021": {
+   "title": "報導文學與紀錄片",
+   "domain": "人文藝術",
+   "credits": 3,
+   "cross": false
+  },
+  "04UG022": {
+   "title": "流行文化與亞際溝通",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "04UG023": {
+   "title": "20 世紀動盪時局下的知識份子",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "04UG024": {
+   "title": "臺灣文史與城市發展",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "04UG025": {
+   "title": "中國經典與文化",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "04UG028": {
+   "title": "孫子兵法與人生",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "04UG029": {
+   "title": "《楚辭‧九歌》與神話、巫風",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "04UG030": {
+   "title": "客家社會探究",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "04UG033": {
+   "title": "東南亞文化與歷史概略",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "04UG035": {
+   "title": "東南亞文化與歷史專題",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "04UG036": {
+   "title": "臺灣原住民族文化展演",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "04UG037": {
+   "title": "探索臺灣飲食文化",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "04UG038": {
+   "title": "太平洋世紀的形成",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "04UG039": {
+   "title": "近現代東亞史",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "04UG040": {
+   "title": "古琴音樂與人生",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "04UG041": {
+   "title": "圍棋與東亞文化",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "04UG042": {
+   "title": "文明與環境：思想傳統與當代世界",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "04UG043": {
+   "title": "流行音樂中的文化展演與政治",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "04UG044": {
+   "title": "世界音樂與文化",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG001": {
+   "title": "邏輯思考與應用",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": true
+  },
+  "05UG002": {
+   "title": "科學思維",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG003": {
+   "title": "數學活動與思維",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG004": {
+   "title": "生活中之科學與迷思",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG005": {
+   "title": "小說與電影中的數學思維",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG006": {
+   "title": "數學思維的發展與應用",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG007": {
+   "title": "科學本質",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG009": {
+   "title": "科技與社會",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG010": {
+   "title": "科學的語言",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG011": {
+   "title": "科技倫理",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG012": {
+   "title": "科技史哲思維下的世界觀",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG014": {
+   "title": "科學不一樣",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG015": {
+   "title": "生活中的統計",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG016": {
+   "title": "運算思維與程式設計",
+   "domain": "邏輯運算",
+   "credits": 2,
+   "cross": true
+  },
+  "05UG017": {
+   "title": "資料科學與程式設計",
+   "domain": "邏輯運算",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG018": {
+   "title": "科學與程式設計",
+   "domain": "邏輯運算",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG019": {
+   "title": "行動 APP 程式設計",
+   "domain": "邏輯運算",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG020": {
+   "title": "統計學",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": true
+  },
+  "05UG021": {
+   "title": "試算表進階應用與程式設計",
+   "domain": "邏輯運算",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG022": {
+   "title": "學程式玩音樂",
+   "domain": "邏輯運算",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG023": {
+   "title": "文本分析與程式設計",
+   "domain": "邏輯運算",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG024": {
+   "title": "生活中的演算法",
+   "domain": "邏輯運算",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG025": {
+   "title": "遊戲程式設計",
+   "domain": "邏輯運算",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG026": {
+   "title": "運動數據分析與程式設計",
+   "domain": "邏輯運算",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG027": {
+   "title": "數位音樂與聲音合成之基礎程式 設計",
+   "domain": "邏輯運算",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG028": {
+   "title": "試算表與商務資料分析",
+   "domain": "邏輯運算",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG029": {
+   "title": "生醫與健康數據分析",
+   "domain": "邏輯運算",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG030": {
+   "title": "大數據程式設計",
+   "domain": "邏輯運算",
+   "credits": 3,
+   "cross": false
+  },
+  "05UG031": {
+   "title": "資料科學在教育上的應用",
+   "domain": "邏輯運算",
+   "credits": 3,
+   "cross": false
+  },
+  "05UG032": {
+   "title": "學習分析工具實務應用",
+   "domain": "邏輯運算",
+   "credits": 3,
+   "cross": false
+  },
+  "05UG033": {
+   "title": "藝術創作與程式設計",
+   "domain": "邏輯運算",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG034": {
+   "title": "網頁程式設計入門",
+   "domain": "邏輯運算",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG035": {
+   "title": "數位敘事與學習科技",
+   "domain": "邏輯運算",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG036": {
+   "title": "SQL 與資料庫設計",
+   "domain": "邏輯運算",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG037": {
+   "title": "Python 程式設計入門",
+   "domain": "邏輯運算",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG038": {
+   "title": "生成式 AI 實務應用",
+   "domain": "邏輯運算",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG039": {
+   "title": "人工智慧與日常生活",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG040": {
+   "title": "數據視覺化與溝通",
+   "domain": "邏輯運算",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG041": {
+   "title": "生成式 AI 與人文應用",
+   "domain": "邏輯運算",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG042": {
+   "title": "資訊科技與生活議題：AI 共創探究",
+   "domain": "邏輯運算",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG043": {
+   "title": "遊戲程式設計與 AI 輔助開發",
+   "domain": "邏輯運算",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG044": {
+   "title": "Python AI 程式設計入門",
+   "domain": "邏輯運算",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG045": {
+   "title": "AI 生成試算表進階應用與程式設計",
+   "domain": "邏輯運算",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG046": {
+   "title": "音樂 AI 演算法設計與聲音合成",
+   "domain": "邏輯運算",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG047": {
+   "title": "音樂 AI 基礎程式設計",
+   "domain": "邏輯運算",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG048": {
+   "title": "運動數據分析與 AI 應用",
+   "domain": "邏輯運算",
+   "credits": 2,
+   "cross": false
+  },
+  "05UG049": {
+   "title": "當 AI 遇見生成藝術",
+   "domain": "邏輯運算",
+   "credits": 2,
+   "cross": false
+  },
+  "06UG002": {
+   "title": "生物技術對社會之衝擊",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "06UG003": {
+   "title": "地震防災概論",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "06UG004": {
+   "title": "星星月亮太陽－天文漫談",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "06UG005": {
+   "title": "奈米科技",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": true
+  },
+  "06UG006": {
+   "title": "環境倫理與永續發展",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "06UG007": {
+   "title": "生活中的化學",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "06UG009": {
+   "title": "植物與人生",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "06UG011": {
+   "title": "生態與保育",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "06UG012": {
+   "title": "資訊科技與生活",
+   "domain": "邏輯運算",
+   "credits": 2,
+   "cross": false
+  },
+  "06UG013": {
+   "title": "地球從誕生到演化",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "06UG014": {
+   "title": "科技與人文的對話",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "06UG016": {
+   "title": "疾病、醫學與文明",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "06UG017": {
+   "title": "海洋科學的藝術",
+   "domain": "自然科學",
+   "credits": 3,
+   "cross": false
+  },
+  "06UG018": {
+   "title": "學習與生活中的腦科學",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "06UG021": {
+   "title": "宇宙中的生命與太空環境",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "06UG022": {
+   "title": "創意設計與發明",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "06UG023": {
+   "title": "智慧型手機與開放軟體之日常物理",
+   "domain": "邏輯運算",
+   "credits": 2,
+   "cross": false
+  },
+  "06UG025": {
+   "title": "汽車與生活",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "06UG027": {
+   "title": "一般醫學常識",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "06UG028": {
+   "title": "演化與人類行為",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "06UG029": {
+   "title": "日常生活藥理學",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "06UG030": {
+   "title": "聯合國永續發展目標",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "06UG031": {
+   "title": "日常生活中的科學",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "06UG032": {
+   "title": "現代醫學",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "06UG033": {
+   "title": "成癮與生活",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "06UG034": {
+   "title": "客庄產業中的科學",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "0AUG203": {
+   "title": "音樂概論",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0AUG215": {
+   "title": "文學與藝術",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0AUG223": {
+   "title": "水彩欣賞與創作入門",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0AUG228": {
+   "title": "文學、電影中的青少年成長經驗",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0AUG229": {
+   "title": "文學、電影中的情感經驗",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0AUG402": {
+   "title": "心理學",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": true
+  },
+  "0AUG408": {
+   "title": "健康與生活",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "0AUG426": {
+   "title": "物理與生活",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": true
+  },
+  "0AUG435": {
+   "title": "歷史與人物",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0AUG442": {
+   "title": "聖經與人生",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0AUG462": {
+   "title": "個人投資理財",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "0AUG463": {
+   "title": "休閒與生活",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "0AUG485": {
+   "title": "運動鑑賞",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0AUG487": {
+   "title": "美食三國誌",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0AUG488": {
+   "title": "休閒與生命教育",
+   "domain": "社會科學",
+   "credits": 3,
+   "cross": false
+  },
+  "0AUG496": {
+   "title": "木藝大師",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": true
+  },
+  "0HUG010": {
+   "title": "自由寫作",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0HUG011": {
+   "title": "學術寫作",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0HUG012": {
+   "title": "現當代中國文學",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0HUG210": {
+   "title": "閩南語概論",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0HUG223": {
+   "title": "禪與人生",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "0HUG230": {
+   "title": "臺灣文化導覽",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0HUG245": {
+   "title": "禪詩的生命智慧",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0HUG248": {
+   "title": "中國經典文學閱讀：古典與現代",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0HUG249": {
+   "title": "樂府詩與人生",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0HUG250": {
+   "title": "古典詩詞賞析",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0HUG251": {
+   "title": "中華文化探索",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0HUG252": {
+   "title": "中國文學欣賞",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0HUG253": {
+   "title": "元宇宙敘事導論",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0HUG401": {
+   "title": "英文（小說選讀）",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0HUG420": {
+   "title": "英美短篇小說天地",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0HUG432": {
+   "title": "莎士比亞的故事",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": true
+  },
+  "0HUG449": {
+   "title": "國際貿易英文",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0HUG450": {
+   "title": "大腦中的語言：心理語言學入門",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0HUG501": {
+   "title": "日語（一）",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0HUG502": {
+   "title": "法語（一）",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0HUG503": {
+   "title": "西班牙語（一）",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0HUG504": {
+   "title": "西班牙語（二）",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0HUG505": {
+   "title": "法語（二）",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0HUG506": {
+   "title": "韓語（一）",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0HUG507": {
+   "title": "泰國語言與文化",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0HUG509": {
+   "title": "泰語（一）",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0HUG510": {
+   "title": "泰語（二）",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0HUG634": {
+   "title": "歷史與電影",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0HUG640": {
+   "title": "武士道文化與批判",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0HUG648": {
+   "title": "旅行、文學與地理",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0HUG649": {
+   "title": "越南語（一）",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0HUG650": {
+   "title": "越南語（二）",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0HUG651": {
+   "title": "韓語（二）",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0HUG652": {
+   "title": "日語（二）",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0HUG653": {
+   "title": "印尼語（一）",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0HUG654": {
+   "title": "印尼語（二）",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0HUG655": {
+   "title": "馬來語（一）",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0HUG656": {
+   "title": "馬來語（二）",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0HUG657": {
+   "title": "語言、大腦與認知",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "0NUG238": {
+   "title": "動物與人生",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "0NUG245": {
+   "title": "人類與自然資源",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "0NUG246": {
+   "title": "生理心理學",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "0NUG253": {
+   "title": "3D 列印與創新應用",
+   "domain": "自然科學",
+   "credits": 2,
+   "cross": false
+  },
+  "0SUG236": {
+   "title": "與樂齡共處",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "0SUG237": {
+   "title": "民主與溝通",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "0SUG238": {
+   "title": "國際關係導論",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "0SUG411": {
+   "title": "臺灣原住民社會發展",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "0SUG508": {
+   "title": "個人財務規劃",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "0SUG514": {
+   "title": "博物館探索",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "0SUG520": {
+   "title": "臺語電影導讀",
+   "domain": "人文藝術",
+   "credits": 2,
+   "cross": false
+  },
+  "0SUG523": {
+   "title": "通識教育講座",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "0SUG528": {
+   "title": "臺灣教育",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "0SUG538": {
+   "title": "大學入門",
+   "domain": "",
+   "credits": 2,
+   "cross": true
+  },
+  "0SUG539": {
+   "title": "自主學習：專題探究(需於前一學期提出申請，可修習 2 次)",
+   "domain": "",
+   "credits": 2,
+   "cross": true
+  },
+  "0SUG540": {
+   "title": "自主學習：MOOCs（一）",
+   "domain": "",
+   "credits": 2,
+   "cross": true
+  },
+  "0SUG541": {
+   "title": "自主學習：MOOCs（二）",
+   "domain": "",
+   "credits": 2,
+   "cross": true
+  },
+  "0SUG542": {
+   "title": "自主學習：自主探究",
+   "domain": "",
+   "credits": 2,
+   "cross": true
+  },
+  "0SUG543": {
+   "title": "冒險觀光概論",
+   "domain": "社會科學",
+   "credits": 2,
+   "cross": false
+  },
+  "0SUG544": {
+   "title": "職涯規劃與發展",
+   "domain": "",
+   "credits": 2,
+   "cross": true
+  },
+  "AEU0014": {
+   "title": "電路學（一）",
+   "domain": "",
+   "credits": 3,
+   "cross": true
+  },
+  "BIU0169": {
+   "title": "普通生物學甲 /BIU0168 普通生物學甲(一)",
+   "domain": "",
+   "credits": 3,
+   "cross": true
+  },
+  "CEU0002": {
+   "title": "公民教育/ CEU0004 法學緒論/ CEU0003 政治學/ CEU0370 領導概論/ CEU0011 經濟學",
+   "domain": "",
+   "credits": 2,
+   "cross": true
+  },
+  "CHU0350": {
+   "title": "國學概論",
+   "domain": "",
+   "credits": 2,
+   "cross": true
+  },
+  "CLU1003": {
+   "title": "華語文教學導論",
+   "domain": "",
+   "credits": 2,
+   "cross": true
+  },
+  "CMU0176": {
+   "title": "普通化學甲（一）  / CMU0177 普通化學甲（二） 114 學",
+   "domain": "",
+   "credits": 3,
+   "cross": true
+  },
+  "E0U0001": {
+   "title": "教育統計學（一）",
+   "domain": "",
+   "credits": 2,
+   "cross": true
+  },
+  "EAU0154": {
+   "title": "批判性思考與寫作/EAU0220 國際關係概論",
+   "domain": "",
+   "credits": 3,
+   "cross": true
+  },
+  "EDU0154": {
+   "title": "教育心理學",
+   "domain": "",
+   "credits": 2,
+   "cross": true
+  },
+  "ESU0177": {
+   "title": "地球科學概論（含實習）",
+   "domain": "",
+   "credits": 2,
+   "cross": true
+  },
+  "GBU0001": {
+   "title": "全球研究導論（一） (全球研究學士學位學程)",
+   "domain": "",
+   "credits": 3,
+   "cross": true
+  },
+  "GEU0233": {
+   "title": "地學通論（一）",
+   "domain": "",
+   "credits": 2,
+   "cross": true
+  },
+  "GEU0234": {
+   "title": "地學通論（二）",
+   "domain": "",
+   "credits": 2,
+   "cross": true
+  },
+  "HGU0004": {
+   "title": "人類發展 / HGU0191 家庭發展",
+   "domain": "",
+   "credits": 3,
+   "cross": true
+  },
+  "ITU0010": {
+   "title": "工業科技教育概論",
+   "domain": "",
+   "credits": 2,
+   "cross": true
+  },
+  "MAU0160": {
+   "title": "線性代數（一）",
+   "domain": "",
+   "credits": 2,
+   "cross": true
+  },
+  "NSU0006": {
+   "title": "營養學（一）(營養學程)",
+   "domain": "",
+   "credits": 2,
+   "cross": true
+  },
+  "OEU0001": {
+   "title": "光電工程概論/ OEU0025 生活半導體光電 (光電學程)",
+   "domain": "",
+   "credits": 2,
+   "cross": true
+  },
+  "PAU0026": {
+   "title": "藝術概論(表藝學程)",
+   "domain": "",
+   "credits": 2,
+   "cross": true
+  },
+  "PCU0152": {
+   "title": "普通心理學",
+   "domain": "",
+   "credits": 2,
+   "cross": true
+  },
+  "PEU0003": {
+   "title": "體育學原理",
+   "domain": "",
+   "credits": 2,
+   "cross": true
+  },
+  "PHU0249": {
+   "title": "普通物理甲（一）",
+   "domain": "",
+   "credits": 4,
+   "cross": true
+  },
+  "VDU0004": {
+   "title": "設計概論",
+   "domain": "",
+   "credits": 2,
+   "cross": true
+  }
+ }
+}

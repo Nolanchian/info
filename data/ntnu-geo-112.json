@@ -1,0 +1,585 @@
+{
+ "source": "國立臺灣師範大學地理學系課程架構表（112 學年度入學適用）",
+ "url": "docs/geo/geo-curriculum-112.pdf",
+ "department": "地理學系",
+ "entryYear": "112",
+ "thresholds": [
+  {
+   "name": "中文英文",
+   "required": 10
+  },
+  {
+   "name": "體育",
+   "required": 4
+  },
+  {
+   "name": "博雅・人文藝術",
+   "required": 2
+  },
+  {
+   "name": "博雅・社會科學",
+   "required": 2
+  },
+  {
+   "name": "博雅・自然科學",
+   "required": 2
+  },
+  {
+   "name": "博雅・邏輯運算",
+   "required": 2
+  },
+  {
+   "name": "跨域探索",
+   "required": 4
+  },
+  {
+   "name": "通識（不限類別）",
+   "required": 6
+  },
+  {
+   "name": "系必修",
+   "required": 34
+  },
+  {
+   "name": "系選修",
+   "required": 41
+  },
+  {
+   "name": "自由學分",
+   "required": 21
+  }
+ ],
+ "notes": [],
+ "courses": {
+  "GEU0233": {
+   "title": "地學通論（一）",
+   "credits": 2,
+   "category": "系必修"
+  },
+  "GEU0234": {
+   "title": "地學通論（二）",
+   "credits": 2,
+   "category": "系必修"
+  },
+  "GEU0011": {
+   "title": "臺灣地理",
+   "credits": 3,
+   "category": "系必修"
+  },
+  "GEU0167": {
+   "title": "計量地理",
+   "credits": 3,
+   "category": "系必修"
+  },
+  "GEU0001": {
+   "title": "地形學",
+   "credits": 3,
+   "category": "系必修"
+  },
+  "GEU0014": {
+   "title": "世界地理",
+   "credits": 3,
+   "category": "系必修"
+  },
+  "GEU0136": {
+   "title": "氣候學",
+   "credits": 3,
+   "category": "系必修"
+  },
+  "GEU0006": {
+   "title": "經濟地理",
+   "credits": 3,
+   "category": "系必修"
+  },
+  "GEU0017": {
+   "title": "地圖學",
+   "credits": 3,
+   "category": "系必修"
+  },
+  "GEU0057": {
+   "title": "都市地理",
+   "credits": 3,
+   "category": "系必修"
+  },
+  "GEU0166": {
+   "title": "地理資訊系統",
+   "credits": 3,
+   "category": "系必修"
+  },
+  "GEU0118": {
+   "title": "地理思想",
+   "credits": 3,
+   "category": "系必修"
+  },
+  "GEU0003": {
+   "title": "水文學",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0004": {
+   "title": "土壤地理",
+   "credits": 2,
+   "category": "系選修"
+  },
+  "GEU0005": {
+   "title": "生物地理",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0007": {
+   "title": "聚落地理",
+   "credits": 2,
+   "category": "系選修"
+  },
+  "GEU0008": {
+   "title": "社會地理",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0010": {
+   "title": "文化地理",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0015": {
+   "title": "區域地理學",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0016": {
+   "title": "地理統計",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0022": {
+   "title": "河海地形",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0024": {
+   "title": "臺灣地形",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0029": {
+   "title": "世界氣候",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0033": {
+   "title": "臺灣氣候",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0039": {
+   "title": "氣候變遷",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0046": {
+   "title": "地質學",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0047": {
+   "title": "氣象學",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0050": {
+   "title": "農業地理",
+   "credits": 2,
+   "category": "系選修"
+  },
+  "GEU0053": {
+   "title": "市場地理",
+   "credits": 2,
+   "category": "系選修"
+  },
+  "GEU0059": {
+   "title": "人口地理",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0060": {
+   "title": "行為地理",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0061": {
+   "title": "觀光地理",
+   "credits": 2,
+   "category": "系選修"
+  },
+  "GEU0067": {
+   "title": "歐洲地理",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0068": {
+   "title": "美洲地理",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0069": {
+   "title": "亞洲地理",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0070": {
+   "title": "非洲地理",
+   "credits": 2,
+   "category": "系選修"
+  },
+  "GEU0073": {
+   "title": "遙測學",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0074": {
+   "title": "地圖使用與分析",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0079": {
+   "title": "地理資訊應用",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0086": {
+   "title": "環境生態學",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0101": {
+   "title": "自然災害",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0103": {
+   "title": "環境地學",
+   "credits": 2,
+   "category": "系選修"
+  },
+  "GEU0108": {
+   "title": "海洋學",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0120": {
+   "title": "中國地理",
+   "credits": 2,
+   "category": "系選修"
+  },
+  "GEU0128": {
+   "title": "地理程式設計應用",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0151": {
+   "title": "水土保持",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0152": {
+   "title": "數值地形分析",
+   "credits": 2,
+   "category": "系選修"
+  },
+  "GEU0154": {
+   "title": "社區規劃",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0160": {
+   "title": "空間政治經濟學",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0170": {
+   "title": "自然資源保育",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0174": {
+   "title": "工程地形學",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0176": {
+   "title": "衛星影像處理與應用",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0178": {
+   "title": "集水區經營",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0179": {
+   "title": "日常生活地理學",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0183": {
+   "title": "發展地理學",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0184": {
+   "title": "測量學",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0186": {
+   "title": "都市設計與更新",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0187": {
+   "title": "國家公園與世界遺產",
+   "credits": 2,
+   "category": "系選修"
+  },
+  "GEU0188": {
+   "title": "敷地計劃",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0194": {
+   "title": "生態觀光與遊憩",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0199": {
+   "title": "永續觀光管理",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0201": {
+   "title": "人文地理經典評讀",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0202": {
+   "title": "地理學研究法",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0203": {
+   "title": "空間決策",
+   "credits": 2,
+   "category": "系選修"
+  },
+  "GEU0204": {
+   "title": "都市社會學",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0209": {
+   "title": "遊憩資源管理",
+   "credits": 2,
+   "category": "系選修"
+  },
+  "GEU0213": {
+   "title": "通論地理教學研究",
+   "credits": 2,
+   "category": "系選修"
+  },
+  "GEU0214": {
+   "title": "區域地理教學研究",
+   "credits": 2,
+   "category": "系選修"
+  },
+  "GEU0215": {
+   "title": "空間體驗與觀察",
+   "credits": 2,
+   "category": "系選修"
+  },
+  "GEU0216": {
+   "title": "電影中的地理學思考",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0217": {
+   "title": "測量實習",
+   "credits": 2,
+   "category": "系選修"
+  },
+  "GEU0218": {
+   "title": "全球定位系統",
+   "credits": 2,
+   "category": "系選修"
+  },
+  "GEU0226": {
+   "title": "環境永續",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0227": {
+   "title": "土地法規",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0228": {
+   "title": "進階地理資訊系統",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0229": {
+   "title": "地理學計畫導向學習",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0230": {
+   "title": "環保行政學",
+   "credits": 2,
+   "category": "系選修"
+  },
+  "GEU0231": {
+   "title": "地理教學評量",
+   "credits": 2,
+   "category": "系選修"
+  },
+  "GEU0232": {
+   "title": "地理教材教法研究",
+   "credits": 2,
+   "category": "系選修"
+  },
+  "GEU0235": {
+   "title": "環境管理與區域規劃實務",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0236": {
+   "title": "水資源工程與規劃",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0237": {
+   "title": "地景圖學",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0238": {
+   "title": "鐵道地理學",
+   "credits": 2,
+   "category": "系選修"
+  },
+  "GEU0239": {
+   "title": "地理視覺化",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0240": {
+   "title": "社會領域探究與實作專題",
+   "credits": 2,
+   "category": "系選修"
+  },
+  "GEU0241": {
+   "title": "社會領域課程概論",
+   "credits": 2,
+   "category": "系選修"
+  },
+  "GEU0242": {
+   "title": "原住民族地理",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0243": {
+   "title": "都市與區域計畫",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0244": {
+   "title": "地形測量與實察",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0256": {
+   "title": "鄉土地理",
+   "credits": 2,
+   "category": "系選修"
+  },
+  "GEU0246": {
+   "title": "電腦輔助地理教學",
+   "credits": 2,
+   "category": "系選修"
+  },
+  "GEU0247": {
+   "title": "都市地理資訊系統",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0248": {
+   "title": "區位分析與選址",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0249": {
+   "title": "生物多樣性與保育概論",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0250": {
+   "title": "臺灣生物多樣性",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0251": {
+   "title": "原住民族環境保育",
+   "credits": 2,
+   "category": "系選修"
+  },
+  "GEU0252": {
+   "title": "歐洲的人口、文化及移民",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0253": {
+   "title": "東亞的永續發展",
+   "credits": 1,
+   "category": "系選修"
+  },
+  "GEU0254": {
+   "title": "地名學",
+   "credits": 2,
+   "category": "系選修"
+  },
+  "GEU0255": {
+   "title": "軍略地理",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEC9002": {
+   "title": "社會網路分析",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEU0257": {
+   "title": "飲食文化地理",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEC9001": {
+   "title": "網頁爬蟲實務",
+   "credits": 3,
+   "category": "系選修"
+  },
+  "GEC9003": {
+   "title": "環境DNA",
+   "credits": 2,
+   "category": "系選修"
+  },
+  "GEU0258": {
+   "title": "客家鄉土與環境",
+   "credits": 2,
+   "category": "系選修"
+  },
+  "GEU0259": {
+   "title": "客家文化與族群發展",
+   "credits": 2,
+   "category": "系選修"
+  }
+ }
+}

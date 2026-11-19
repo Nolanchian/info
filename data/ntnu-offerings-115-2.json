@@ -1,0 +1,3844 @@
+{
+ "term": "115-2",
+ "source": "臺師大 115 學年度第 2 學期開課資料（地理系、通識、普通體育、共同科）",
+ "courses": {
+  "00UA844": {
+   "title": "基礎華語（二）",
+   "credits": 2,
+   "kind": "選修",
+   "unit": "共同科",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "陳家妮",
+     "time": "一1-2",
+     "room": "公館"
+    },
+    {
+     "group": "B",
+     "teacher": "張金祝",
+     "time": "三8-9",
+     "room": "公館"
+    }
+   ]
+  },
+  "00UA8A1": {
+   "title": "中文寫作與表達",
+   "credits": 2,
+   "kind": "必修",
+   "unit": "共同科",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "林津羽",
+     "time": "一1-2",
+     "room": "公館"
+    },
+    {
+     "group": "B",
+     "teacher": "陳嘉琪",
+     "time": "一1-2",
+     "room": "公館"
+    },
+    {
+     "group": "C",
+     "teacher": "李鍑倫",
+     "time": "一1-2",
+     "room": "公館"
+    },
+    {
+     "group": "D",
+     "teacher": "謝佳瀅",
+     "time": "一1-2",
+     "room": "公館"
+    },
+    {
+     "group": "E",
+     "teacher": "楊穎詩",
+     "time": "一1-2",
+     "room": "公館"
+    },
+    {
+     "group": "F",
+     "teacher": "謝秀卉",
+     "time": "一1-2",
+     "room": "公館"
+    },
+    {
+     "group": "G",
+     "teacher": "林書漢",
+     "time": "一1-2",
+     "room": "公館"
+    }
+   ]
+  },
+  "00UA8A2": {
+   "title": "中文寫作與表達",
+   "credits": 2,
+   "kind": "必修",
+   "unit": "共同科",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "林津羽",
+     "time": "一3-4",
+     "room": "公館"
+    },
+    {
+     "group": "B",
+     "teacher": "陳嘉琪",
+     "time": "一3-4",
+     "room": "公館"
+    },
+    {
+     "group": "C",
+     "teacher": "謝佳瀅",
+     "time": "一3-4",
+     "room": "公館"
+    },
+    {
+     "group": "D",
+     "teacher": "楊穎詩",
+     "time": "一3-4",
+     "room": "公館"
+    },
+    {
+     "group": "E",
+     "teacher": "謝秀卉",
+     "time": "一3-4",
+     "room": "公館"
+    },
+    {
+     "group": "F",
+     "teacher": "林介如",
+     "time": "一3-4",
+     "room": "公館"
+    },
+    {
+     "group": "G",
+     "teacher": "林書漢",
+     "time": "一3-4",
+     "room": "公館"
+    }
+   ]
+  },
+  "00UA8A3": {
+   "title": "中文寫作與表達",
+   "credits": 2,
+   "kind": "必修",
+   "unit": "共同科",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "林玉玫",
+     "time": "五1-2",
+     "room": "公館"
+    },
+    {
+     "group": "B",
+     "teacher": "黃子純",
+     "time": "五1-2",
+     "room": "和平"
+    },
+    {
+     "group": "C",
+     "teacher": "林津羽",
+     "time": "五1-2",
+     "room": "公館"
+    },
+    {
+     "group": "D",
+     "teacher": "謝嘉文",
+     "time": "五1-2",
+     "room": "公館"
+    },
+    {
+     "group": "E",
+     "teacher": "魏伯全",
+     "time": "五1-2",
+     "room": "公館"
+    },
+    {
+     "group": "F",
+     "teacher": "謝秀卉",
+     "time": "五1-2",
+     "room": "公館"
+    },
+    {
+     "group": "G",
+     "teacher": "李蘋芬",
+     "time": "五1-2",
+     "room": "公館"
+    },
+    {
+     "group": "H",
+     "teacher": "陳惠鈴",
+     "time": "五1-2",
+     "room": "公館"
+    },
+    {
+     "group": "I",
+     "teacher": "陳筱筠",
+     "time": "五1-2",
+     "room": "公館"
+    },
+    {
+     "group": "J",
+     "teacher": "蘇子齊",
+     "time": "五1-2",
+     "room": "公館"
+    }
+   ]
+  },
+  "00UA8A4": {
+   "title": "中文寫作與表達",
+   "credits": 2,
+   "kind": "必修",
+   "unit": "共同科",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "黃子純",
+     "time": "五3-4",
+     "room": "公館"
+    },
+    {
+     "group": "B",
+     "teacher": "林玉玫",
+     "time": "五3-4",
+     "room": "公館"
+    },
+    {
+     "group": "C",
+     "teacher": "徐敏媛",
+     "time": "五3-4",
+     "room": "公館"
+    },
+    {
+     "group": "D",
+     "teacher": "陳惠鈴",
+     "time": "五3-4",
+     "room": "公館"
+    },
+    {
+     "group": "E",
+     "teacher": "謝秀卉",
+     "time": "五3-4",
+     "room": "公館"
+    },
+    {
+     "group": "F",
+     "teacher": "謝嘉文",
+     "time": "五3-4",
+     "room": "公館"
+    },
+    {
+     "group": "G",
+     "teacher": "魏伯全",
+     "time": "五3-4",
+     "room": "公館"
+    },
+    {
+     "group": "H",
+     "teacher": "黃薏文",
+     "time": "五3-4",
+     "room": "公館"
+    },
+    {
+     "group": "I",
+     "teacher": "陳筱筠",
+     "time": "五3-4",
+     "room": "公館"
+    },
+    {
+     "group": "J",
+     "teacher": "許仲南",
+     "time": "五3-4",
+     "room": "公館"
+    },
+    {
+     "group": "K",
+     "teacher": "林介如",
+     "time": "五3-4",
+     "room": "公館"
+    },
+    {
+     "group": "L",
+     "teacher": "蘇子齊",
+     "time": "五3-4",
+     "room": "公館"
+    },
+    {
+     "group": "M",
+     "teacher": "李蘋芬",
+     "time": "五3-4",
+     "room": "公館"
+    }
+   ]
+  },
+  "00UA8A5": {
+   "title": "中文寫作與表達",
+   "credits": 2,
+   "kind": "必修",
+   "unit": "共同科",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "林玉玫",
+     "time": "五6-7",
+     "room": "公館"
+    },
+    {
+     "group": "B",
+     "teacher": "徐敏媛",
+     "time": "五6-7",
+     "room": "公館"
+    },
+    {
+     "group": "C",
+     "teacher": "黃薏文",
+     "time": "五6-7",
+     "room": "公館"
+    },
+    {
+     "group": "D",
+     "teacher": "賴昶",
+     "time": "五6-7",
+     "room": "公館"
+    },
+    {
+     "group": "E",
+     "teacher": "許仲南",
+     "time": "五6-7",
+     "room": "公館"
+    },
+    {
+     "group": "F",
+     "teacher": "謝秀卉",
+     "time": "五6-7",
+     "room": "公館"
+    },
+    {
+     "group": "G",
+     "teacher": "林佩怡",
+     "time": "五6-7",
+     "room": "公館"
+    },
+    {
+     "group": "H",
+     "teacher": "王鍾山",
+     "time": "五6-7",
+     "room": "公館"
+    },
+    {
+     "group": "I",
+     "teacher": "陳明緻",
+     "time": "五6-7",
+     "room": "公館"
+    }
+   ]
+  },
+  "00UA8A6": {
+   "title": "中文寫作與表達",
+   "credits": 2,
+   "kind": "必修",
+   "unit": "共同科",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "陳嘉琪",
+     "time": "五8-9",
+     "room": "公館"
+    },
+    {
+     "group": "B",
+     "teacher": "徐敏媛",
+     "time": "五8-9",
+     "room": "公館"
+    },
+    {
+     "group": "C",
+     "teacher": "賴昶",
+     "time": "五8-9",
+     "room": "公館"
+    },
+    {
+     "group": "D",
+     "teacher": "許仲南",
+     "time": "五8-9",
+     "room": "公館"
+    },
+    {
+     "group": "E",
+     "teacher": "林佩怡",
+     "time": "五8-9",
+     "room": "公館"
+    },
+    {
+     "group": "F",
+     "teacher": "王鍾山",
+     "time": "五8-9",
+     "room": "公館"
+    },
+    {
+     "group": "G",
+     "teacher": "陳明緻",
+     "time": "五8-9",
+     "room": "公館"
+    }
+   ]
+  },
+  "00UA8A7": {
+   "title": "中文寫作與表達",
+   "credits": 2,
+   "kind": "必修",
+   "unit": "共同科",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "黃月銀",
+     "time": "二A-B",
+     "room": "公館"
+    },
+    {
+     "group": "B",
+     "teacher": "黃月銀",
+     "time": "四A-B",
+     "room": "公館"
+    }
+   ]
+  },
+  "00UA8A8": {
+   "title": "中文寫作與表達",
+   "credits": 2,
+   "kind": "必修",
+   "unit": "共同科",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "陳惠鈴",
+     "time": "五6-7",
+     "room": "公館"
+    }
+   ]
+  },
+  "00UB8A1": {
+   "title": "英文（二）",
+   "credits": 2,
+   "kind": "必修",
+   "unit": "共同科",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "柯珍宜",
+     "time": "一1-2",
+     "room": "公館"
+    },
+    {
+     "group": "B",
+     "teacher": "柯珍宜",
+     "time": "一3-4",
+     "room": "公館"
+    },
+    {
+     "group": "C",
+     "teacher": "柯衣凡",
+     "time": "五1-2",
+     "room": "公館"
+    },
+    {
+     "group": "D",
+     "teacher": "曾於萱",
+     "time": "五3-4",
+     "room": "公館"
+    }
+   ]
+  },
+  "00UB8A2": {
+   "title": "英文（二）",
+   "credits": 2,
+   "kind": "必修",
+   "unit": "共同科",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "李金安",
+     "time": "一1-2",
+     "room": "公館"
+    },
+    {
+     "group": "B",
+     "teacher": "李金安",
+     "time": "一3-4",
+     "room": "公館"
+    },
+    {
+     "group": "C",
+     "teacher": "王潔",
+     "time": "一3-4",
+     "room": "公館"
+    },
+    {
+     "group": "D",
+     "teacher": "郭儀風",
+     "time": "五1-2",
+     "room": "公館"
+    },
+    {
+     "group": "E",
+     "teacher": "郭儀風",
+     "time": "五3-4",
+     "room": "公館"
+    },
+    {
+     "group": "F",
+     "teacher": "王潔",
+     "time": "五1-2",
+     "room": "公館"
+    },
+    {
+     "group": "G",
+     "teacher": "陳嬿如",
+     "time": "五1-2",
+     "room": "公館"
+    },
+    {
+     "group": "H",
+     "teacher": "王潔",
+     "time": "五3-4",
+     "room": "公館"
+    },
+    {
+     "group": "I",
+     "teacher": "陳惠芬",
+     "time": "五3-4",
+     "room": "公館"
+    },
+    {
+     "group": "J",
+     "teacher": "陳嬿如",
+     "time": "五6-7",
+     "room": "公館"
+    },
+    {
+     "group": "K",
+     "teacher": "黃慧儀",
+     "time": "五6-7",
+     "room": "公館"
+    },
+    {
+     "group": "L",
+     "teacher": "陳瑄",
+     "time": "五8-9",
+     "room": "公館"
+    },
+    {
+     "group": "M",
+     "teacher": "陳嬿如",
+     "time": "五8-9",
+     "room": "公館"
+    },
+    {
+     "group": "N",
+     "teacher": "黃慧儀",
+     "time": "五8-9",
+     "room": "公館"
+    }
+   ]
+  },
+  "00UB8A3": {
+   "title": "英文（二）",
+   "credits": 2,
+   "kind": "必修",
+   "unit": "共同科",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "翁悅心",
+     "time": "一1-2",
+     "room": "公館"
+    },
+    {
+     "group": "B",
+     "teacher": "翁悅心",
+     "time": "一3-4",
+     "room": "公館"
+    },
+    {
+     "group": "C",
+     "teacher": "翁悅心",
+     "time": "五1-2",
+     "room": "公館"
+    },
+    {
+     "group": "D",
+     "teacher": "邵毓娟",
+     "time": "五1-2",
+     "room": "公館"
+    },
+    {
+     "group": "E",
+     "teacher": "邵毓娟",
+     "time": "五3-4",
+     "room": "公館"
+    },
+    {
+     "group": "F",
+     "teacher": "黃郁珺",
+     "time": "五3-4",
+     "room": "公館"
+    },
+    {
+     "group": "G",
+     "teacher": "黃郁珺",
+     "time": "五6-7",
+     "room": "公館"
+    },
+    {
+     "group": "H",
+     "teacher": "徐立妍",
+     "time": "五6-7",
+     "room": "公館"
+    },
+    {
+     "group": "I",
+     "teacher": "甘甯",
+     "time": "五6-7",
+     "room": "公館"
+    },
+    {
+     "group": "J",
+     "teacher": "甘甯",
+     "time": "五8-9",
+     "room": "公館"
+    },
+    {
+     "group": "K",
+     "teacher": "徐立妍",
+     "time": "五8-9",
+     "room": "公館"
+    },
+    {
+     "group": "L",
+     "teacher": "黃郁珺",
+     "time": "五8-9",
+     "room": "公館"
+    }
+   ]
+  },
+  "00UB8A4": {
+   "title": "英文（二）",
+   "credits": 2,
+   "kind": "必修",
+   "unit": "共同科",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "葉威廷",
+     "time": "一1-2",
+     "room": "公館"
+    },
+    {
+     "group": "B",
+     "teacher": "蘇鈺恩",
+     "time": "一1-2",
+     "room": "公館"
+    },
+    {
+     "group": "C",
+     "teacher": "葉威廷",
+     "time": "一3-4",
+     "room": "公館"
+    },
+    {
+     "group": "D",
+     "teacher": "蘇鈺恩",
+     "time": "一3-4",
+     "room": "公館"
+    },
+    {
+     "group": "E",
+     "teacher": "范雅筑",
+     "time": "五1-2",
+     "room": "公館"
+    },
+    {
+     "group": "F",
+     "teacher": "蘇鈺恩",
+     "time": "五1-2",
+     "room": "公館"
+    },
+    {
+     "group": "G",
+     "teacher": "彭家洋",
+     "time": "五1-2",
+     "room": "公館"
+    },
+    {
+     "group": "H",
+     "teacher": "彭家洋",
+     "time": "五3-4",
+     "room": "公館"
+    },
+    {
+     "group": "I",
+     "teacher": "陳亞玲",
+     "time": "五3-4",
+     "room": "公館"
+    },
+    {
+     "group": "J",
+     "teacher": "陳秋梅",
+     "time": "五3-4",
+     "room": "公館"
+    },
+    {
+     "group": "K",
+     "teacher": "陳秋梅",
+     "time": "五6-7",
+     "room": "公館"
+    },
+    {
+     "group": "L",
+     "teacher": "陳亞玲",
+     "time": "五6-7",
+     "room": "公館"
+    },
+    {
+     "group": "M",
+     "teacher": "彭家洋",
+     "time": "五6-7",
+     "room": "公館"
+    },
+    {
+     "group": "N",
+     "teacher": "陳亞玲",
+     "time": "五8-9",
+     "room": "公館"
+    }
+   ]
+  },
+  "00UB8A5": {
+   "title": "英文（二）",
+   "credits": 2,
+   "kind": "必修",
+   "unit": "共同科",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "林政憲",
+     "time": "一1-2",
+     "room": "公館"
+    },
+    {
+     "group": "B",
+     "teacher": "林政憲",
+     "time": "一3-4",
+     "room": "公館"
+    },
+    {
+     "group": "C",
+     "teacher": "藍偉華",
+     "time": "五1-2",
+     "room": "公館"
+    },
+    {
+     "group": "D",
+     "teacher": "林政憲",
+     "time": "五6-7",
+     "room": "公館"
+    }
+   ]
+  },
+  "00UB9A3": {
+   "title": "英文（三）：人文英文",
+   "credits": 2,
+   "kind": "必修",
+   "unit": "共同科",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "柯衣凡",
+     "time": "一3-4",
+     "room": "和平"
+    },
+    {
+     "group": "B",
+     "teacher": "柯衣凡",
+     "time": "四3-4",
+     "room": "公館"
+    },
+    {
+     "group": "C",
+     "teacher": "吳曉虹",
+     "time": "四6-7",
+     "room": "和平"
+    },
+    {
+     "group": "D",
+     "teacher": "蘇子中",
+     "time": "五3-4",
+     "room": "和平"
+    },
+    {
+     "group": "E",
+     "teacher": "甘甯",
+     "time": "五3-4",
+     "room": "公館"
+    }
+   ]
+  },
+  "00UB9B1": {
+   "title": "英文（三）：教育英文",
+   "credits": 2,
+   "kind": "必修",
+   "unit": "共同科",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "范雅筑",
+     "time": "四3-4",
+     "room": "公館"
+    },
+    {
+     "group": "B",
+     "teacher": "范雅筑",
+     "time": "四6-7",
+     "room": "公館"
+    },
+    {
+     "group": "C",
+     "teacher": "范雅筑",
+     "time": "四8-9",
+     "room": "公館"
+    },
+    {
+     "group": "D",
+     "teacher": "藍偉華",
+     "time": "五3-4",
+     "room": "公館"
+    },
+    {
+     "group": "E",
+     "teacher": "藍偉華",
+     "time": "五6-7",
+     "room": "公館"
+    },
+    {
+     "group": "F",
+     "teacher": "李金安",
+     "time": "四6-7",
+     "room": "公館"
+    }
+   ]
+  },
+  "00UB9C1": {
+   "title": "英文（三）：科技英文",
+   "credits": 2,
+   "kind": "必修",
+   "unit": "共同科",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "許月貴",
+     "time": "一3-4",
+     "room": "公館"
+    },
+    {
+     "group": "B",
+     "teacher": "曾輔國",
+     "time": "四3-4",
+     "room": "公館"
+    },
+    {
+     "group": "C",
+     "teacher": "曾輔國",
+     "time": "四6-7",
+     "room": "公館"
+    },
+    {
+     "group": "D",
+     "teacher": "項瑞芳",
+     "time": "四6-7",
+     "room": "公館"
+    }
+   ]
+  },
+  "00UB9D1": {
+   "title": "英文（三）：藝術英文",
+   "credits": 2,
+   "kind": "必修",
+   "unit": "共同科",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "陳瑄",
+     "time": "五3-4",
+     "room": "公館"
+    },
+    {
+     "group": "B",
+     "teacher": "陳瑄",
+     "time": "五6-7",
+     "room": "公館"
+    }
+   ]
+  },
+  "00UB9E1": {
+   "title": "英文（三）：運動英文",
+   "credits": 2,
+   "kind": "必修",
+   "unit": "共同科",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "徐立妍",
+     "time": "五3-4",
+     "room": "公館"
+    },
+    {
+     "group": "B",
+     "teacher": "李世文",
+     "time": "五6-7",
+     "room": "公館"
+    },
+    {
+     "group": "C",
+     "teacher": "李世文",
+     "time": "五3-4",
+     "room": "公館"
+    }
+   ]
+  },
+  "00UB9H3": {
+   "title": "英文（三）：商管英文",
+   "credits": 2,
+   "kind": "必修",
+   "unit": "共同科",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "陳惠芬",
+     "time": "四3-4",
+     "room": "和平"
+    }
+   ]
+  },
+  "00UB9L1": {
+   "title": "英文（三）：科學英文",
+   "credits": 2,
+   "kind": "必修",
+   "unit": "共同科",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "項瑞芳",
+     "time": "一3-4",
+     "room": "公館"
+    },
+    {
+     "group": "B",
+     "teacher": "項瑞芳",
+     "time": "五3-4",
+     "room": "公館"
+    },
+    {
+     "group": "C",
+     "teacher": "柯衣凡",
+     "time": "四1-2",
+     "room": "公館"
+    },
+    {
+     "group": "D",
+     "teacher": "阮氏金銀",
+     "time": "一8-9",
+     "room": "公館"
+    },
+    {
+     "group": "E",
+     "teacher": "曾輔國",
+     "time": "五3-4",
+     "room": "公館"
+    }
+   ]
+  },
+  "00UB9M1": {
+   "title": "英文（三）：社會科學英文",
+   "credits": 2,
+   "kind": "必修",
+   "unit": "共同科",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "陳惠芬",
+     "time": "一3-4",
+     "room": "和平"
+    },
+    {
+     "group": "B",
+     "teacher": "郭儀風",
+     "time": "五6-7",
+     "room": "公館"
+    },
+    {
+     "group": "C",
+     "teacher": "陳惠芬",
+     "time": "一6-7",
+     "room": "公館"
+    }
+   ]
+  },
+  "00UB9O1": {
+   "title": "英文（三）：人文領域探索",
+   "credits": 2,
+   "kind": "必修",
+   "unit": "共同科",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "陳惠芬",
+     "time": "四6-7",
+     "room": "和平"
+    }
+   ]
+  },
+  "00UB9Q1": {
+   "title": "英文（三）：音樂英文",
+   "credits": 2,
+   "kind": "必修",
+   "unit": "共同科",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "黃浩軒",
+     "time": "一3-4",
+     "room": "和平"
+    },
+    {
+     "group": "B",
+     "teacher": "范雅筑",
+     "time": "五3-4",
+     "room": "公館"
+    },
+    {
+     "group": "C",
+     "teacher": "范雅筑",
+     "time": "五6-7",
+     "room": "公館"
+    }
+   ]
+  },
+  "00UP003": {
+   "title": "體育（適應體育）",
+   "credits": 1,
+   "kind": "必修",
+   "unit": "普通體育",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "潘正宸",
+     "time": "五6-7",
+     "room": "和平 大韻律教室"
+    }
+   ]
+  },
+  "00UP017": {
+   "title": "體育（柔道）",
+   "credits": 1,
+   "kind": "必修",
+   "unit": "普通體育",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "",
+     "time": "三6-7",
+     "room": "和平 武術房一"
+    },
+    {
+     "group": "B",
+     "teacher": "",
+     "time": "三8-9",
+     "room": "和平 武術房一"
+    }
+   ]
+  },
+  "00UP020": {
+   "title": "體育（現代舞）",
+   "credits": 1,
+   "kind": "必修",
+   "unit": "普通體育",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "",
+     "time": "一8-9",
+     "room": "和平 小韻律教室"
+    },
+    {
+     "group": "B",
+     "teacher": "",
+     "time": "二1-2",
+     "room": "和平 大韻律教室"
+    }
+   ]
+  },
+  "00UP024": {
+   "title": "體育（有氧舞蹈）",
+   "credits": 1,
+   "kind": "必修",
+   "unit": "普通體育",
+   "sections": [
+    {
+     "group": "C",
+     "teacher": "",
+     "time": "二6-7",
+     "room": "和平 大韻律教室"
+    }
+   ]
+  },
+  "00UP025": {
+   "title": "體育（爵士舞）",
+   "credits": 1,
+   "kind": "必修",
+   "unit": "普通體育",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "",
+     "time": "二8-9",
+     "room": "和平 大韻律教室"
+    }
+   ]
+  },
+  "00UP026": {
+   "title": "體育（高爾夫球）",
+   "credits": 1,
+   "kind": "必修",
+   "unit": "普通體育",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "",
+     "time": "一6-7",
+     "room": "和平 金牌講堂"
+    }
+   ]
+  },
+  "00UP031": {
+   "title": "體育（扯鈴）",
+   "credits": 1,
+   "kind": "必修",
+   "unit": "普通體育",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "",
+     "time": "一3-4",
+     "room": "和平 大韻律教室"
+    },
+    {
+     "group": "B",
+     "teacher": "",
+     "time": "五1-2",
+     "room": "和平 武術房一"
+    }
+   ]
+  },
+  "00UP037": {
+   "title": "體育（保健氣功）",
+   "credits": 1,
+   "kind": "必修",
+   "unit": "普通體育",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "",
+     "time": "二6-7",
+     "room": "和平 武術房一"
+    }
+   ]
+  },
+  "00UP042": {
+   "title": "體育（抱石運動）",
+   "credits": 1,
+   "kind": "必修",
+   "unit": "普通體育",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "Philip X. Fuchs",
+     "time": "五6-7",
+     "room": "和平 體育館一2樓會議室"
+    }
+   ]
+  },
+  "00UP056": {
+   "title": "體育（匹克球）",
+   "credits": 1,
+   "kind": "必修",
+   "unit": "普通體育",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "潘正宸",
+     "time": "二6-7",
+     "room": "公館 中正堂"
+    }
+   ]
+  },
+  "00UP105": {
+   "title": "體育（排球初級）",
+   "credits": 1,
+   "kind": "必修",
+   "unit": "普通體育",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "張文",
+     "time": "一1-2",
+     "room": "公館 體育館二3樓"
+    },
+    {
+     "group": "B",
+     "teacher": "",
+     "time": "一3-4",
+     "room": "和平 體育館一4F"
+    },
+    {
+     "group": "C",
+     "teacher": "",
+     "time": "二6-7",
+     "room": "和平 體育館一4F"
+    }
+   ]
+  },
+  "00UP108": {
+   "title": "體育（壘球初級）",
+   "credits": 1,
+   "kind": "必修",
+   "unit": "普通體育",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "",
+     "time": "一1-2",
+     "room": "公館 操場二"
+    }
+   ]
+  },
+  "00UP110": {
+   "title": "體育（網球初級）",
+   "credits": 1,
+   "kind": "必修",
+   "unit": "普通體育",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "李家豪",
+     "time": "一8-9",
+     "room": "和平 網球場一"
+    },
+    {
+     "group": "D",
+     "teacher": "李家豪",
+     "time": "三8-9",
+     "room": "和平 網球場一"
+    },
+    {
+     "group": "E",
+     "teacher": "林岱樵",
+     "time": "四3-4",
+     "room": "和平 網球場一"
+    },
+    {
+     "group": "F",
+     "teacher": "林岱樵",
+     "time": "四6-7",
+     "room": "和平 網球場一"
+    },
+    {
+     "group": "G",
+     "teacher": "李家豪",
+     "time": "四8-9",
+     "room": "和平 網球場一"
+    },
+    {
+     "group": "H",
+     "teacher": "李家豪",
+     "time": "五6-7",
+     "room": "和平 網球場一"
+    },
+    {
+     "group": "I",
+     "teacher": "李家豪",
+     "time": "五8-9",
+     "room": "和平 網球場一"
+    }
+   ]
+  },
+  "00UP121": {
+   "title": "體育（太極拳初級）",
+   "credits": 1,
+   "kind": "必修",
+   "unit": "普通體育",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "黃長福",
+     "time": "一3-4",
+     "room": "和平 武術房一"
+    },
+    {
+     "group": "B",
+     "teacher": "黃長福",
+     "time": "二3-4",
+     "room": "和平 大韻律教室"
+    },
+    {
+     "group": "C",
+     "teacher": "",
+     "time": "四1-2",
+     "room": "和平 武術房一"
+    },
+    {
+     "group": "D",
+     "teacher": "",
+     "time": "四3-4",
+     "room": "和平 武術房一"
+    }
+   ]
+  },
+  "00UP129": {
+   "title": "體育（跆拳道初級）",
+   "credits": 1,
+   "kind": "必修",
+   "unit": "普通體育",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "黃珮昀",
+     "time": "二3-4",
+     "room": "公館 體育館二1樓"
+    },
+    {
+     "group": "C",
+     "teacher": "黃珮昀",
+     "time": "五6-7",
+     "room": "和平 武術房一"
+    },
+    {
+     "group": "B",
+     "teacher": "黃珮昀",
+     "time": "四6-7",
+     "room": "公館 體育館二1樓"
+    }
+   ]
+  },
+  "00UP136": {
+   "title": "體育（木球初級）",
+   "credits": 1,
+   "kind": "必修",
+   "unit": "普通體育",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "程紹同",
+     "time": "五1-2",
+     "room": "和平 操場一"
+    }
+   ]
+  },
+  "00UP146": {
+   "title": "體育（瑜珈）",
+   "credits": 1,
+   "kind": "必修",
+   "unit": "普通體育",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "",
+     "time": "二6-7",
+     "room": "和平 小韻律教室"
+    }
+   ]
+  },
+  "00UP148": {
+   "title": "體育（定向越野）",
+   "credits": 1,
+   "kind": "必修",
+   "unit": "普通體育",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "",
+     "time": "三1-2",
+     "room": "和平 金牌講堂"
+    }
+   ]
+  },
+  "00UP339": {
+   "title": "體育（軟式棒球）",
+   "credits": 1,
+   "kind": "必修",
+   "unit": "普通體育",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "",
+     "time": "二6-7",
+     "room": "和平 操場一"
+    }
+   ]
+  },
+  "00UP342": {
+   "title": "體育（飛盤運動）",
+   "credits": 1,
+   "kind": "必修",
+   "unit": "普通體育",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "",
+     "time": "五6-7",
+     "room": "和平 操場一"
+    },
+    {
+     "group": "B",
+     "teacher": "",
+     "time": "五8-9",
+     "room": "和平 操場一"
+    }
+   ]
+  },
+  "00UP343": {
+   "title": "體育（藤球初級）",
+   "credits": 1,
+   "kind": "必修",
+   "unit": "普通體育",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "",
+     "time": "一1-2",
+     "room": "公館 中正堂"
+    },
+    {
+     "group": "B",
+     "teacher": "",
+     "time": "一3-4",
+     "room": "公館 中正堂"
+    }
+   ]
+  },
+  "00UP901": {
+   "title": "體育校隊（田徑）",
+   "credits": 1,
+   "kind": "必修",
+   "unit": "普通體育",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "詹俊成",
+     "time": "",
+     "room": ""
+    }
+   ]
+  },
+  "00UP902": {
+   "title": "體育校隊（網球）",
+   "credits": 1,
+   "kind": "必修",
+   "unit": "普通體育",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "李家豪",
+     "time": "",
+     "room": ""
+    }
+   ]
+  },
+  "00UP904": {
+   "title": "體育校隊（籃球）",
+   "credits": 1,
+   "kind": "必修",
+   "unit": "普通體育",
+   "sections": [
+    {
+     "group": "F",
+     "teacher": "詹俊成",
+     "time": "",
+     "room": ""
+    },
+    {
+     "group": "M",
+     "teacher": "張容軒",
+     "time": "",
+     "room": ""
+    }
+   ]
+  },
+  "00UP905": {
+   "title": "體育校隊（排球）",
+   "credits": 1,
+   "kind": "必修",
+   "unit": "普通體育",
+   "sections": [
+    {
+     "group": "F",
+     "teacher": "詹俊成",
+     "time": "",
+     "room": ""
+    },
+    {
+     "group": "M",
+     "teacher": "詹俊成",
+     "time": "",
+     "room": ""
+    }
+   ]
+  },
+  "00UP909": {
+   "title": "體育校隊（羽球）",
+   "credits": 1,
+   "kind": "必修",
+   "unit": "普通體育",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "",
+     "time": "",
+     "room": ""
+    }
+   ]
+  },
+  "00UP911": {
+   "title": "體育校隊（桌球）",
+   "credits": 1,
+   "kind": "必修",
+   "unit": "普通體育",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "施亦婕",
+     "time": "",
+     "room": ""
+    }
+   ]
+  },
+  "00UP915": {
+   "title": "體育校隊（游泳）",
+   "credits": 1,
+   "kind": "必修",
+   "unit": "普通體育",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "詹俊成",
+     "time": "",
+     "room": ""
+    }
+   ]
+  },
+  "00UP918": {
+   "title": "體育校隊（體操）",
+   "credits": 1,
+   "kind": "必修",
+   "unit": "普通體育",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "詹俊成",
+     "time": "",
+     "room": ""
+    }
+   ]
+  },
+  "01UG003": {
+   "title": "西洋古典音樂",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "劉錦紋",
+     "time": "二6-7",
+     "room": "公館"
+    },
+    {
+     "group": "B",
+     "teacher": "吳佩蓉",
+     "time": "三3-4",
+     "room": "和平 音樂系演奏廳"
+    }
+   ]
+  },
+  "01UG004": {
+   "title": "音樂鑑賞",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "劉錦紋",
+     "time": "一8-9",
+     "room": "公館"
+    },
+    {
+     "group": "B",
+     "teacher": "劉錦紋",
+     "time": "二8-9",
+     "room": "公館"
+    },
+    {
+     "group": "C",
+     "teacher": "林芝良",
+     "time": "五1-2",
+     "room": "和平 音308"
+    }
+   ]
+  },
+  "01UG008": {
+   "title": "旅行文學",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "魏俊陽",
+     "time": "三9-10",
+     "room": "公館"
+    }
+   ]
+  },
+  "01UG011": {
+   "title": "亞裔美國文學與電影的藝術形式",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "左乙萱",
+     "time": "二10-A",
+     "room": "和平"
+    },
+    {
+     "group": "B",
+     "teacher": "左乙萱",
+     "time": "一10-A",
+     "room": "和平"
+    }
+   ]
+  },
+  "01UG012": {
+   "title": "舞蹈鑑賞",
+   "credits": 3,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "王宏豪",
+     "time": "一6-8",
+     "room": "公館"
+    }
+   ]
+  },
+  "01UG021": {
+   "title": "文學與電影",
+   "credits": 3,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "蘇榕",
+     "time": "四2-4",
+     "room": "和平"
+    }
+   ]
+  },
+  "01UG027": {
+   "title": "日本美術鑑賞",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "蔡家丘",
+     "time": "四8-9",
+     "room": "和平"
+    }
+   ]
+  },
+  "01UG033": {
+   "title": "音樂與戲劇",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "王望舒",
+     "time": "三8-9",
+     "room": "和平 音樂系演奏廳"
+    }
+   ]
+  },
+  "01UG037": {
+   "title": "高行健與表演藝術",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "",
+     "time": "三8-9",
+     "room": "和平"
+    }
+   ]
+  },
+  "01UG039": {
+   "title": "鋼琴黃金年代",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "廖皎含",
+     "time": "四3-4",
+     "room": "和平 音308"
+    }
+   ]
+  },
+  "02UG001": {
+   "title": "哲學入門",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "",
+     "time": "一3-4",
+     "room": "公館"
+    }
+   ]
+  },
+  "02UG002": {
+   "title": "思考方法",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "郭芳如",
+     "time": "三3-4",
+     "room": "和平"
+    }
+   ]
+  },
+  "02UG005": {
+   "title": "道德推理",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "洪仁進",
+     "time": "一8-9",
+     "room": "和平"
+    }
+   ]
+  },
+  "02UG009": {
+   "title": "認識自我",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "劉滄龍",
+     "time": "一8-9",
+     "room": "和平"
+    }
+   ]
+  },
+  "02UG010": {
+   "title": "人生哲學與批判性思考",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "鄭鈞瑋",
+     "time": "三3-4",
+     "room": "公館"
+    },
+    {
+     "group": "B",
+     "teacher": "鄭鈞瑋",
+     "time": "三6-7",
+     "room": "公館"
+    },
+    {
+     "group": "C",
+     "teacher": "劉育兆",
+     "time": "五3-4",
+     "room": "公館"
+    }
+   ]
+  },
+  "02UG014": {
+   "title": "西遊記與人生",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "李志宏",
+     "time": "四6-7",
+     "room": "和平"
+    }
+   ]
+  },
+  "02UG019": {
+   "title": "佛學中的人生智慧",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "釋見見",
+     "time": "四8-9",
+     "room": "和平"
+    }
+   ]
+  },
+  "03UG003": {
+   "title": "多元文化",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "范俊銘",
+     "time": "四8-9",
+     "room": "公館"
+    },
+    {
+     "group": "B",
+     "teacher": "鄭楷立",
+     "time": "五6-7",
+     "room": "和平"
+    }
+   ]
+  },
+  "03UG005": {
+   "title": "現代公民與法律",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "",
+     "time": "二6-7",
+     "room": "公館"
+    },
+    {
+     "group": "B",
+     "teacher": "",
+     "time": "三6-7",
+     "room": "公館"
+    }
+   ]
+  },
+  "03UG006": {
+   "title": "憲法與人權",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "呂啟民",
+     "time": "四6-7",
+     "room": "和平"
+    }
+   ]
+  },
+  "03UG012": {
+   "title": "臺灣流行文化",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "莊佳穎",
+     "time": "五3-4",
+     "room": "和平"
+    }
+   ]
+  },
+  "03UG024": {
+   "title": "環境與傳播",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "楊樺",
+     "time": "一3-4",
+     "room": "公館"
+    },
+    {
+     "group": "B",
+     "teacher": "",
+     "time": "五3-4",
+     "room": "公館"
+    }
+   ]
+  },
+  "03UG027": {
+   "title": "女性文學、性別平等理論與婦運",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "左乙萱",
+     "time": "二8-9",
+     "room": "和平"
+    },
+    {
+     "group": "B",
+     "teacher": "左乙萱",
+     "time": "一8-9",
+     "room": "和平"
+    }
+   ]
+  },
+  "03UG031": {
+   "title": "鑑識科學概論",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "李承龍",
+     "time": "三8-9",
+     "room": "和平"
+    }
+   ]
+  },
+  "03UG034": {
+   "title": "愛情學",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "高松景",
+     "time": "三3-4",
+     "room": "和平"
+    }
+   ]
+  },
+  "03UG041": {
+   "title": "管理學入門",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "廖仁傑",
+     "time": "二8-9",
+     "room": "公館"
+    },
+    {
+     "group": "B",
+     "teacher": "施友元",
+     "time": "五3-4",
+     "room": "公館"
+    }
+   ]
+  },
+  "03UG042": {
+   "title": "科技產業營業秘密保護與智慧財產權",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "劉傳璽",
+     "time": "五6-7",
+     "room": "和平"
+    }
+   ]
+  },
+  "03UG045": {
+   "title": "當代社會與文化關鍵議題",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "范俊銘",
+     "time": "四10-A",
+     "room": "公館"
+    },
+    {
+     "group": "B",
+     "teacher": "何家騏",
+     "time": "三3-4",
+     "room": "公館"
+    }
+   ]
+  },
+  "03UG046": {
+   "title": "國際人權法之在地實踐",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "陳彥",
+     "time": "三A-B",
+     "room": "公館"
+    }
+   ]
+  },
+  "03UG049": {
+   "title": "社區方案規劃與實踐",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "蔡昕璋 吳振邦",
+     "time": "三10-A",
+     "room": "和平"
+    }
+   ]
+  },
+  "03UG051": {
+   "title": "與AI對話：從電影探究人智未來",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "成維寧",
+     "time": "四3-4",
+     "room": "和平"
+    }
+   ]
+  },
+  "03UG053": {
+   "title": "校園性別事件解析",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "林麗燕",
+     "time": "五3-4",
+     "room": "和平"
+    }
+   ]
+  },
+  "03UG054": {
+   "title": "性別與社會",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "郭彥廷",
+     "time": "五10-A",
+     "room": "公館"
+    }
+   ]
+  },
+  "04UG003": {
+   "title": "文明的探索",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "石蘭梅",
+     "time": "四8-9",
+     "room": "和平 國語中心713"
+    }
+   ]
+  },
+  "04UG020": {
+   "title": "跟著文學去環島",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "陳室如",
+     "time": "二3-4",
+     "room": "和平"
+    }
+   ]
+  },
+  "04UG024": {
+   "title": "臺灣文史與城市發展",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "黃玫瑄",
+     "time": "二3-4",
+     "room": "和平"
+    },
+    {
+     "group": "B",
+     "teacher": "黃玫瑄",
+     "time": "二6-7",
+     "room": "和平"
+    }
+   ]
+  },
+  "04UG030": {
+   "title": "客家社會探究",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "黃玫瑄",
+     "time": "三3-4",
+     "room": "和平"
+    }
+   ]
+  },
+  "04UG035": {
+   "title": "東南亞文化與歷史專題",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "廖弘民",
+     "time": "五3-4",
+     "room": "和平"
+    }
+   ]
+  },
+  "04UG036": {
+   "title": "臺灣原住民族文化展演",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "王宏豪",
+     "time": "二6-7",
+     "room": "和平 金牌講堂"
+    }
+   ]
+  },
+  "04UG037": {
+   "title": "探索臺灣飲食文化",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "魏俊陽",
+     "time": "四9-10",
+     "room": "公館"
+    }
+   ]
+  },
+  "04UG041": {
+   "title": "圍棋與東亞文化",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "張曉茵",
+     "time": "二6-7",
+     "room": "公館"
+    }
+   ]
+  },
+  "05UG001": {
+   "title": "邏輯思考與應用",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "王銀國",
+     "time": "二3-4",
+     "room": "和平"
+    },
+    {
+     "group": "B",
+     "teacher": "王銀國",
+     "time": "二8-9",
+     "room": "和平"
+    },
+    {
+     "group": "C",
+     "teacher": "蔡承志",
+     "time": "二6-7",
+     "room": "公館"
+    },
+    {
+     "group": "D",
+     "teacher": "王鍾山",
+     "time": "五3-4",
+     "room": "公館"
+    }
+   ]
+  },
+  "05UG002": {
+   "title": "科學思維",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "鍾兆晉",
+     "time": "一10-A",
+     "room": "公館"
+    },
+    {
+     "group": "B",
+     "teacher": "鍾兆晉",
+     "time": "一B-C",
+     "room": "公館"
+    }
+   ]
+  },
+  "05UG005": {
+   "title": "小說與電影中的數學思維",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "謝佳叡",
+     "time": "三3-4",
+     "room": "公館"
+    }
+   ]
+  },
+  "05UG006": {
+   "title": "數學思維的發展與應用",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "劉柏宏",
+     "time": "三3-4",
+     "room": "公館"
+    }
+   ]
+  },
+  "05UG010": {
+   "title": "科學的語言",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "蔡承志",
+     "time": "二8-9",
+     "room": "公館"
+    }
+   ]
+  },
+  "05UG011": {
+   "title": "科技倫理",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "劉啟民",
+     "time": "三6-7",
+     "room": "公館"
+    },
+    {
+     "group": "B",
+     "teacher": "劉啟民",
+     "time": "三8-9",
+     "room": "公館"
+    }
+   ]
+  },
+  "05UG012": {
+   "title": "科技史哲思維下的世界觀",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "陳珍源",
+     "time": "五1-2",
+     "room": "和平"
+    }
+   ]
+  },
+  "05UG014": {
+   "title": "科學不一樣",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "張欣怡",
+     "time": "二6-7",
+     "room": "和平"
+    }
+   ]
+  },
+  "05UG019": {
+   "title": "行動App程式設計",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "劉建成",
+     "time": "五3-4",
+     "room": "公館"
+    }
+   ]
+  },
+  "05UG020": {
+   "title": "統計學",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "林碧芳",
+     "time": "二3-4",
+     "room": "和平"
+    },
+    {
+     "group": "B",
+     "teacher": "何英奇",
+     "time": "二6-7",
+     "room": "和平"
+    }
+   ]
+  },
+  "05UG023": {
+   "title": "文本分析與程式設計",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "王祥安",
+     "time": "五3-4",
+     "room": "公館"
+    },
+    {
+     "group": "B",
+     "teacher": "王祥安",
+     "time": "五6-7",
+     "room": "公館"
+    }
+   ]
+  },
+  "05UG028": {
+   "title": "試算表與商務資料分析",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "劉建成",
+     "time": "二3-4",
+     "room": "公館"
+    },
+    {
+     "group": "B",
+     "teacher": "劉建成",
+     "time": "四3-4",
+     "room": "公館"
+    }
+   ]
+  },
+  "05UG031": {
+   "title": "資料科學在教育上的應用",
+   "credits": 3,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "張維元",
+     "time": "三3-5",
+     "room": "公館"
+    }
+   ]
+  },
+  "05UG032": {
+   "title": "學習分析工具實務應用",
+   "credits": 3,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "陳俊豪",
+     "time": "三7-9",
+     "room": "和平"
+    }
+   ]
+  },
+  "05UG038": {
+   "title": "生成式AI實務應用",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "尹相志",
+     "time": "三3-4",
+     "room": "和平"
+    }
+   ]
+  },
+  "05UG039": {
+   "title": "人工智慧與日常生活",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "陳立新",
+     "time": "三6-7",
+     "room": "公館"
+    }
+   ]
+  },
+  "05UG042": {
+   "title": "資訊科技與生活議題：AI共創探究",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "B",
+     "teacher": "劉建成",
+     "time": "一6-7",
+     "room": "公館"
+    },
+    {
+     "group": "A",
+     "teacher": "劉建成",
+     "time": "一3-4",
+     "room": "公館"
+    }
+   ]
+  },
+  "05UG043": {
+   "title": "遊戲程式設計與AI輔助開發",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "劉建成",
+     "time": "二6-7",
+     "room": "公館"
+    },
+    {
+     "group": "B",
+     "teacher": "劉建成",
+     "time": "四6-7",
+     "room": "公館"
+    }
+   ]
+  },
+  "05UG044": {
+   "title": "Python AI 程式設計入門",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "黃浩霆",
+     "time": "三A-B",
+     "room": "和平"
+    }
+   ]
+  },
+  "05UG045": {
+   "title": "AI生成試算表進階應用與程式設計",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "吳清輝",
+     "time": "三3-4",
+     "room": "公館"
+    },
+    {
+     "group": "B",
+     "teacher": "吳清輝",
+     "time": "三6-7",
+     "room": "公館"
+    }
+   ]
+  },
+  "05UG046": {
+   "title": "音樂AI 演算法設計與聲音合成",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "林宜徵",
+     "time": "二6-7",
+     "room": "公館"
+    }
+   ]
+  },
+  "05UG047": {
+   "title": "音樂AI 基礎程式設計",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "林宜徵",
+     "time": "二3-4",
+     "room": "公館"
+    }
+   ]
+  },
+  "05UG048": {
+   "title": "運動數據分析與AI應用",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "劉爾剛",
+     "time": "三B-C",
+     "room": "和平"
+    }
+   ]
+  },
+  "05UG049": {
+   "title": "當AI遇見生成藝術",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "謝諭",
+     "time": "三3-4",
+     "room": "和平"
+    }
+   ]
+  },
+  "05UG050": {
+   "title": "AI素養與倫理",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "",
+     "time": "四3-4",
+     "room": "公館"
+    },
+    {
+     "group": "B",
+     "teacher": "方偉達",
+     "time": "四6-7",
+     "room": "公館"
+    }
+   ]
+  },
+  "05UG051": {
+   "title": "運算思維與AI共創",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "",
+     "time": "二6-7",
+     "room": "公館"
+    },
+    {
+     "group": "B",
+     "teacher": "",
+     "time": "二8-9",
+     "room": "公館"
+    },
+    {
+     "group": "C",
+     "teacher": "",
+     "time": "二10-A",
+     "room": "公館"
+    },
+    {
+     "group": "D",
+     "teacher": "",
+     "time": "三6-7",
+     "room": "公館"
+    },
+    {
+     "group": "E",
+     "teacher": "",
+     "time": "四6-7",
+     "room": "公館"
+    },
+    {
+     "group": "F",
+     "teacher": "",
+     "time": "四8-9",
+     "room": "公館"
+    },
+    {
+     "group": "G",
+     "teacher": "",
+     "time": "四10-A",
+     "room": "公館"
+    }
+   ]
+  },
+  "05UG052": {
+   "title": "AI輔助程式設計與大數據分析",
+   "credits": 3,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "",
+     "time": "四7-9",
+     "room": "公館"
+    }
+   ]
+  },
+  "05UG053": {
+   "title": "AI時代數位人文實作：概念、資源與技術",
+   "credits": 3,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "",
+     "time": "四7-9",
+     "room": "和平"
+    }
+   ]
+  },
+  "05UG054": {
+   "title": "AI輔助創新創業",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "林耘逸",
+     "time": "一8-9",
+     "room": "公館"
+    }
+   ]
+  },
+  "05UG055": {
+   "title": "AI驅動生醫與健康數據分析",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "林耘逸",
+     "time": "三C-D",
+     "room": "公館"
+    }
+   ]
+  },
+  "06UG002": {
+   "title": "生物技術對社會之衝擊",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "呂國棟",
+     "time": "三3-4",
+     "room": "公館"
+    }
+   ]
+  },
+  "06UG004": {
+   "title": "星星月亮太陽－天文漫談",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "橋本康弘",
+     "time": "三3-4",
+     "room": "公館"
+    },
+    {
+     "group": "B",
+     "teacher": "曾瑋玲",
+     "time": "三3-4",
+     "room": "公館"
+    }
+   ]
+  },
+  "06UG005": {
+   "title": "奈米科技",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "郭金國",
+     "time": "五3-4",
+     "room": "和平"
+    }
+   ]
+  },
+  "06UG006": {
+   "title": "環境倫理與永續發展",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "李清安",
+     "time": "二A-B",
+     "room": "和平"
+    },
+    {
+     "group": "C",
+     "teacher": "李清安",
+     "time": "三A-B",
+     "room": "和平"
+    }
+   ]
+  },
+  "06UG014": {
+   "title": "科技與人文的對話",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "王銀國",
+     "time": "三3-4",
+     "room": "和平"
+    }
+   ]
+  },
+  "06UG016": {
+   "title": "疾病、醫學與文明",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "梁至中",
+     "time": "二6-7",
+     "room": "和平"
+    }
+   ]
+  },
+  "06UG021": {
+   "title": "宇宙中的生命與太空環境",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "橋本康弘",
+     "time": "三6-7",
+     "room": "公館"
+    }
+   ]
+  },
+  "06UG029": {
+   "title": "日常生活藥理學",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "呂國棟",
+     "time": "五3-4",
+     "room": "公館"
+    }
+   ]
+  },
+  "0AUG229": {
+   "title": "文學、電影中的情感經驗",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "鄭怡庭",
+     "time": "一9-10",
+     "room": "和平"
+    }
+   ]
+  },
+  "0AUG402": {
+   "title": "心理學",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "B",
+     "teacher": "郭彥廷",
+     "time": "一10-A",
+     "room": "公館"
+    },
+    {
+     "group": "C",
+     "teacher": "郭彥廷",
+     "time": "三10-A",
+     "room": "公館"
+    }
+   ]
+  },
+  "0AUG408": {
+   "title": "健康與生活",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "黃玫瑄",
+     "time": "四3-4",
+     "room": "和平"
+    }
+   ]
+  },
+  "0AUG442": {
+   "title": "聖經與人生",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "范俊銘",
+     "time": "四6-7",
+     "room": "公館"
+    }
+   ]
+  },
+  "0AUG462": {
+   "title": "個人投資理財",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "朱文增",
+     "time": "三3-4",
+     "room": "和平"
+    },
+    {
+     "group": "B",
+     "teacher": "廖仁傑",
+     "time": "三8-9",
+     "room": "和平"
+    }
+   ]
+  },
+  "0AUG463": {
+   "title": "休閒與生活",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "李晶",
+     "time": "三3-4",
+     "room": "公館"
+    }
+   ]
+  },
+  "0HUG011": {
+   "title": "學術寫作",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "謝秀卉",
+     "time": "二3-4",
+     "room": "公館"
+    }
+   ]
+  },
+  "0HUG210": {
+   "title": "閩南語概論",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "林香薇",
+     "time": "四6-7",
+     "room": "和平"
+    },
+    {
+     "group": "B",
+     "teacher": "魏俊陽",
+     "time": "一9-10",
+     "room": "公館"
+    }
+   ]
+  },
+  "0HUG432": {
+   "title": "莎士比亞的故事",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "蘇子中",
+     "time": "二6-7",
+     "room": "和平"
+    }
+   ]
+  },
+  "0HUG501": {
+   "title": "日語（一）",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "張怡倩",
+     "time": "二3-4",
+     "room": "公館"
+    },
+    {
+     "group": "B",
+     "teacher": "許菁娟",
+     "time": "三6-7",
+     "room": "公館"
+    }
+   ]
+  },
+  "0HUG503": {
+   "title": "西班牙語（一）",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "張乃翠",
+     "time": "三3-4",
+     "room": "公館"
+    }
+   ]
+  },
+  "0HUG504": {
+   "title": "西班牙語（二）",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "張乃翠",
+     "time": "三6-7",
+     "room": "公館"
+    }
+   ]
+  },
+  "0HUG505": {
+   "title": "法語（二）",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "李曉芸",
+     "time": "三6-7",
+     "room": "公館"
+    }
+   ]
+  },
+  "0HUG506": {
+   "title": "韓語（一）",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "魯水晶",
+     "time": "二3-4",
+     "room": "公館"
+    }
+   ]
+  },
+  "0HUG507": {
+   "title": "泰國語言與文化",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "譚華德",
+     "time": "四8-9",
+     "room": "公館"
+    }
+   ]
+  },
+  "0HUG510": {
+   "title": "泰語（二）",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "譚華德",
+     "time": "四6-7",
+     "room": "公館"
+    }
+   ]
+  },
+  "0HUG649": {
+   "title": "越南語（一）",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "劉陳石草",
+     "time": "三A-B",
+     "room": "公館"
+    }
+   ]
+  },
+  "0HUG650": {
+   "title": "越南語（二）",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "劉陳石草",
+     "time": "四A-B",
+     "room": "公館"
+    }
+   ]
+  },
+  "0HUG651": {
+   "title": "韓語（二）",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "魯水晶",
+     "time": "二6-7",
+     "room": "公館"
+    }
+   ]
+  },
+  "0HUG652": {
+   "title": "日語（二）",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "",
+     "time": "二6-7",
+     "room": "公館"
+    },
+    {
+     "group": "B",
+     "teacher": "",
+     "time": "二8-9",
+     "room": "公館"
+    },
+    {
+     "group": "C",
+     "teacher": "",
+     "time": "三8-9",
+     "room": "公館"
+    },
+    {
+     "group": "D",
+     "teacher": "",
+     "time": "一8-9",
+     "room": "公館"
+    },
+    {
+     "group": "E",
+     "teacher": "",
+     "time": "五3-4",
+     "room": "和平"
+    },
+    {
+     "group": "",
+     "teacher": "張怡倩",
+     "time": "二6-7",
+     "room": "公館"
+    }
+   ]
+  },
+  "0HUG655": {
+   "title": "馬來語 （一）",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "陳際宇",
+     "time": "一A-B",
+     "room": "公館"
+    }
+   ]
+  },
+  "0HUG656": {
+   "title": "馬來語 （二）",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "陳際宇",
+     "time": "二A-B",
+     "room": "公館"
+    }
+   ]
+  },
+  "0HUG658": {
+   "title": "日語（三）",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "張怡倩",
+     "time": "二8-9",
+     "room": "公館"
+    }
+   ]
+  },
+  "0NUG253": {
+   "title": "３Ｄ列印與創新應用",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "沈林琥",
+     "time": "三3-4",
+     "room": "公館"
+    }
+   ]
+  },
+  "0SUG411": {
+   "title": "臺灣原住民社會發展",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "汪明輝",
+     "time": "三3-4",
+     "room": "和平"
+    }
+   ]
+  },
+  "0SUG514": {
+   "title": "博物館探索",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "黃玫瑄",
+     "time": "三6-7",
+     "room": "和平"
+    }
+   ]
+  },
+  "0SUG528": {
+   "title": "臺灣教育",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "陳信亨 高松景 吳柏菱",
+     "time": "三6-7",
+     "room": "和平"
+    },
+    {
+     "group": "B",
+     "teacher": "陳育霖 洪麗卿 廖純英",
+     "time": "三6-7",
+     "room": "和平"
+    }
+   ]
+  },
+  "0SUG539": {
+   "title": "自主學習：專題探究",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "吳淑禎",
+     "time": "三A-B",
+     "room": "和平"
+    },
+    {
+     "group": "B",
+     "teacher": "蘇瀚",
+     "time": "三A-B",
+     "room": "和平"
+    },
+    {
+     "group": "C",
+     "teacher": "王文誠",
+     "time": "三A-B",
+     "room": "和平"
+    },
+    {
+     "group": "D",
+     "teacher": "張德永",
+     "time": "三A-B",
+     "room": "和平"
+    },
+    {
+     "group": "E",
+     "teacher": "林聖欽",
+     "time": "三A-B",
+     "room": "和平"
+    }
+   ]
+  },
+  "0SUG542": {
+   "title": "自主學習：自主探究",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "方偉達",
+     "time": "三A-B",
+     "room": "公館"
+    },
+    {
+     "group": "B",
+     "teacher": "程金保",
+     "time": "三3-4",
+     "room": "和平 教室自排"
+    }
+   ]
+  },
+  "0SUG544": {
+   "title": "職涯規劃與發展",
+   "credits": 2,
+   "kind": "通識",
+   "unit": "通識",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "林怡君",
+     "time": "四6-7",
+     "room": "和平"
+    }
+   ]
+  },
+  "GEC9004": {
+   "title": "醫學地理",
+   "credits": 3,
+   "kind": "選修",
+   "unit": "地理系",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "詹竣翔",
+     "time": "二6-8",
+     "room": "和平"
+    }
+   ]
+  },
+  "GEC9006": {
+   "title": "Python程式設計",
+   "credits": 3,
+   "kind": "選修",
+   "unit": "地理系",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "詹竣翔",
+     "time": "一6-8",
+     "room": "和平"
+    }
+   ]
+  },
+  "GEU0001": {
+   "title": "地形學",
+   "credits": 3,
+   "kind": "必修",
+   "unit": "地理系",
+   "sections": [
+    {
+     "group": "A",
+     "teacher": "沈淑敏",
+     "time": "二6-8",
+     "room": "和平 工教系一般教室 TA401"
+    },
+    {
+     "group": "B",
+     "teacher": "",
+     "time": "二9-A",
+     "room": "和平 工教系一般教室 TA401"
+    }
+   ]
+  },
+  "GEU0005": {
+   "title": "生物地理",
+   "credits": 3,
+   "kind": "選修",
+   "unit": "地理系",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "陳瑩",
+     "time": "五2-4",
+     "room": "和平 工教系一般教室 TA401"
+    }
+   ]
+  },
+  "GEU0011": {
+   "title": "臺灣地理",
+   "credits": 3,
+   "kind": "必修",
+   "unit": "地理系",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "洪立三",
+     "time": "二2-4",
+     "room": "和平 工教系一般教室 TA401"
+    }
+   ]
+  },
+  "GEU0014": {
+   "title": "世界地理",
+   "credits": 3,
+   "kind": "必修",
+   "unit": "地理系",
+   "sections": [
+    {
+     "group": "C",
+     "teacher": "周學政",
+     "time": "一10-B",
+     "room": "和平"
+    },
+    {
+     "group": "A",
+     "teacher": "周學政",
+     "time": "一2-4",
+     "room": "和平"
+    },
+    {
+     "group": "B",
+     "teacher": "許嘉麟",
+     "time": "一6-8",
+     "room": "和平 工教系一般教室 TA401"
+    }
+   ]
+  },
+  "GEU0029": {
+   "title": "世界氣候",
+   "credits": 3,
+   "kind": "選修",
+   "unit": "地理系",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "翁叔平",
+     "time": "五7-9",
+     "room": "和平 工教系一般教室 TA401"
+    }
+   ]
+  },
+  "GEU0057": {
+   "title": "都市地理",
+   "credits": 3,
+   "kind": "必修",
+   "unit": "地理系",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "譚鴻仁",
+     "time": "二6-8",
+     "room": "和平"
+    }
+   ]
+  },
+  "GEU0061": {
+   "title": "觀光地理",
+   "credits": 3,
+   "kind": "選修",
+   "unit": "地理系",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "",
+     "time": "五2-4",
+     "room": "和平 泰順街綠能所研究室"
+    }
+   ]
+  },
+  "GEU0073": {
+   "title": "遙測學",
+   "credits": 3,
+   "kind": "選修",
+   "unit": "地理系",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "王雪卿",
+     "time": "二2-4",
+     "room": "和平"
+    }
+   ]
+  },
+  "GEU0101": {
+   "title": "自然災害",
+   "credits": 3,
+   "kind": "選修",
+   "unit": "地理系",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "沈淑敏 洪立三",
+     "time": "四2-4",
+     "room": "和平 科技系TB213教室"
+    }
+   ]
+  },
+  "GEU0118": {
+   "title": "地理思想",
+   "credits": 3,
+   "kind": "必修",
+   "unit": "地理系",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "蘇淑娟",
+     "time": "一2-4",
+     "room": "和平 工教系一般教室 TA401"
+    }
+   ]
+  },
+  "GEU0136": {
+   "title": "氣候學",
+   "credits": 3,
+   "kind": "必修",
+   "unit": "地理系",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "翁叔平",
+     "time": "四7-9",
+     "room": "和平 科技系TB213教室"
+    },
+    {
+     "group": "",
+     "teacher": "洪致文",
+     "time": "四7-9",
+     "room": "和平 工教系一般教室 TA401"
+    }
+   ]
+  },
+  "GEU0152": {
+   "title": "數值地形分析",
+   "credits": 2,
+   "kind": "選修",
+   "unit": "地理系",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "田應平",
+     "time": "三9-10",
+     "room": "和平"
+    }
+   ]
+  },
+  "GEU0166": {
+   "title": "地理資訊系統",
+   "credits": 3,
+   "kind": "必修",
+   "unit": "地理系",
+   "sections": [
+    {
+     "group": "B",
+     "teacher": "吳秉昇",
+     "time": "四3-5",
+     "room": "和平"
+    }
+   ]
+  },
+  "GEU0167": {
+   "title": "計量地理",
+   "credits": 3,
+   "kind": "必修",
+   "unit": "地理系",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "陳哲銘",
+     "time": "二2-4",
+     "room": "和平 科技系TB213教室"
+    }
+   ]
+  },
+  "GEU0179": {
+   "title": "日常生活地理學",
+   "credits": 3,
+   "kind": "選修",
+   "unit": "地理系",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "吳鄭重",
+     "time": "三7-9",
+     "room": "和平 工教系一般教室 TA401"
+    }
+   ]
+  },
+  "GEU0186": {
+   "title": "都市設計與更新",
+   "credits": 3,
+   "kind": "選修",
+   "unit": "地理系",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "辜永奇",
+     "time": "四A-C",
+     "room": "和平 科技系TB213教室"
+    }
+   ]
+  },
+  "GEU0214": {
+   "title": "區域地理教學研究",
+   "credits": 2,
+   "kind": "選修",
+   "unit": "地理系",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "林聖欽",
+     "time": "二8-9",
+     "room": "和平 科技系TB213教室"
+    }
+   ]
+  },
+  "GEU0217": {
+   "title": "測量實習",
+   "credits": 2,
+   "kind": "選修",
+   "unit": "地理系",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "王聖鐸",
+     "time": "五2-5",
+     "room": "和平 電腦實驗室TA509"
+    }
+   ]
+  },
+  "GEU0237": {
+   "title": "地景圖學",
+   "credits": 3,
+   "kind": "選修",
+   "unit": "地理系",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "林秀娟",
+     "time": "五10-B",
+     "room": "和平 科技系TB213教室"
+    }
+   ]
+  },
+  "GEU0240": {
+   "title": "社會領域探究與實作專題",
+   "credits": 2,
+   "kind": "選修",
+   "unit": "地理系",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "林聖欽 許嘉麟",
+     "time": "五3-4",
+     "room": "和平 科技系TB213教室"
+    }
+   ]
+  },
+  "GEU0243": {
+   "title": "都市與區域計畫",
+   "credits": 3,
+   "kind": "選修",
+   "unit": "地理系",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "陳台智",
+     "time": "三A-C",
+     "room": "和平 工教系一般教室 TA401"
+    }
+   ]
+  },
+  "GEU0246": {
+   "title": "電腦輔助地理教學",
+   "credits": 2,
+   "kind": "選修",
+   "unit": "地理系",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "鄭伉妙",
+     "time": "四9-10",
+     "room": "和平"
+    }
+   ]
+  },
+  "GEU0250": {
+   "title": "臺灣生物多樣性",
+   "credits": 3,
+   "kind": "選修",
+   "unit": "地理系",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "陳瑩",
+     "time": "一2-4",
+     "room": "和平 泰順街AI所研究室"
+    }
+   ]
+  },
+  "GEU0251": {
+   "title": "原住民族環境保育",
+   "credits": 2,
+   "kind": "選修",
+   "unit": "地理系",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "胡哲豪",
+     "time": "二8-9",
+     "room": "和平 泰順街綠能所研究室"
+    }
+   ]
+  },
+  "GEU0252": {
+   "title": "歐洲的人口、文化及移民",
+   "credits": 3,
+   "kind": "選修",
+   "unit": "地理系",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "莫家俊",
+     "time": "三7-9",
+     "room": "和平"
+    }
+   ]
+  },
+  "GEU0254": {
+   "title": "地名學",
+   "credits": 2,
+   "kind": "選修",
+   "unit": "地理系",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "韋煙灶",
+     "time": "五8-9",
+     "room": "和平 科技系TB213教室"
+    }
+   ]
+  },
+  "GEU0256": {
+   "title": "鄉土地理",
+   "credits": 2,
+   "kind": "選修",
+   "unit": "地理系",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "韋煙灶",
+     "time": "五6-7",
+     "room": "和平 科技系TB213教室"
+    }
+   ]
+  },
+  "GEU0261": {
+   "title": "地理空間資訊系統建置實務",
+   "credits": 3,
+   "kind": "選修",
+   "unit": "地理系",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "陳俊元",
+     "time": "二A-C",
+     "room": "和平"
+    }
+   ]
+  },
+  "GEUE001": {
+   "title": "地理教材教法（教）",
+   "credits": 2,
+   "kind": "選修",
+   "unit": "地理系",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "洪立三",
+     "time": "二6-7",
+     "room": "和平 科技系TB213教室"
+    }
+   ]
+  },
+  "GEUE210": {
+   "title": "地理教學實習（二）（教）",
+   "credits": 2,
+   "kind": "選修",
+   "unit": "地理系",
+   "sections": [
+    {
+     "group": "",
+     "teacher": "林聖欽",
+     "time": "一1-4",
+     "room": "和平 科技系TB213教室"
+    }
+   ]
+  }
+ }
+}

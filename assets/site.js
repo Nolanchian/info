@@ -297,31 +297,52 @@ function researchPage() {
 }
 
 /* ── 排課頁 ── */
-const PERIODS = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "A", "B", "C"];
-const PERIOD_TIMES = ["08:10", "09:10", "10:20", "11:20", "12:20", "13:20", "14:20", "15:30", "16:30", "17:30", "18:40", "19:35", "20:30"];
+const PERIODS = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "A", "B", "C", "D"];
+const PERIOD_TIMES = ["08:10", "09:10", "10:20", "11:20", "12:20", "13:20", "14:20", "15:30", "16:30", "17:30", "18:40", "19:35", "20:30", "21:25"];
+const OFFERINGS_FILE = "data/ntnu-offerings-115-2.json";
 const DAYS = ["一", "二", "三", "四", "五"];
-const plannerState = { mode: {}, pick: 0, view: null, free: null };
-const FREE_KEY = "info-planner-free";
-const VIEW_KEY = "info-planner-view";
-// 自由排課的選擇只是個人草稿，存在這台瀏覽器就好
-function loadFree() {
-  try { return new Set(JSON.parse(localStorage.getItem(FREE_KEY) ?? "[]")); } catch { return new Set(); }
+const LAYERS = [{ id: "nolan", label: "Nolan 版" }, { id: "ntnu", label: "師大通用版" }];
+// 排課的草稿（目前圖層、勾選、模式）只存在這台瀏覽器
+const STORAGE = {
+  layer: "info-planner-layer",
+  free: { nolan: "info-planner-free", ntnu: "info-planner-free-ntnu" },
+  view: { nolan: "info-planner-view", ntnu: "info-planner-view-ntnu" },
+  profile: "info-ntnu-planner",
+  extra: "info-planner-extra-nolan",
+};
+const plannerState = {
+  layer: null,
+  layers: { nolan: { mode: {}, pick: 0, view: null, free: null }, ntnu: { mode: {}, pick: 0, view: null, free: null } },
+  profile: null,
+  lookups: null,
+  extra: null,
+  catalog: { q: "", tag: "all" },
+};
+
+function readStore(key, fallback) {
+  try { const v = localStorage.getItem(key); return v === null ? fallback : JSON.parse(v); } catch { return fallback; }
 }
-function saveFree() {
-  try {
-    localStorage.setItem(FREE_KEY, JSON.stringify([...plannerState.free]));
-    localStorage.setItem(VIEW_KEY, plannerState.view);
-  } catch { /* 私密視窗存不了就算了 */ }
+function writeStore(key, value) {
+  try { localStorage.setItem(key, JSON.stringify(value)); } catch { /* 私密視窗存不了就算了 */ }
 }
-function loadView() {
-  try { return localStorage.getItem(VIEW_KEY) === "free" ? "free" : "best"; } catch { return "best"; }
+function layerState(layer) {
+  const st = plannerState.layers[layer];
+  st.free ??= new Set(readStore(STORAGE.free[layer], []));
+  st.view ??= readStore(STORAGE.view[layer], "best") === "free" ? "free" : "best";
+  return st;
+}
+function saveLayer(layer) {
+  const st = layerState(layer);
+  writeStore(STORAGE.free[layer], [...st.free]);
+  writeStore(STORAGE.view[layer], st.view);
+  writeStore(STORAGE.layer, plannerState.layer);
 }
 
 // 「二2-4」「三A-C」，多段用逗號分隔
 function parseTime(text) {
   const slots = [];
-  for (const part of String(text ?? "").split(/[,，、\s]+/).filter(Boolean)) {
-    const match = part.match(/^([一二三四五])([0-9]+|[A-C])(?:-([0-9]+|[A-C]))?$/);
+  for (const part of String(text ?? "").replace(/\s+/g, "").split(/[,，、]+/).filter(Boolean)) {
+    const match = part.match(/^([一二三四五])([0-9]+|[A-D])(?:-([0-9]+|[A-D]))?$/);
     if (!match) continue;
     const from = PERIODS.indexOf(match[2]);
     const to = PERIODS.indexOf(match[3] ?? match[2]);
@@ -331,6 +352,7 @@ function parseTime(text) {
   return slots;
 }
 
+/* Nolan 版：缺口與候選課來自 site.json */
 // 只取最細的缺口：有領域細項的類別用細項，MOOCs 不列入
 function plannerNeeds() {
   const rows = requirementRows(site.courses ?? [], site.requirements ?? []);
@@ -355,20 +377,218 @@ function requirementOptions() {
       : { id: r.category, label: r.category }));
 }
 
-function plannerCandidates() {
-  const taken = new Set((site.courses ?? []).map((c) => c.title));
-  return (site.planner?.candidates ?? []).map((c, id) => ({
-    ...c,
+function courseTag(option, credits) {
+  if (!option) return `${credits}`;
+  if (option.includes("/")) return `${option.split("/")[1]} 通${credits}`;
+  if (option.startsWith("必修")) return `必${credits}`;
+  if (option.startsWith("必選修")) return `選${credits}`;
+  if (option.startsWith("基本能力")) return `體${credits}`;
+  if (option.startsWith("跨域")) return `跨域 通${credits}`;
+  return `${option} ${credits}`;
+}
+
+// 同一門課的不同組用「課號-組別」區分；排課時同一課號只會選一組
+const candidateKey = (c) => (c.code ? `${c.code}${c.group ? `-${c.group}` : ""}` : c.title);
+const candidateTitle = (c, fallback) => {
+  const base = c.title || c.code || fallback;
+  return c.group ? `${base}（${c.group} 組）` : base;
+};
+
+// 課號的客觀資料：通識領域、可否跨域、體育、在某系某年課架的類別、這學期的開課組別
+function courseFacts(code, deptId, year) {
+  const id = String(code ?? "").trim().toUpperCase();
+  const lookups = plannerState.lookups;
+  const dept = deptId ? lookups?.depts[deptId] : null;
+  const curriculum = dept ? dept.years[year] : null;
+  return {
     id,
-    credits: Number(c.credits) || 0,
-    slots: parseTime(c.time),
-    options: String(c.counts ?? "").split("|").map((s) => s.trim()).filter(Boolean),
-    taken: taken.has(c.title),
+    ge: lookups?.ge.courses[id] ?? null,
+    pe: /^00UP/.test(id),
+    deptCategory: curriculum?.courses[id]?.category ?? null,
+    offering: lookups?.offerings?.courses?.[id] ?? null,
+  };
+}
+
+// Nolan 版用自己的類別名稱（地理系 113 學年度入學）
+function nolanOptionsFor(code) {
+  const facts = courseFacts(code, "geo", "113");
+  const options = [];
+  if (facts.deptCategory === "系必修") options.push("必修（地理系）");
+  if (facts.deptCategory === "系選修") options.push("必選修（地理系）");
+  if (facts.ge?.domain) options.push(`博雅課程/${facts.ge.domain}`);
+  if (facts.ge?.cross) options.push("跨域探索");
+  if (facts.pe) options.push("基本能力課程");
+  return options;
+}
+
+// 把一門開課的每一組都變成候選列，讓機器挑組
+function offeringRows(code, makeCounts, existingKeys = new Set()) {
+  const offering = plannerState.lookups?.offerings?.courses?.[code];
+  if (!offering) return [];
+  const sections = offering.sections.filter((s) => s.time);
+  const list = sections.length ? sections : offering.sections.slice(0, 1);
+  // 已經在候選名單裡的組別不重複加入
+  return list.filter((s) => !existingKeys.has(candidateKey({ code, group: list.length > 1 ? s.group : "" }))).map((s) => ({
+    code, group: list.length > 1 ? s.group : "", title: offering.title.replace(/^體育（(.+)）$/, "$1"),
+    teacher: s.teacher, room: s.room, credits: String(offering.credits), time: s.time, counts: makeCounts(code),
   }));
 }
 
-const candidateMode = (c) => plannerState.mode[c.id] ?? (c.taken ? "never" : "auto");
+function nolanContext() {
+  const taken = new Set((site.courses ?? []).map((c) => c.title));
+  const labels = requirementOptions();
+  plannerState.extra ??= readStore(STORAGE.extra, []);
+  const rows = [
+    ...(site.planner?.candidates ?? []).map((c) => ({ ...c, source: "site" })),
+    ...plannerState.extra.map((c) => ({ ...c, source: "local" })),
+  ];
+  return {
+    layer: "nolan",
+    title: `${site.planner?.term ?? ""} 排課試算`,
+    needs: plannerNeeds(),
+    candidates: rows.map((c, id) => ({
+      ...c, id, key: candidateKey(c), title: candidateTitle(c, `課程 ${id + 1}`), credits: Number(c.credits) || 0, slots: parseTime(c.time),
+      options: String(c.counts ?? "").split("|").map((s) => s.trim()).filter(Boolean), taken: taken.has(c.title),
+    })),
+    catalogTags: (code) => nolanOptionsFor(code).map((o) => (o === "基本能力課程" ? "體育" : labels.find((l) => l.id === o)?.label ?? o)),
+    addOffering: (code) => {
+      plannerState.extra.push(...offeringRows(code, (c) => nolanOptionsFor(c).join("|"), new Set(rows.map(candidateKey))));
+      writeStore(STORAGE.extra, plannerState.extra);
+    },
+    removeCandidate: (c) => {
+      if (c.source !== "local") return null;
+      return () => {
+        plannerState.extra = plannerState.extra.filter((x) => candidateKey(x) !== c.key);
+        writeStore(STORAGE.extra, plannerState.extra);
+      };
+    },
+    catalogNote: "在這裡加入的課只存在這台瀏覽器；要存到網站，請到編輯模式從開課清單加入後儲存。",
+    limits: (site.planner?.limits ?? []).map((l) => ({ key: l.category, max: Number(l.max) })),
+    notes: (site.planner?.limits ?? []).filter((l) => l.note).map((l) => l.note),
+    optionLabel: (id) => labels.find((o) => o.id === id)?.label ?? id,
+    tag: courseTag,
+  };
+}
 
+/* 師大通用版：每個人自己填缺口與候選課，存在瀏覽器 */
+const NTNU_DEFAULT_NEEDS = ["中文英文", "體育", "博雅・人文藝術", "博雅・社會科學", "博雅・自然科學", "博雅・邏輯運算", "跨域探索", "通識（不限類別）", "系必修", "系選修", "自由學分"];
+// 各系各入學年度的課程架構；沒找到官方文件的年度列在 missingYears
+const NTNU_DEPTS = {
+  geo: {
+    label: "地理學系",
+    years: {
+      "115": "data/ntnu-geo-115.json", "114": "data/ntnu-geo-114.json", "113": "data/ntnu-geo-113.json",
+      "112": "data/ntnu-geo-112.json", "111": "data/ntnu-geo-111.json", "109": "data/ntnu-geo-109.json",
+    },
+    missingYears: ["110"],
+    deptPrefixes: ["GEU", "GEC"],
+  },
+};
+const needMissing = (n) => Math.max(0, (Number(n.required) || 0) - (Number(n.done) || 0));
+function defaultProfile() {
+  return {
+    dept: "",
+    year: "",
+    needs: NTNU_DEFAULT_NEEDS.map((name) => ({ name, required: "", done: "" })),
+    limits: [{ category: "體育", max: "1" }],
+    candidates: [],
+  };
+}
+function normalizeProfile(data) {
+  const profile = { ...defaultProfile(), ...data };
+  // 舊格式：dept 是「geo-113」、缺口只有 missing 一欄
+  if (/^geo-\d+$/.test(profile.dept)) { profile.year = profile.dept.split("-")[1]; profile.dept = "geo"; }
+  profile.needs = profile.needs.map((n) => ("required" in n ? n : { name: n.name, required: n.missing ?? "", done: "" }));
+  return profile;
+}
+function loadProfile() {
+  const saved = readStore(STORAGE.profile, null);
+  return saved && Array.isArray(saved.needs) && Array.isArray(saved.candidates) ? normalizeProfile(saved) : defaultProfile();
+}
+const saveProfile = () => writeStore(STORAGE.profile, plannerState.profile);
+
+async function loadLookups() {
+  const fetchJson = async (url) => { const r = await fetch(url); if (!r.ok) throw new Error(`${url} HTTP ${r.status}`); return r.json(); };
+  const ge = await fetchJson("data/ntnu-ge.json");
+  const offerings = await fetchJson(OFFERINGS_FILE);
+  const depts = {};
+  for (const [id, dept] of Object.entries(NTNU_DEPTS)) {
+    const years = {};
+    for (const [year, file] of Object.entries(dept.years)) years[year] = await fetchJson(file);
+    depts[id] = { ...dept, years };
+  }
+  return { ge, depts, offerings };
+}
+
+// 用課號猜類別：通識查官方總表、00UP 是體育、科系課號查該系課程架構
+function classifyCode(code, profile) {
+  const id = String(code ?? "").trim().toUpperCase();
+  const lookups = plannerState.lookups;
+  if (!id || !lookups) return null;
+  const hit = { title: "", credits: "", counts: [], note: [] };
+  const ge = lookups.ge.courses[id];
+  if (ge) {
+    hit.title = ge.title; hit.credits = String(ge.credits);
+    if (ge.domain) { hit.counts.push(`博雅・${ge.domain}`); hit.note.push(`通識・${ge.domain}`); }
+    if (ge.cross) { hit.counts.push("跨域探索"); hit.note.push("可算跨域"); }
+    hit.counts.push("通識（不限類別）");
+  }
+  if (/^00UP/.test(id)) { hit.counts.push("體育"); hit.credits ||= "1"; hit.note.push("體育"); }
+  const dept = profile.dept && lookups.depts[profile.dept];
+  const curriculum = dept ? dept.years[profile.year] : null;
+  if (dept && curriculum) {
+    const course = curriculum.courses[id];
+    if (course) {
+      hit.title ||= course.title; hit.credits ||= String(course.credits);
+      hit.counts.push(course.category); hit.note.push(course.category);
+    } else if (dept.deptPrefixes.some((p) => id.startsWith(p))) {
+      // 系上開的課但不在該年度課架清單：不自動勾，提醒去確認
+      hit.note.push(`不在 ${profile.year} 學年度課架清單，是否算系選修請洽系辦`);
+    }
+  }
+  const offering = lookups.offerings?.courses?.[id];
+  if (offering) {
+    hit.title ||= offering.title.replace(/^體育（(.+)）$/, "$1");
+    hit.credits ||= String(offering.credits);
+    hit.offering = offering;
+    hit.note.push(`${lookups.offerings.term} 有開${offering.sections.length > 1 ? ` ${offering.sections.length} 組` : ""}`);
+  } else if (hit.note.length) {
+    hit.note.push(`${lookups.offerings?.term ?? ""} 沒開`);
+  }
+  if (!hit.note.length) return null;
+  const names = new Set(profile.needs.map((n) => n.name));
+  hit.counts = hit.counts.filter((n) => names.has(n));
+  return hit;
+}
+
+function ntnuContext() {
+  const p = plannerState.profile;
+  return {
+    layer: "ntnu",
+    title: "師大通用版 排課試算",
+    needs: p.needs.filter((n) => n.name && needMissing(n) > 0).map((n) => ({ key: n.name, label: n.name, missing: needMissing(n) })),
+    candidates: p.candidates.map((c, id) => ({
+      ...c, id, key: candidateKey(c), title: candidateTitle(c, `課程 ${id + 1}`), credits: Number(c.credits) || 0,
+      slots: parseTime(c.time), options: (c.counts ?? []).filter(Boolean), taken: false,
+    })),
+    catalogTags: (code) => classifyCode(code, p)?.counts ?? [],
+    addOffering: (code) => {
+      p.candidates.push(...offeringRows(code, (c) => classifyCode(c, p)?.counts ?? [], new Set(p.candidates.map(candidateKey))));
+      saveProfile();
+    },
+    removeCandidate: (c) => () => {
+      p.candidates = p.candidates.filter((x) => candidateKey(x) !== c.key);
+      saveProfile();
+    },
+    catalogNote: "",
+    limits: p.limits.map((l) => ({ key: l.category, max: Number(l.max) })),
+    notes: p.limits.filter((l) => l.category && l.max !== "").map((l) => `${l.category}至多 ${l.max} 門`),
+    optionLabel: (id) => id,
+    tag: (option, credits) => (option ? `${option.replace("博雅・", "")} ${credits}` : `${credits}`),
+  };
+}
+
+/* 共用的排課核心 */
 // 一門課可以算進多個類別時，挑讓總覆蓋最大的分配
 function bestAssignment(chosen, needs) {
   const need = Object.fromEntries(needs.map((n) => [n.key, n.missing]));
@@ -392,66 +612,94 @@ function bestAssignment(chosen, needs) {
   return best;
 }
 
-function solvePlanner(candidates, needs) {
-  const pool = candidates.filter((c) => candidateMode(c) !== "never");
-  const must = pool.filter((c) => candidateMode(c) === "must");
-  const optional = pool.filter((c) => candidateMode(c) !== "must");
+const MAX_SEARCH_NODES = 250000;
+function solvePlanner(ctx, st) {
+  const modeOf = (c) => st.mode[c.key] ?? (c.taken ? "never" : "auto");
+  const pool = ctx.candidates.filter((c) => modeOf(c) !== "never");
+  const must = pool.filter((c) => modeOf(c) === "must");
+  const need = Object.fromEntries(ctx.needs.map((n) => [n.key, n.missing]));
+  // 搜尋順序：候選越少的類別越先排，計算量有上限時也能先找到好方案
+  const supply = {};
+  pool.forEach((c) => c.options.forEach((k) => { supply[k] = (supply[k] ?? 0) + c.credits; }));
+  const scarcity = (c) => Math.min(...c.options.filter((k) => need[k]).map((k) => supply[k] / need[k]), Infinity);
+  const optional = pool.filter((c) => modeOf(c) !== "must").sort((a, b) => scarcity(a) - scarcity(b) || b.credits - a.credits);
+  // 剩下的候選課在各類別最多還能補多少，用來估上限、剪掉不可能更好的分支
+  const keys = Object.keys(need);
+  const suffix = Array.from({ length: optional.length + 1 }, () => Object.fromEntries(keys.map((k) => [k, 0])));
+  for (let i = optional.length - 1; i >= 0; i--) {
+    keys.forEach((k) => { suffix[i][k] = suffix[i + 1][k] + (optional[i].options.includes(k) ? optional[i].credits : 0); });
+  }
+  const reach = Object.fromEntries(keys.map((k) => [k, 0]));
+  const limits = ctx.limits.filter((l) => l.key && Number.isFinite(l.max));
   const used = new Set();
   const chosen = [];
+  const count = {};
+  const filled = {};
+  const flexible = {};
   let credits = 0;
   const conflicts = [];
-  // 類別門數上限，例如體育至多一門
-  const limits = (site.planner?.limits ?? []).map((l) => ({ key: l.category, max: Number(l.max) })).filter((l) => l.key && Number.isFinite(l.max));
-  const count = {};
-  const hitsLimit = (c) => limits.some((l) => c.options.includes(l.key) && (count[l.key] ?? 0) >= l.max);
-  const tally = (c, delta) => limits.forEach((l) => { if (c.options.includes(l.key)) count[l.key] = (count[l.key] ?? 0) + delta; });
+  const codes = new Set();
+  const hitsLimit = (c) => (c.code && codes.has(c.code)) || limits.some((l) => c.options.includes(l.key) && (count[l.key] ?? 0) >= l.max);
+  // 粗估這門課還有沒有用：它能算的類別裡至少一個還沒補滿；
+  // 已選的多類別課可以改算別類，所以它們佔的學分不算死
+  const useful = (c) => c.options.some((k) => (filled[k] ?? 0) - (flexible[k] ?? 0) < (need[k] ?? 0));
+  const apply = (c, sign) => {
+    c.slots.forEach((s) => (sign > 0 ? used.add(s) : used.delete(s)));
+    if (c.code) { if (sign > 0) codes.add(c.code); else codes.delete(c.code); }
+    c.options.forEach((k) => { if (k in reach) reach[k] += sign * c.credits; });
+    limits.forEach((l) => { if (c.options.includes(l.key)) count[l.key] = (count[l.key] ?? 0) + sign; });
+    if (sign > 0) {
+      const target = [...c.options].sort((a, b) => ((need[b] ?? 0) - (filled[b] ?? 0)) - ((need[a] ?? 0) - (filled[a] ?? 0)))[0];
+      c.filledKey = target;
+    }
+    if (c.filledKey) {
+      filled[c.filledKey] = (filled[c.filledKey] ?? 0) + sign * c.credits;
+      if (c.options.length > 1) flexible[c.filledKey] = (flexible[c.filledKey] ?? 0) + sign * c.credits;
+    }
+    credits += sign * c.credits;
+  };
   for (const c of must) {
     if (c.slots.some((s) => used.has(s))) conflicts.push(c.title);
-    if (hitsLimit(c)) conflicts.push(`${c.title}（超過類別門數上限）`);
-    c.slots.forEach((s) => used.add(s));
-    tally(c, 1);
+    if (hitsLimit(c)) conflicts.push(`${c.title}（同一門課重複或超過類別門數上限）`);
+    apply(c, 1);
     chosen.push(c);
-    credits += c.credits;
   }
-  const results = [];
+  const top = [];
+  const better = (a, b) => b.coverage - a.coverage || a.credits - b.credits || a.evening - b.evening || a.days - b.days;
+  let nodes = 0;
+  let truncated = false;
   const walk = (i) => {
+    if (++nodes > MAX_SEARCH_NODES) { truncated = true; return; }
+    // 樂觀上限：已選的課（可算的類別都算一次）加上剩下所有候選，仍贏不過前幾名就不往下找
+    if (top.length >= 6) {
+      const bound = keys.reduce((sum, k) => sum + Math.min(need[k], reach[k] + suffix[i][k]), 0);
+      if (bound < top[top.length - 1].coverage) return;
+    }
     if (i === optional.length) {
-      const { coverage, assign } = bestAssignment(chosen, needs);
-      const evening = chosen.reduce((n, c) => n + c.slots.filter((s) => /[A-C]$/.test(s)).length, 0);
+      const { coverage } = bestAssignment(chosen, ctx.needs);
+      const evening = chosen.reduce((n, c) => n + c.slots.filter((s) => /[A-D]$/.test(s)).length, 0);
       const days = new Set(chosen.flatMap((c) => c.slots.map((s) => s[0]))).size;
-      results.push({ ids: chosen.map((c) => c.id), coverage, credits, evening, days, assign });
+      top.push({ ids: chosen.map((c) => c.id), coverage, credits, evening, days });
+      // 覆蓋最多 → 學分最少（不多修） → 晚上的課最少 → 上課天數最少
+      top.sort(better);
+      if (top.length > 6) top.pop();
       return;
     }
-    walk(i + 1);
     const c = optional[i];
-    if (c.slots.some((s) => used.has(s)) || hitsLimit(c)) return;
-    c.slots.forEach((s) => used.add(s));
-    tally(c, 1);
-    chosen.push(c);
-    credits += c.credits;
+    if (useful(c) && !c.slots.some((s) => used.has(s)) && !hitsLimit(c)) {
+      apply(c, 1);
+      chosen.push(c);
+      walk(i + 1);
+      chosen.pop();
+      apply(c, -1);
+    }
     walk(i + 1);
-    chosen.pop();
-    credits -= c.credits;
-    tally(c, -1);
-    c.slots.forEach((s) => used.delete(s));
   };
   walk(0);
-  // 覆蓋最多 → 學分最少（不多修） → 晚上的課最少 → 上課天數最少
-  results.sort((a, b) => b.coverage - a.coverage || a.credits - b.credits || a.evening - b.evening || a.days - b.days);
-  return { results: results.slice(0, 6), conflicts };
+  return { results: top, conflicts, truncated };
 }
 
-function courseTag(option, credits) {
-  if (!option) return `${credits}`;
-  if (option.includes("/")) return `${option.split("/")[1]} 通${credits}`;
-  if (option.startsWith("必修")) return `必${credits}`;
-  if (option.startsWith("必選修")) return `選${credits}`;
-  if (option.startsWith("基本能力")) return `體${credits}`;
-  if (option.startsWith("跨域")) return `跨域 通${credits}`;
-  return `${option} ${credits}`;
-}
-
-function timetable(chosen, assign) {
+function timetable(chosen, assign, tag) {
   const at = new Map();
   for (const c of chosen) c.slots.forEach((s) => at.set(s, [...(at.get(s) ?? []), c]));
   const signature = (key) => (at.get(key) ?? []).map((c) => c.id).join(",");
@@ -474,18 +722,358 @@ function timetable(chosen, assign) {
       const option = assign.get(c.id) ?? c.options[0];
       return el("td", { rowspan: span, class: "tt-course" },
         el("b", {}, c.title), c.room && el("span", {}, c.room), c.teacher && el("span", {}, c.teacher),
-        el("span", { class: "tt-tag" }, `【${courseTag(option, c.credits)}】`));
+        el("span", { class: "tt-tag" }, `【${tag(option, c.credits)}】`));
     })));
   return el("div", { class: "tt-wrap" }, el("table", { class: "timetable" },
     el("thead", {}, el("tr", {}, el("th", {}, ""), DAYS.map((d) => el("th", {}, d)))), el("tbody", {}, body)));
 }
 
+// 最佳模式／自由排課兩種檢視，兩個圖層共用
+function plannerView(ctx) {
+  const st = layerState(ctx.layer);
+  const { needs, candidates } = ctx;
+  const totalMissing = needs.reduce((sum, n) => sum + n.missing, 0);
+  const tabs = (items, current, onPick, label) => el("div", { class: "planner-modes", role: "group", "aria-label": label },
+    items.map(({ id, label: text }) => el("button", {
+      type: "button", class: `mini${current === id ? " primary" : ""}`, "aria-pressed": String(current === id), onclick: () => onPick(id),
+    }, text)));
+  const bar = el("div", { class: "planner-bar" },
+    tabs(LAYERS, ctx.layer, (id) => { plannerState.layer = id; saveLayer(id); render(); }, "排課版本"),
+    tabs([{ id: "best", label: "最佳模式" }, { id: "free", label: "自由排課" }], st.view, (id) => { st.view = id; saveLayer(ctx.layer); render(); }, "排課模式"),
+    el("span", { class: "hint" }, [totalMissing ? `還缺 ${totalMissing} 學分` : "先在下方填各類別還缺幾學分", ...ctx.notes].join("・")));
+
+  const needTable = (assignment) => (needs.length ? dataTable({
+    list: needs.map((n) => ({ ...n, got: Math.min(n.missing, assignment.tally[n.key] ?? 0) })),
+    columns: [
+      { label: "類別", view: (n) => n.label },
+      { label: "還缺", className: "nowrap lbl", view: (n) => n.missing },
+      { label: "目前補到", className: "nowrap lbl", view: (n) => (n.got >= n.missing ? "✓" : el("b", { class: "missing" }, `${n.got}（差 ${n.missing - n.got}）`)) },
+    ],
+  }) : el("p", { class: "empty-note" }, "還沒有填缺口"));
+  const courseColumns = [
+    { label: "課程", view: (c) => [el("b", {}, c.title), (c.code || c.teacher) && el("span", { class: "sub" }, [c.code, c.teacher].filter(Boolean).join("・")), c.taken && el("span", { class: "status-tag" }, "已修／修習中")] },
+    { label: "時間", className: "nowrap", view: (c) => c.time },
+    { label: "學分", className: "nowrap", view: (c) => c.credits },
+    { label: "算入", view: (c) => c.options.map(ctx.optionLabel).join("／") },
+  ];
+  const startFree = (keys) => { st.free = new Set(keys); st.view = "free"; saveLayer(ctx.layer); render(); };
+  const removeColumn = { label: "", className: "nowrap", view: (c) => {
+    const remove = ctx.removeCandidate?.(c);
+    return remove && el("button", { type: "button", class: "mini", onclick: () => { remove(); st.free.delete(c.key); saveLayer(ctx.layer); render(); } }, "移除");
+  } };
+  // 候選課與開課清單並排；清單可以拖進候選區
+  const candidateArea = (table) => {
+    const drop = el("div", { class: "drop-zone" }, table, el("p", { class: "hint drop-hint" }, "把開課清單的課拖到這裡，或在清單按「加入」。"));
+    drop.addEventListener("dragover", (e) => { e.preventDefault(); drop.classList.add("drag-over"); });
+    drop.addEventListener("dragleave", () => drop.classList.remove("drag-over"));
+    drop.addEventListener("drop", (e) => {
+      e.preventDefault();
+      drop.classList.remove("drag-over");
+      const code = e.dataTransfer.getData("text/plain");
+      if (code) { ctx.addOffering(code); render(); }
+    });
+    return el("div", { class: "cand-catalog" },
+      section("candidates", "候選課程", drop),
+      catalogPanel(ctx));
+  };
+
+  if (st.view === "free") {
+    const chosen = candidates.filter((c) => st.free.has(c.key));
+    const assignment = bestAssignment(chosen, needs);
+    const owners = new Map();
+    chosen.forEach((c) => c.slots.forEach((s) => owners.set(s, [...(owners.get(s) ?? []), c.title])));
+    const clashTitles = [...new Set([...owners.values()].filter((list) => list.length > 1).flat())];
+    const limitIssues = ctx.limits.filter((l) => chosen.filter((c) => c.options.includes(l.key)).length > l.max).map((l) => `${l.key}至多 ${l.max} 門`);
+    const takenPicked = chosen.filter((c) => c.taken).map((c) => c.title);
+    const codeCount = {};
+    chosen.forEach((c) => { if (c.code) codeCount[c.code] = (codeCount[c.code] ?? 0) + 1; });
+    const duplicated = chosen.filter((c) => codeCount[c.code] > 1).map((c) => c.title);
+    const warnings = [
+      duplicated.length && `同一門課選了不只一組：${duplicated.join("、")}`,
+      clashTitles.length && `衝堂：${clashTitles.join("、")}`,
+      limitIssues.length && `超過門數上限：${limitIssues.join("、")}`,
+      takenPicked.length && `已修或修習中：${takenPicked.join("、")}`,
+    ].filter(Boolean);
+    const pickBox = (c) => {
+      const box = el("input", { type: "checkbox", checked: st.free.has(c.key), "aria-label": `選 ${c.title}` });
+      box.addEventListener("change", () => {
+        if (box.checked) st.free.add(c.key); else st.free.delete(c.key);
+        saveLayer(ctx.layer);
+        render();
+      });
+      return box;
+    };
+    return [
+      bar,
+      section("plan", "自由排課",
+        el("p", { class: "hint" }, `已選 ${chosen.length} 門・${sumCredits(chosen)} 學分・補 ${assignment.coverage}/${totalMissing}`),
+        warnings.map((w) => el("p", { class: "missing" }, w)),
+        el("div", { class: "planner-picks" },
+          el("button", { type: "button", class: "mini", onclick: () => startFree(solvePlanner(ctx, st).results[0]?.ids.map((id) => candidates[id].key) ?? []) }, "從最佳方案 1 重新開始"),
+          el("button", { type: "button", class: "mini", onclick: () => startFree([]) }, "清空")),
+        timetable(chosen, assignment.assign, ctx.tag)),
+      section("needs", "缺口", needTable(assignment)),
+      candidateArea(candidates.length ? dataTable({
+        list: candidates,
+        rowProps: (c) => ({ class: st.free.has(c.key) ? (clashTitles.includes(c.title) ? "clash-row" : "picked") : null }),
+        columns: [{ label: "選", className: "nowrap", view: pickBox }, ...courseColumns, removeColumn],
+      }) : el("p", { class: "empty-note" }, "還沒有候選課程")),
+    ];
+  }
+
+  const { results, conflicts, truncated } = candidates.length ? solvePlanner(ctx, st) : { results: [], conflicts: [], truncated: false };
+  st.pick = Math.min(st.pick, Math.max(0, results.length - 1));
+  const current = results[st.pick];
+  const chosen = current ? candidates.filter((c) => current.ids.includes(c.id)) : [];
+  const assignment = current ? bestAssignment(chosen, needs) : { tally: {}, assign: new Map() };
+  const modeSelect = (c) => {
+    const select = el("select", { class: "cell", "aria-label": `${c.title} 選課狀態` },
+      el("option", { value: "auto" }, "自動"), el("option", { value: "must" }, "必選"), el("option", { value: "never" }, "排除"));
+    select.value = st.mode[c.key] ?? (c.taken ? "never" : "auto");
+    select.addEventListener("change", () => { st.mode[c.key] = select.value; st.pick = 0; render(); });
+    return select;
+  };
+  return [
+    bar,
+    conflicts.length ? el("p", { class: "missing" }, `必選的課有衝突：${conflicts.join("、")}`) : null,
+    truncated ? el("p", { class: "missing" }, "候選課太多，只算了部分組合；可以把確定不上的課設成「排除」、一定要上的設成「必選」。") : null,
+    section("plan", "建議方案",
+      el("div", { class: "planner-picks" }, results.map((r, i) => el("button", {
+        type: "button", class: `mini${i === st.pick ? " primary" : ""}`, onclick: () => { st.pick = i; render(); },
+      }, `方案 ${i + 1}・補 ${r.coverage}/${totalMissing}・${r.credits} 學分`))),
+      current && el("button", { type: "button", class: "mini primary", onclick: () => startFree(chosen.map((c) => c.key)) }, `以方案 ${st.pick + 1} 進入自由排課 →`),
+      current ? timetable(chosen, assignment.assign, ctx.tag) : el("p", { class: "empty-note" }, candidates.length ? "沒有可行的組合" : "還沒有候選課程")),
+    section("needs", "缺口", needTable(assignment)),
+    candidateArea(candidates.length ? dataTable({
+      list: candidates,
+      rowProps: (c) => ({ class: current?.ids.includes(c.id) ? "picked" : null }),
+      columns: [...courseColumns, { label: "", className: "nowrap", view: modeSelect }, removeColumn],
+    }) : el("p", { class: "empty-note" }, "還沒有候選課程")),
+  ].filter(Boolean);
+}
+
+// 這學期的開課清單：可篩選、搜尋，拖進候選區或按「加入」
+const CATALOG_FILTERS = [
+  ["all", "全部"], ["必修", "系必修"], ["選修", "系選修"], ["跨域", "跨域探索"],
+  ["人文藝術", "人文藝術"], ["社會科學", "社會科學"], ["自然科學", "自然科學"], ["邏輯運算", "邏輯運算"], ["體育", "體育"],
+];
+function catalogPanel(ctx, onAdd = (code) => { ctx.addOffering(code); render(); }) {
+  const offerings = plannerState.lookups?.offerings;
+  if (!offerings) return null;
+  const state = plannerState.catalog;
+  const addedKeys = new Set(ctx.candidates.map((c) => c.key ?? candidateKey(c)));
+  // 每門課還有幾組沒加入
+  const missingSections = (code) => offeringRows(code, () => [], addedKeys).length;
+  const keyword = state.q.trim().toLowerCase();
+  const rows = Object.entries(offerings.courses)
+    .map(([code, o]) => ({ code, ...o, tags: ctx.catalogTags(code) }))
+    .filter((o) => state.tag === "all" || o.tags.some((tag) => tag.includes(state.tag)))
+    .filter((o) => !keyword || `${o.code} ${o.title} ${o.sections.map((s) => s.teacher).join(" ")}`.toLowerCase().includes(keyword));
+  const search = el("input", { type: "search", class: "cell-input", placeholder: "搜尋課號、課名、老師", value: state.q, "data-focus-key": "catalog-q", "aria-label": "搜尋開課清單" });
+  search.addEventListener("input", () => { state.q = search.value; clearTimeout(catalogPanel.timer); catalogPanel.timer = setTimeout(render, 250); });
+  const filter = el("select", { class: "cell", "aria-label": "篩選類別" }, CATALOG_FILTERS.map(([id, label]) => el("option", { value: id }, label)));
+  filter.value = state.tag;
+  filter.addEventListener("change", () => { state.tag = filter.value; render(); });
+  const shown = rows.slice(0, 80);
+  const list = el("ul", { class: "catalog-list" }, shown.map((o) => {
+    const missing = missingSections(o.code);
+    const isAdded = missing === 0;
+    const partly = !isAdded && o.sections.some((s) => addedKeys.has(candidateKey({ code: o.code, group: s.group })) || addedKeys.has(o.code));
+    const item = el("li", { class: `catalog-item${isAdded ? " added" : ""}`, draggable: isAdded ? null : "true" },
+      el("div", { class: "catalog-main" },
+        el("b", {}, o.title), el("span", { class: "sub" }, `${o.code}・${o.credits} 學分・${o.unit}`),
+        el("span", { class: "sub" }, o.sections.map((s) => [s.group && `${s.group}`, s.time || "時間未定", s.teacher].filter(Boolean).join(" ")).join("／")),
+        o.tags.length ? el("span", { class: "catalog-tags" }, o.tags.join("・")) : null),
+      isAdded ? el("span", { class: "status-tag" }, "已加入") : el("button", { type: "button", class: "mini", onclick: () => onAdd(o.code) }, partly ? `加入其他 ${missing} 組` : "加入"));
+    item.addEventListener("dragstart", (e) => { e.dataTransfer.setData("text/plain", o.code); e.dataTransfer.effectAllowed = "copy"; });
+    return item;
+  }));
+  return section("catalog", `${offerings.term} 開課清單`,
+    el("div", { class: "planner-picks" }, filter, search),
+    el("p", { class: "hint" }, `${rows.length} 門${rows.length > shown.length ? `，先列前 ${shown.length} 門，請用搜尋縮小範圍` : ""}。多組的課會把每組都加入，由排課機器挑組。`),
+    ctx.catalogNote ? el("p", { class: "hint" }, ctx.catalogNote) : null,
+    list);
+}
+
+/* 師大通用版：頁面上直接編輯的表單 */
+function profileInput(obj, field, focusKey, props = {}, onCommit) {
+  const input = el("input", { class: "cell-input", value: obj[field] ?? "", "data-focus-key": focusKey, ...props });
+  input.addEventListener("input", () => { obj[field] = input.value; saveProfile(); });
+  // 失焦或按 Enter 才重排，避免打字時一直重畫
+  input.addEventListener("change", () => { onCommit?.(); saveProfile(); setTimeout(render, 0); });
+  return input;
+}
+
+function ntnuEditors() {
+  const p = plannerState.profile;
+  const names = p.needs.map((n) => n.name).filter(Boolean);
+  const removeButton = (list, index) => el("button", { type: "button", class: "mini", onclick: () => { list.splice(index, 1); saveProfile(); render(); } }, "刪除");
+  const addButton = (text, onAdd) => el("button", { type: "button", class: "mini addrow", onclick: () => { onAdd(); saveProfile(); render(); } }, text);
+  const table = (head, rows) => {
+    // 窄螢幕會把每列排成卡片，用 data-label 補上欄名
+    rows.forEach((tr) => [...tr.children].forEach((td, i) => { td.dataset.label = head[i] ?? ""; }));
+    return el("div", { class: "edit-wrap" }, el("table", { class: "profile-table" },
+      el("thead", {}, el("tr", {}, head.map((h) => el("th", {}, h)))), el("tbody", {}, rows)));
+  };
+
+  const deptSelect = el("select", { class: "cell", "aria-label": "科系" },
+    el("option", { value: "" }, "不指定（只判斷通識與體育）"),
+    Object.entries(NTNU_DEPTS).map(([id, d]) => el("option", { value: id }, d.label)));
+  deptSelect.value = p.dept ?? "";
+  deptSelect.addEventListener("change", () => {
+    p.dept = deptSelect.value;
+    p.year = p.dept ? Object.keys(NTNU_DEPTS[p.dept].years).sort().reverse()[0] : "";
+    saveProfile();
+    render();
+  });
+  const dept = p.dept && plannerState.lookups.depts[p.dept];
+  const yearSelect = dept && el("select", { class: "cell", "aria-label": "入學年度" },
+    Object.keys(dept.years).sort().reverse().map((y) => el("option", { value: y }, `${y} 學年度入學`)));
+  if (yearSelect) {
+    yearSelect.value = p.year;
+    yearSelect.addEventListener("change", () => { p.year = yearSelect.value; saveProfile(); render(); });
+  }
+  const curriculum = dept ? dept.years[p.year] : null;
+  const applyThresholds = () => {
+    const filled = p.needs.some((n) => n.required !== "" || n.done !== "");
+    if (filled && !confirm("用這個入學年度的畢業門檻取代目前的類別與門檻？已填的「已修」會保留在同名類別。")) return;
+    const done = Object.fromEntries(p.needs.map((n) => [n.name, n.done]));
+    p.needs = curriculum.thresholds.map((th) => ({ name: th.name, required: String(th.required), done: done[th.name] ?? "" }));
+    const names = new Set(p.needs.map((n) => n.name));
+    p.limits = p.limits.filter((l) => names.has(l.category));
+    saveProfile();
+    render();
+  };
+
+  const importInput = el("input", { type: "file", accept: "application/json", hidden: true });
+  importInput.addEventListener("change", async () => {
+    const file = importInput.files?.[0];
+    if (!file) return;
+    try {
+      const data = JSON.parse(await file.text());
+      if (!Array.isArray(data.needs) || !Array.isArray(data.candidates)) throw new Error("檔案格式不對");
+      plannerState.profile = normalizeProfile(data);
+      saveProfile();
+      render();
+    } catch (error) {
+      alert(`匯入失敗：${error.message}`);
+    }
+  });
+
+  const needRows = p.needs.map((n, i) => el("tr", {},
+    el("td", {}, profileInput(n, "name", `need-${i}-name`, { "aria-label": "類別名稱" })),
+    el("td", {}, profileInput(n, "required", `need-${i}-required`, { type: "number", min: "0", inputmode: "numeric", "aria-label": `${n.name} 畢業門檻` })),
+    el("td", {}, profileInput(n, "done", `need-${i}-done`, { type: "number", min: "0", inputmode: "numeric", "aria-label": `${n.name} 已修學分` })),
+    el("td", { class: "nowrap" }, needMissing(n) ? el("b", { class: "missing" }, needMissing(n)) : "✓"),
+    el("td", {}, removeButton(p.needs, i))));
+
+  const limitRows = p.limits.map((l, i) => {
+    const select = el("select", { class: "cell", "aria-label": "限制的類別" }, names.map((name) => el("option", { value: name }, name)));
+    select.value = l.category;
+    select.addEventListener("change", () => { l.category = select.value; saveProfile(); render(); });
+    return el("tr", {}, el("td", {}, select),
+      el("td", {}, profileInput(l, "max", `limit-${i}-max`, { type: "number", min: "0", inputmode: "numeric", "aria-label": "最多幾門" })),
+      el("td", {}, removeButton(p.limits, i)));
+  });
+
+  const candidateRows = p.candidates.map((c, i) => {
+    c.counts ??= [];
+    const detected = classifyCode(c.code, p);
+    const useSection = (section) => {
+      c.group = section.group; c.time = section.time; c.teacher = section.teacher; c.room = section.room;
+    };
+    const codeInput = profileInput(c, "code", `cand-${i}-code`, { placeholder: "例：0SUG411", "aria-label": "課號" }, () => {
+      const hit = classifyCode(c.code, p);
+      if (!hit) return;
+      if (!c.title) c.title = hit.title;
+      if (!c.credits) c.credits = hit.credits;
+      if (hit.counts.length) c.counts = [...new Set(hit.counts)];
+      const sections = hit.offering?.sections ?? [];
+      if (sections.length && !sections.some((s) => s.group === c.group && s.time === c.time)) useSection(sections.find((s) => s.time) ?? sections[0]);
+    });
+    const sections = detected?.offering?.sections ?? [];
+    const groupSelect = sections.length > 1 && (() => {
+      const select = el("select", { class: "cell", "aria-label": "組別", "data-focus-key": `cand-${i}-group` },
+        sections.map((s, k) => el("option", { value: String(k) }, [`${s.group || "—"} 組`, s.time, s.teacher].filter(Boolean).join(" "))));
+      select.value = String(Math.max(0, sections.findIndex((s) => s.group === c.group && s.time === c.time)));
+      select.addEventListener("change", () => { useSection(sections[Number(select.value)]); saveProfile(); setTimeout(render, 0); });
+      return select;
+    })();
+    const boxes = el("div", { class: "multi" }, names.map((name) => {
+      const box = el("input", { type: "checkbox", checked: c.counts.includes(name), "data-focus-key": `cand-${i}-count-${name}` });
+      box.addEventListener("change", () => {
+        c.counts = box.checked ? [...new Set([...c.counts, name])] : c.counts.filter((x) => x !== name);
+        saveProfile();
+        setTimeout(render, 0);
+      });
+      return el("label", {}, box, name);
+    }));
+    return el("tr", {},
+      el("td", {}, codeInput, detected && el("span", { class: "sub detected" }, detected.note.join("・"))),
+      el("td", {}, profileInput(c, "title", `cand-${i}-title`, { "aria-label": "課名" })),
+      el("td", {}, profileInput(c, "credits", `cand-${i}-credits`, { type: "number", min: "0", inputmode: "numeric", "aria-label": "學分" })),
+      el("td", {}, groupSelect, profileInput(c, "time", `cand-${i}-time`, { placeholder: "二2-4", "aria-label": "時間" }),
+        c.time && !parseTime(c.time).length && el("span", { class: "sub missing" }, "看不懂這個時間")),
+      el("td", {}, boxes),
+      el("td", {}, removeButton(p.candidates, i)));
+  });
+
+  const exportData = () => downloadBlob(new Blob([JSON.stringify(p, null, 2)], { type: "application/json" }), `排課資料-${today()}.json`);
+  return [
+    section("my-data", "我的資料",
+      el("div", { class: "planner-picks" },
+        el("label", {}, "科系 ", deptSelect),
+        yearSelect && el("label", {}, "入學 ", yearSelect),
+        curriculum && el("button", { type: "button", class: "mini primary", onclick: applyThresholds }, "套用畢業門檻"),
+        el("button", { type: "button", class: "mini", onclick: exportData }, "匯出"),
+        el("button", { type: "button", class: "mini", onclick: () => importInput.click() }, "匯入"),
+        el("button", { type: "button", class: "mini", onclick: () => {
+          if (!confirm("清除這台瀏覽器裡的排課資料？")) return;
+          plannerState.profile = defaultProfile();
+          saveProfile();
+          render();
+        } }, "全部清除"),
+        importInput),
+      curriculum && el("p", { class: "hint" }, "依據：", curriculum.url ? el("a", { href: safeUrl(curriculum.url), target: "_blank", rel: "noopener" }, curriculum.source) : curriculum.source,
+        curriculum.notes?.length ? `（${curriculum.notes.join("；")}）` : ""),
+      dept?.missingYears?.length && el("p", { class: "hint" }, `${dept.missingYears.join("、")} 學年度入學的官方文件還沒找到，暫時無法套用；請手動填門檻或選相近年度。`),
+      el("p", { class: "hint" }, "資料只存在這台瀏覽器，不會上傳。換電腦或分享給同學請用「匯出／匯入」。")),
+    section("my-needs", "畢業門檻與已修學分",
+      el("p", { class: "hint" }, "「已修」請填已修過加上這學期正在修的學分；還缺 = 門檻 − 已修。超修的學分（例如系選修超過門檻）可以自己挪到「自由學分」的已修。"),
+      table(["類別", "畢業門檻", "已修", "還缺", ""], needRows),
+      addButton("＋ 新增類別", () => p.needs.push({ name: "", required: "", done: "" }))),
+    section("my-limits", "類別門數上限",
+      table(["類別", "最多幾門", ""], limitRows),
+      addButton("＋ 新增限制", () => p.limits.push({ category: names[0] ?? "", max: "1" }))),
+    section("my-candidates", "編輯候選課程",
+      el("p", { class: "hint" }, `輸入課號後按 Enter 或點別處：會依 ${plannerState.lookups.offerings?.term ?? ""} 開課資料帶出課名、老師、時間（有多組可選組別），通識課依官方總表勾領域，體育（00UP）與已選科系的課也會自動分類。時間也可以手動改，寫星期＋節次，例如「二2-4」「三A-C」。`),
+      table(["課號", "課名", "學分", "時間", "算入", ""], candidateRows),
+      addButton("＋ 新增候選課", () => p.candidates.push({ code: "", title: "", credits: "", time: "", counts: [] }))),
+  ];
+}
+
+function ensureLookups() {
+  if (plannerState.lookups) return true;
+  plannerState.loading ??= loadLookups()
+    .then((lookups) => { plannerState.lookups = lookups; render(); })
+    .catch((error) => { plannerState.lookups = { ge: { courses: {} }, depts: {}, offerings: null }; console.error(error); render(); });
+  return false;
+}
+
 function plannerPage() {
   site.planner ??= { term: "", candidates: [] };
   const planner = site.planner;
+  if (!ensureLookups()) return [el("p", { class: "empty-note" }, "載入課號資料中…")];
   if (isEditing) {
+    const labels = requirementOptions();
+    const editCtx = {
+      candidates: planner.candidates,
+      catalogTags: (code) => nolanOptionsFor(code).map((o) => (o === "基本能力課程" ? "體育" : labels.find((l) => l.id === o)?.label ?? o)),
+      addOffering: (code) => { planner.candidates.push(...offeringRows(code, (c) => nolanOptionsFor(c).join("|"), new Set(planner.candidates.map(candidateKey)))); markDirty(true); },
+      catalogNote: "加入後記得按下方「儲存到 GitHub」。",
+    };
     return [
-      el("section", { class: "sec", id: "settings" }, el("h2", {}, "排課設定"),
+      el("section", { class: "sec", id: "settings" }, el("h2", {}, "排課設定（Nolan 版）"),
         kvTable(planner, [{ field: "term", label: "學期" }])),
       section("limits", "類別門數上限", dataTable({
         list: planner.limits ??= [],
@@ -498,117 +1086,19 @@ function plannerPage() {
       section("candidates", "候選課程", dataTable({
         list: planner.candidates,
         fields: [
+          { field: "code", label: "課號" }, { field: "group", label: "組別" },
           { field: "title", label: "課程" }, { field: "teacher", label: "老師" }, { field: "room", label: "地點" },
           { field: "credits", label: "學分" }, { field: "counts", label: "算入（可複選）", kind: "multi", options: requirementOptions }, { field: "time", label: "時間（例：二2-4）" },
         ],
-        newRow: () => ({ title: "", teacher: "", room: "", credits: "", counts: "", time: "" }),
+        newRow: () => ({ code: "", group: "", title: "", teacher: "", room: "", credits: "", counts: "", time: "" }),
       })),
-    ];
-  }
-  const needs = plannerNeeds();
-  const candidates = plannerCandidates();
-  const totalMissing = needs.reduce((sum, n) => sum + n.missing, 0);
-  plannerState.free ??= loadFree();
-  plannerState.view ??= loadView();
-
-  const modeTabs = el("div", { class: "planner-modes", role: "group", "aria-label": "排課模式" },
-    [["best", "最佳模式"], ["free", "自由排課"]].map(([id, label]) => el("button", {
-      type: "button", class: `mini${plannerState.view === id ? " primary" : ""}`, "aria-pressed": String(plannerState.view === id),
-      onclick: () => { plannerState.view = id; saveFree(); render(); },
-    }, label)));
-  const settings = el("div", { class: "planner-bar" },
-    el("b", {}, `${planner.term} 排課試算`), modeTabs,
-    el("span", { class: "hint" }, [`畢業還缺 ${totalMissing} 學分（不含 MOOCs）`,
-      ...(planner.limits ?? []).filter((l) => l.note).map((l) => `・${l.note}`)].join("")));
-
-  const needTable = (assignment) => dataTable({
-    list: needs.map((n) => ({ ...n, got: Math.min(n.missing, assignment.tally[n.key] ?? 0) })),
-    columns: [
-      { label: "類別", view: (n) => n.label },
-      { label: "還缺", className: "nowrap lbl", view: (n) => n.missing },
-      { label: "目前補到", className: "nowrap lbl", view: (n) => (n.got >= n.missing ? "✓" : el("b", { class: "missing" }, `${n.got}（差 ${n.missing - n.got}）`)) },
-    ],
-  });
-  const courseColumns = [
-    { label: "課程", view: (c) => [el("b", {}, c.title), c.teacher && el("span", { class: "sub" }, c.teacher), c.taken && el("span", { class: "status-tag" }, "已修／修習中")] },
-    { label: "時間", className: "nowrap", view: (c) => c.time },
-    { label: "學分", className: "nowrap", view: (c) => c.credits },
-    { label: "算入", view: (c) => c.options.map((id) => requirementOptions().find((o) => o.id === id)?.label ?? id).join("／") },
-  ];
-  const candidateHint = el("p", { class: "hint" }, "新增或修改候選課請到編輯模式（頁尾「編輯」）。時間格式：星期＋節次，例如「二2-4」「三A-C」。");
-  const startFree = (titles) => { plannerState.free = new Set(titles); plannerState.view = "free"; saveFree(); render(); };
-
-  if (plannerState.view === "free") {
-    const chosen = candidates.filter((c) => plannerState.free.has(c.title));
-    const assignment = bestAssignment(chosen, needs);
-    const owners = new Map();
-    chosen.forEach((c) => c.slots.forEach((s) => owners.set(s, [...(owners.get(s) ?? []), c.title])));
-    const clashTitles = [...new Set([...owners.values()].filter((list) => list.length > 1).flat())];
-    const limitIssues = (planner.limits ?? [])
-      .filter((l) => chosen.filter((c) => c.options.includes(l.category)).length > Number(l.max))
-      .map((l) => l.note || `${l.category} 超過 ${l.max} 門`);
-    const takenPicked = chosen.filter((c) => c.taken).map((c) => c.title);
-    const warnings = [
-      clashTitles.length && `衝堂：${clashTitles.join("、")}`,
-      limitIssues.length && `超過門數上限：${limitIssues.join("、")}`,
-      takenPicked.length && `已修或修習中：${takenPicked.join("、")}`,
+      catalogPanel(editCtx, (code) => editCtx.addOffering(code)),
     ].filter(Boolean);
-    const pickBox = (c) => {
-      const box = el("input", { type: "checkbox", checked: plannerState.free.has(c.title), "aria-label": `選 ${c.title}` });
-      box.addEventListener("change", () => {
-        if (box.checked) plannerState.free.add(c.title); else plannerState.free.delete(c.title);
-        saveFree();
-        render();
-      });
-      return box;
-    };
-    const actions = el("div", { class: "planner-picks" },
-      el("button", { type: "button", class: "mini", onclick: () => startFree(solvePlanner(candidates, needs).results[0]?.ids.map((id) => candidates[id].title) ?? []) }, "從最佳方案 1 重新開始"),
-      el("button", { type: "button", class: "mini", onclick: () => startFree([]) }, "清空"));
-    return [
-      settings,
-      section("plan", "自由排課",
-        el("p", { class: "hint" }, `已選 ${chosen.length} 門・${sumCredits(chosen)} 學分・補 ${assignment.coverage}/${totalMissing}`),
-        warnings.map((w) => el("p", { class: "missing" }, w)),
-        actions,
-        timetable(chosen, assignment.assign)),
-      section("needs", "畢業缺口", needTable(assignment)),
-      section("candidates", "候選課程", candidateHint, dataTable({
-        list: candidates,
-        rowProps: (c) => ({ class: plannerState.free.has(c.title) ? (clashTitles.includes(c.title) ? "clash-row" : "picked") : null }),
-        columns: [{ label: "選", className: "nowrap", view: pickBox }, ...courseColumns],
-      })),
-    ];
   }
-
-  const { results, conflicts } = solvePlanner(candidates, needs);
-  plannerState.pick = Math.min(plannerState.pick, Math.max(0, results.length - 1));
-  const current = results[plannerState.pick];
-  const chosen = current ? candidates.filter((c) => current.ids.includes(c.id)) : [];
-  const assignment = current ? bestAssignment(chosen, needs) : { tally: {}, assign: new Map() };
-  const picks = el("div", { class: "planner-picks" }, results.map((r, i) => el("button", {
-    type: "button", class: `mini${i === plannerState.pick ? " primary" : ""}`,
-    onclick: () => { plannerState.pick = i; render(); },
-  }, `方案 ${i + 1}・補 ${r.coverage}/${totalMissing}・${r.credits} 學分`)));
-  const toFree = current && el("button", { type: "button", class: "mini primary", onclick: () => startFree(chosen.map((c) => c.title)) }, `以方案 ${plannerState.pick + 1} 進入自由排課 →`);
-  const modeSelect = (c) => {
-    const select = el("select", { class: "cell", "aria-label": `${c.title} 選課狀態` },
-      el("option", { value: "auto" }, "自動"), el("option", { value: "must" }, "必選"), el("option", { value: "never" }, "排除"));
-    select.value = candidateMode(c);
-    select.addEventListener("change", () => { plannerState.mode[c.id] = select.value; plannerState.pick = 0; render(); });
-    return select;
-  };
-  return [
-    settings,
-    conflicts.length ? el("p", { class: "missing" }, `必選的課有衝突：${conflicts.join("、")}`) : null,
-    section("plan", "建議方案", picks, toFree, current ? timetable(chosen, assignment.assign) : el("p", { class: "empty-note" }, "沒有可行的組合")),
-    section("needs", "畢業缺口", needTable(assignment)),
-    section("candidates", "候選課程", candidateHint, dataTable({
-      list: candidates,
-      rowProps: (c) => ({ class: current?.ids.includes(c.id) ? "picked" : null }),
-      columns: [...courseColumns, { label: "", className: "nowrap", view: modeSelect }],
-    })),
-  ].filter(Boolean);
+  plannerState.layer ??= readStore(STORAGE.layer, "nolan") === "ntnu" ? "ntnu" : "nolan";
+  if (plannerState.layer === "nolan") return plannerView(nolanContext());
+  plannerState.profile ??= loadProfile();
+  return [...plannerView(ntnuContext()), ...ntnuEditors()];
 }
 
 /* ── 工具頁 ── */
@@ -765,6 +1255,8 @@ function buildShell() {
 }
 
 function render() {
+  // 重畫後把游標放回原本的欄位（表單編輯時用）
+  const focusKey = document.activeElement?.dataset?.focusKey;
   const builders = { profile: profilePage, research: researchPage, planner: plannerPage, tools: toolsPage, library: libraryPage };
   const main = document.getElementById("main");
   main.replaceChildren(...builders[page]());
@@ -772,6 +1264,7 @@ function render() {
     .filter((sec) => sec.querySelector("h2"))
     .map((sec) => el("li", {}, el("a", { href: `#${sec.id}` }, sec.querySelector("h2").firstChild.textContent.split("・")[0]))));
   applyFilter();
+  if (focusKey) document.querySelector(`[data-focus-key="${CSS.escape(focusKey)}"]`)?.focus();
 }
 
 /* ── 編輯模式：工具列與儲存 ── */
