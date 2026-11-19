@@ -385,9 +385,16 @@ function solvePlanner(candidates, needs) {
   const chosen = [];
   let credits = 0;
   const conflicts = [];
+  // 類別門數上限，例如體育至多一門
+  const limits = (site.planner?.limits ?? []).map((l) => ({ key: l.category, max: Number(l.max) })).filter((l) => l.key && Number.isFinite(l.max));
+  const count = {};
+  const hitsLimit = (c) => limits.some((l) => c.options.includes(l.key) && (count[l.key] ?? 0) >= l.max);
+  const tally = (c, delta) => limits.forEach((l) => { if (c.options.includes(l.key)) count[l.key] = (count[l.key] ?? 0) + delta; });
   for (const c of must) {
     if (c.slots.some((s) => used.has(s))) conflicts.push(c.title);
+    if (hitsLimit(c)) conflicts.push(`${c.title}（超過類別門數上限）`);
     c.slots.forEach((s) => used.add(s));
+    tally(c, 1);
     chosen.push(c);
     credits += c.credits;
   }
@@ -402,13 +409,15 @@ function solvePlanner(candidates, needs) {
     }
     walk(i + 1);
     const c = optional[i];
-    if (c.slots.some((s) => used.has(s))) return;
+    if (c.slots.some((s) => used.has(s)) || hitsLimit(c)) return;
     c.slots.forEach((s) => used.add(s));
+    tally(c, 1);
     chosen.push(c);
     credits += c.credits;
     walk(i + 1);
     chosen.pop();
     credits -= c.credits;
+    tally(c, -1);
     c.slots.forEach((s) => used.delete(s));
   };
   walk(0);
@@ -457,6 +466,14 @@ function plannerPage() {
     return [
       el("section", { class: "sec", id: "settings" }, el("h2", {}, "排課設定"),
         kvTable(planner, [{ field: "term", label: "學期" }])),
+      section("limits", "類別門數上限", dataTable({
+        list: planner.limits ??= [],
+        fields: [
+          { field: "category", label: "類別", kind: "select", options: requirementOptions },
+          { field: "max", label: "最多幾門" }, { field: "note", label: "說明" },
+        ],
+        newRow: () => ({ category: requirementOptions()[0]?.id ?? "", max: "1", note: "" }),
+      })),
       section("candidates", "候選課程", dataTable({
         list: planner.candidates,
         fields: [
@@ -478,7 +495,8 @@ function plannerPage() {
 
   const settings = el("div", { class: "planner-bar" },
     el("b", {}, `${planner.term} 排課試算`),
-    el("span", { class: "hint" }, `畢業還缺 ${totalMissing} 學分（不含 MOOCs）`));
+    el("span", { class: "hint" }, [`畢業還缺 ${totalMissing} 學分（不含 MOOCs）`,
+      ...(planner.limits ?? []).filter((l) => l.note).map((l) => `・${l.note}`)].join("")));
 
   const picks = el("div", { class: "planner-picks" }, results.map((r, i) => el("button", {
     type: "button", class: `mini${i === plannerState.pick ? " primary" : ""}`,
@@ -515,7 +533,7 @@ function plannerPage() {
 
   return [
     settings,
-    conflicts.length ? el("p", { class: "missing" }, `必選的課時間衝堂：${conflicts.join("、")}`) : null,
+    conflicts.length ? el("p", { class: "missing" }, `必選的課有衝突：${conflicts.join("、")}`) : null,
     section("plan", "建議方案", picks, current ? timetable(chosen, assignment.assign) : el("p", { class: "empty-note" }, "沒有可行的組合")),
     section("needs", "畢業缺口", needTable),
     section("candidates", "候選課程", el("p", { class: "hint" }, "時間格式：星期＋節次，例如「二2-4」「三A-C」；同一門課可算入多個類別時用「|」分隔。"), candidateTable),
