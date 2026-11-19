@@ -300,7 +300,22 @@ function researchPage() {
 const PERIODS = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "A", "B", "C"];
 const PERIOD_TIMES = ["08:10", "09:10", "10:20", "11:20", "12:20", "13:20", "14:20", "15:30", "16:30", "17:30", "18:40", "19:35", "20:30"];
 const DAYS = ["一", "二", "三", "四", "五"];
-const plannerState = { mode: {}, pick: 0 };
+const plannerState = { mode: {}, pick: 0, view: null, free: null };
+const FREE_KEY = "info-planner-free";
+const VIEW_KEY = "info-planner-view";
+// 自由排課的選擇只是個人草稿，存在這台瀏覽器就好
+function loadFree() {
+  try { return new Set(JSON.parse(localStorage.getItem(FREE_KEY) ?? "[]")); } catch { return new Set(); }
+}
+function saveFree() {
+  try {
+    localStorage.setItem(FREE_KEY, JSON.stringify([...plannerState.free]));
+    localStorage.setItem(VIEW_KEY, plannerState.view);
+  } catch { /* 私密視窗存不了就算了 */ }
+}
+function loadView() {
+  try { return localStorage.getItem(VIEW_KEY) === "free" ? "free" : "best"; } catch { return "best"; }
+}
 
 // 「二2-4」「三A-C」，多段用逗號分隔
 function parseTime(text) {
@@ -438,7 +453,8 @@ function courseTag(option, credits) {
 
 function timetable(chosen, assign) {
   const at = new Map();
-  for (const c of chosen) c.slots.forEach((s) => at.set(s, c));
+  for (const c of chosen) c.slots.forEach((s) => at.set(s, [...(at.get(s) ?? []), c]));
+  const signature = (key) => (at.get(key) ?? []).map((c) => c.id).join(",");
   const lastUsed = Math.max(9, ...chosen.flatMap((c) => c.slots.map((s) => PERIODS.indexOf(s.slice(1)))));
   const skip = new Set();
   const body = PERIODS.slice(0, lastUsed + 1).map((period, row) => el("tr", {},
@@ -446,10 +462,15 @@ function timetable(chosen, assign) {
     DAYS.map((day) => {
       const key = `${day}${period}`;
       if (skip.has(key)) return null;
-      const c = at.get(key);
-      if (!c) return el("td", {});
+      const list = at.get(key);
+      if (!list) return el("td", {});
+      const sig = signature(key);
       let span = 1;
-      while (row + span <= lastUsed && at.get(`${day}${PERIODS[row + span]}`) === c) { skip.add(`${day}${PERIODS[row + span]}`); span++; }
+      while (row + span <= lastUsed && signature(`${day}${PERIODS[row + span]}`) === sig) { skip.add(`${day}${PERIODS[row + span]}`); span++; }
+      if (list.length > 1) {
+        return el("td", { rowspan: span, class: "tt-course tt-clash" }, el("b", {}, "衝堂"), list.map((c) => el("span", {}, c.title)));
+      }
+      const c = list[0];
       const option = assign.get(c.id) ?? c.options[0];
       return el("td", { rowspan: span, class: "tt-course" },
         el("b", {}, c.title), c.room && el("span", {}, c.room), c.teacher && el("span", {}, c.teacher),
@@ -486,32 +507,90 @@ function plannerPage() {
   }
   const needs = plannerNeeds();
   const candidates = plannerCandidates();
-  const { results, conflicts } = solvePlanner(candidates, needs);
   const totalMissing = needs.reduce((sum, n) => sum + n.missing, 0);
-  plannerState.pick = Math.min(plannerState.pick, Math.max(0, results.length - 1));
-  const current = results[plannerState.pick];
-  const chosen = current ? candidates.filter((c) => current.ids.includes(c.id)) : [];
-  const assignment = current ? bestAssignment(chosen, needs) : { tally: {}, assign: new Map() };
+  plannerState.free ??= loadFree();
+  plannerState.view ??= loadView();
 
+  const modeTabs = el("div", { class: "planner-modes", role: "group", "aria-label": "排課模式" },
+    [["best", "最佳模式"], ["free", "自由排課"]].map(([id, label]) => el("button", {
+      type: "button", class: `mini${plannerState.view === id ? " primary" : ""}`, "aria-pressed": String(plannerState.view === id),
+      onclick: () => { plannerState.view = id; saveFree(); render(); },
+    }, label)));
   const settings = el("div", { class: "planner-bar" },
-    el("b", {}, `${planner.term} 排課試算`),
+    el("b", {}, `${planner.term} 排課試算`), modeTabs,
     el("span", { class: "hint" }, [`畢業還缺 ${totalMissing} 學分（不含 MOOCs）`,
       ...(planner.limits ?? []).filter((l) => l.note).map((l) => `・${l.note}`)].join("")));
 
-  const picks = el("div", { class: "planner-picks" }, results.map((r, i) => el("button", {
-    type: "button", class: `mini${i === plannerState.pick ? " primary" : ""}`,
-    onclick: () => { plannerState.pick = i; render(); },
-  }, `方案 ${i + 1}・補 ${r.coverage}/${totalMissing}・${r.credits} 學分`)));
-
-  const needTable = dataTable({
+  const needTable = (assignment) => dataTable({
     list: needs.map((n) => ({ ...n, got: Math.min(n.missing, assignment.tally[n.key] ?? 0) })),
     columns: [
       { label: "類別", view: (n) => n.label },
       { label: "還缺", className: "nowrap lbl", view: (n) => n.missing },
-      { label: "這個方案補到", className: "nowrap lbl", view: (n) => (n.got >= n.missing ? "✓" : el("b", { class: "missing" }, `${n.got}（差 ${n.missing - n.got}）`)) },
+      { label: "目前補到", className: "nowrap lbl", view: (n) => (n.got >= n.missing ? "✓" : el("b", { class: "missing" }, `${n.got}（差 ${n.missing - n.got}）`)) },
     ],
   });
+  const courseColumns = [
+    { label: "課程", view: (c) => [el("b", {}, c.title), c.teacher && el("span", { class: "sub" }, c.teacher), c.taken && el("span", { class: "status-tag" }, "已修／修習中")] },
+    { label: "時間", className: "nowrap", view: (c) => c.time },
+    { label: "學分", className: "nowrap", view: (c) => c.credits },
+    { label: "算入", view: (c) => c.options.map((id) => requirementOptions().find((o) => o.id === id)?.label ?? id).join("／") },
+  ];
+  const candidateHint = el("p", { class: "hint" }, "新增或修改候選課請到編輯模式（頁尾「編輯」）。時間格式：星期＋節次，例如「二2-4」「三A-C」。");
+  const startFree = (titles) => { plannerState.free = new Set(titles); plannerState.view = "free"; saveFree(); render(); };
 
+  if (plannerState.view === "free") {
+    const chosen = candidates.filter((c) => plannerState.free.has(c.title));
+    const assignment = bestAssignment(chosen, needs);
+    const owners = new Map();
+    chosen.forEach((c) => c.slots.forEach((s) => owners.set(s, [...(owners.get(s) ?? []), c.title])));
+    const clashTitles = [...new Set([...owners.values()].filter((list) => list.length > 1).flat())];
+    const limitIssues = (planner.limits ?? [])
+      .filter((l) => chosen.filter((c) => c.options.includes(l.category)).length > Number(l.max))
+      .map((l) => l.note || `${l.category} 超過 ${l.max} 門`);
+    const takenPicked = chosen.filter((c) => c.taken).map((c) => c.title);
+    const warnings = [
+      clashTitles.length && `衝堂：${clashTitles.join("、")}`,
+      limitIssues.length && `超過門數上限：${limitIssues.join("、")}`,
+      takenPicked.length && `已修或修習中：${takenPicked.join("、")}`,
+    ].filter(Boolean);
+    const pickBox = (c) => {
+      const box = el("input", { type: "checkbox", checked: plannerState.free.has(c.title), "aria-label": `選 ${c.title}` });
+      box.addEventListener("change", () => {
+        if (box.checked) plannerState.free.add(c.title); else plannerState.free.delete(c.title);
+        saveFree();
+        render();
+      });
+      return box;
+    };
+    const actions = el("div", { class: "planner-picks" },
+      el("button", { type: "button", class: "mini", onclick: () => startFree(solvePlanner(candidates, needs).results[0]?.ids.map((id) => candidates[id].title) ?? []) }, "從最佳方案 1 重新開始"),
+      el("button", { type: "button", class: "mini", onclick: () => startFree([]) }, "清空"));
+    return [
+      settings,
+      section("plan", "自由排課",
+        el("p", { class: "hint" }, `已選 ${chosen.length} 門・${sumCredits(chosen)} 學分・補 ${assignment.coverage}/${totalMissing}`),
+        warnings.map((w) => el("p", { class: "missing" }, w)),
+        actions,
+        timetable(chosen, assignment.assign)),
+      section("needs", "畢業缺口", needTable(assignment)),
+      section("candidates", "候選課程", candidateHint, dataTable({
+        list: candidates,
+        rowProps: (c) => ({ class: plannerState.free.has(c.title) ? (clashTitles.includes(c.title) ? "clash-row" : "picked") : null }),
+        columns: [{ label: "選", className: "nowrap", view: pickBox }, ...courseColumns],
+      })),
+    ];
+  }
+
+  const { results, conflicts } = solvePlanner(candidates, needs);
+  plannerState.pick = Math.min(plannerState.pick, Math.max(0, results.length - 1));
+  const current = results[plannerState.pick];
+  const chosen = current ? candidates.filter((c) => current.ids.includes(c.id)) : [];
+  const assignment = current ? bestAssignment(chosen, needs) : { tally: {}, assign: new Map() };
+  const picks = el("div", { class: "planner-picks" }, results.map((r, i) => el("button", {
+    type: "button", class: `mini${i === plannerState.pick ? " primary" : ""}`,
+    onclick: () => { plannerState.pick = i; render(); },
+  }, `方案 ${i + 1}・補 ${r.coverage}/${totalMissing}・${r.credits} 學分`)));
+  const toFree = current && el("button", { type: "button", class: "mini primary", onclick: () => startFree(chosen.map((c) => c.title)) }, `以方案 ${plannerState.pick + 1} 進入自由排課 →`);
   const modeSelect = (c) => {
     const select = el("select", { class: "cell", "aria-label": `${c.title} 選課狀態` },
       el("option", { value: "auto" }, "自動"), el("option", { value: "must" }, "必選"), el("option", { value: "never" }, "排除"));
@@ -519,24 +598,16 @@ function plannerPage() {
     select.addEventListener("change", () => { plannerState.mode[c.id] = select.value; plannerState.pick = 0; render(); });
     return select;
   };
-  const candidateTable = dataTable({
-    list: candidates,
-    rowProps: (c) => ({ class: current?.ids.includes(c.id) ? "picked" : null }),
-    columns: [
-      { label: "課程", view: (c) => [el("b", {}, c.title), c.teacher && el("span", { class: "sub" }, c.teacher), c.taken && el("span", { class: "status-tag" }, "已修／修習中")] },
-      { label: "時間", className: "nowrap", view: (c) => c.time },
-      { label: "學分", className: "nowrap", view: (c) => c.credits },
-      { label: "算入", view: (c) => c.options.map((id) => requirementOptions().find((o) => o.id === id)?.label ?? id).join("／") },
-      { label: "", className: "nowrap", view: modeSelect },
-    ],
-  });
-
   return [
     settings,
     conflicts.length ? el("p", { class: "missing" }, `必選的課有衝突：${conflicts.join("、")}`) : null,
-    section("plan", "建議方案", picks, current ? timetable(chosen, assignment.assign) : el("p", { class: "empty-note" }, "沒有可行的組合")),
-    section("needs", "畢業缺口", needTable),
-    section("candidates", "候選課程", el("p", { class: "hint" }, "時間格式：星期＋節次，例如「二2-4」「三A-C」；同一門課可算入多個類別時用「|」分隔。"), candidateTable),
+    section("plan", "建議方案", picks, toFree, current ? timetable(chosen, assignment.assign) : el("p", { class: "empty-note" }, "沒有可行的組合")),
+    section("needs", "畢業缺口", needTable(assignment)),
+    section("candidates", "候選課程", candidateHint, dataTable({
+      list: candidates,
+      rowProps: (c) => ({ class: current?.ids.includes(c.id) ? "picked" : null }),
+      columns: [...courseColumns, { label: "", className: "nowrap", view: modeSelect }],
+    })),
   ].filter(Boolean);
 }
 
@@ -652,13 +723,13 @@ function downloadBlob(blob, filename) {
 function applyFilter() {
   if (isEditing) return;
   const keyword = document.getElementById("search").value.trim().toLowerCase();
-  document.querySelectorAll("main tbody tr, main .card").forEach((tr) => {
+  document.querySelectorAll("main table:not(.timetable) tbody tr, main .card").forEach((tr) => {
     const matchKeyword = !keyword || tr.textContent.toLowerCase().includes(keyword);
     const matchTag = !activeTag || (tr.dataset.tags ?? "").split("|").includes(activeTag);
     tr.classList.toggle("is-hidden", !(matchKeyword && matchTag));
   });
   document.querySelectorAll("main .sec[data-filterable]").forEach((sec) => {
-    const rows = [...sec.querySelectorAll("tbody tr, .card")];
+    const rows = [...sec.querySelectorAll("table:not(.timetable) tbody tr, .card")];
     const shown = rows.filter((r) => !r.classList.contains("is-hidden")).length;
     sec.classList.toggle("is-hidden", rows.length > 0 && shown === 0);
     const count = sec.querySelector("h2 .count");

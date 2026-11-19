@@ -36,6 +36,9 @@ main > .hint{margin:0 0 8px;font-weight:700}
 .tt-course b,.tt-course span{display:block}
 .tt-tag{font-weight:700;color:var(--olive)}
 tr.picked{background:#eef6d8}
+tr.clash-row{background:#fde2df}
+.planner-modes{display:flex;gap:4px}
+.tt-clash{background:#fde2df;color:#b3261e}
 .missing{color:#b3261e}
 .sub-row{padding-left:1em;color:var(--muted)}
 .sec > .hint{margin:8px 0 0;font-weight:700}
