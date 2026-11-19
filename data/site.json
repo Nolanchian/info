@@ -138,6 +138,13 @@
       "text": "信賴區間 (CI)・單母體假設檢定・雙母體假設檢定・單因子 ANOVA・二因子 ANOVA・χ² 適合度檢定・χ² 獨立性／同質性檢定・單迴歸・多元迴歸・統計控制・淨相關係數",
       "url": "https://nolanchian.github.io/stat-framework/",
       "repo": "https://github.com/Nolanchian/stat-framework"
+    },
+    {
+      "title": "排課試算",
+      "image": "assets/tools/planner.jpg",
+      "text": "依畢業學分缺口，從候選課程自動排出不衝堂的課表方案；也能以最佳方案為基礎自由增減課程。",
+      "url": "planner.html",
+      "repo": "https://github.com/Nolanchian/info"
     }
   ],
   "works": [
