@@ -310,6 +310,7 @@ const STORAGE = {
   assign: { nolan: "info-planner-assign", ntnu: "info-planner-assign-ntnu" },
   profile: "info-ntnu-planner",
   extra: "info-planner-extra-nolan",
+  hidden: "info-planner-hidden-nolan",
 };
 const plannerState = {
   layer: null,
@@ -317,6 +318,7 @@ const plannerState = {
   profile: null,
   lookups: null,
   extra: null,
+  hidden: null,
   catalog: { q: "", tag: "all" },
 };
 
@@ -442,8 +444,12 @@ function nolanContext() {
   const taken = new Set((site.courses ?? []).map((c) => c.title));
   const labels = requirementOptions();
   plannerState.extra ??= readStore(STORAGE.extra, []);
+  // 網站上的候選課在一般頁面不能改，移除時只記在這台瀏覽器，可以還原
+  plannerState.hidden ??= new Set(readStore(STORAGE.hidden, []));
+  const siteRows = (site.planner?.candidates ?? []).map((c) => ({ ...c, source: "site" }));
+  const hiddenCount = siteRows.filter((c) => plannerState.hidden.has(candidateKey(c))).length;
   const rows = [
-    ...(site.planner?.candidates ?? []).map((c) => ({ ...c, source: "site" })),
+    ...siteRows.filter((c) => !plannerState.hidden.has(candidateKey(c))),
     ...plannerState.extra.map((c) => ({ ...c, source: "local" })),
   ];
   return {
@@ -455,17 +461,22 @@ function nolanContext() {
       options: String(c.counts ?? "").split("|").map((s) => s.trim()).filter(Boolean), taken: taken.has(c.title),
     })),
     catalogTags: (code) => nolanOptionsFor(code).map((o) => (o === "基本能力課程" ? "體育" : labels.find((l) => l.id === o)?.label ?? o)),
+    optionsFor: (code) => (taken.has(plannerState.lookups?.offerings?.courses?.[code]?.title) ? [] : nolanOptionsFor(code)),
     addOffering: (code) => {
       plannerState.extra.push(...offeringRows(code, (c) => nolanOptionsFor(c).join("|"), new Set(rows.map(candidateKey))));
       writeStore(STORAGE.extra, plannerState.extra);
     },
-    removeCandidate: (c) => {
-      if (c.source !== "local") return null;
-      return () => {
+    removeCandidate: (c) => () => {
+      if (c.source === "local") {
         plannerState.extra = plannerState.extra.filter((x) => candidateKey(x) !== c.key);
         writeStore(STORAGE.extra, plannerState.extra);
-      };
+      } else {
+        plannerState.hidden.add(c.key);
+        writeStore(STORAGE.hidden, [...plannerState.hidden]);
+      }
     },
+    hiddenNote: hiddenCount && el("p", { class: "hint" }, `已移除 ${hiddenCount} 門網站上的候選課（只在這台瀏覽器）。`,
+      el("button", { type: "button", class: "mini", onclick: () => { plannerState.hidden = new Set(); writeStore(STORAGE.hidden, []); render(); } }, "全部還原")),
     catalogNote: "在這裡加入的課只存在這台瀏覽器；要存到網站，請到編輯模式從開課清單加入後儲存。",
     limits: (site.planner?.limits ?? []).map((l) => ({ key: l.category, max: Number(l.max) })),
     notes: (site.planner?.limits ?? []).filter((l) => l.note).map((l) => l.note),
@@ -580,6 +591,7 @@ function ntnuContext() {
       slots: parseTime(c.time), options: (c.counts ?? []).filter(Boolean), taken: false,
     })),
     catalogTags: (code) => classifyCode(code, p)?.counts ?? [],
+    optionsFor: (code) => classifyCode(code, p)?.counts ?? [],
     addOffering: (code) => {
       p.candidates.push(...offeringRows(code, (c) => classifyCode(c, p)?.counts ?? [], new Set(p.candidates.map(candidateKey))));
       saveProfile();
@@ -796,8 +808,10 @@ function plannerView(baseCtx) {
     return remove && el("button", { type: "button", class: "mini", onclick: () => { remove(); st.free.delete(c.key); saveLayer(ctx.layer); render(); } }, "移除");
   } };
   // 候選課與開課清單並排；清單可以拖進候選區
-  const candidateArea = (table) => {
-    const drop = el("div", { class: "drop-zone" }, table, el("p", { class: "hint drop-hint" }, "把開課清單的課拖到這裡，或在清單按「加入」。"));
+  // 目前方案還沒補滿的類別，開課清單的「一鍵加入」只找這些
+  const gapsOf = (assignment) => new Set(needs.filter((n) => (assignment.tally[n.key] ?? 0) < n.missing).map((n) => n.key));
+  const candidateArea = (table, gaps) => {
+    const drop = el("div", { class: "drop-zone" }, ctx.hiddenNote || null, table, el("p", { class: "hint drop-hint" }, "把開課清單的課拖到這裡，或在清單按「加入」。"));
     drop.addEventListener("dragover", (e) => { e.preventDefault(); drop.classList.add("drag-over"); });
     drop.addEventListener("dragleave", () => drop.classList.remove("drag-over"));
     drop.addEventListener("drop", (e) => {
@@ -808,7 +822,7 @@ function plannerView(baseCtx) {
     });
     return el("div", { class: "cand-catalog" },
       section("candidates", "候選課程", drop),
-      catalogPanel(ctx));
+      catalogPanel(ctx, undefined, gaps));
   };
 
   if (st.view === "free") {
@@ -851,7 +865,7 @@ function plannerView(baseCtx) {
         list: sortedCandidates,
         rowProps: (c) => ({ class: st.free.has(c.key) ? (clashTitles.includes(c.title) ? "clash-row" : "picked") : null }),
         columns: [{ label: "選", className: "nowrap", view: pickBox }, ...courseColumns, removeColumn],
-      }) : el("p", { class: "empty-note" }, "還沒有候選課程")),
+      }) : el("p", { class: "empty-note" }, "還沒有候選課程"), gapsOf(assignment)),
     ];
   }
 
@@ -882,7 +896,7 @@ function plannerView(baseCtx) {
       list: sortedCandidates,
       rowProps: (c) => ({ class: current?.ids.includes(c.id) ? "picked" : null }),
       columns: [...courseColumns, { label: "", className: "nowrap", view: modeSelect }, removeColumn],
-    }) : el("p", { class: "empty-note" }, "還沒有候選課程")),
+    }) : el("p", { class: "empty-note" }, "還沒有候選課程"), gapsOf(assignment)),
   ].filter(Boolean);
 }
 
@@ -898,7 +912,7 @@ const CATALOG_FILTERS = [
   ["all", "全部"], ["必修", "系必修"], ["選修", "系選修"], ["跨域", "跨域探索"],
   ["人文藝術", "人文藝術"], ["社會科學", "社會科學"], ["自然科學", "自然科學"], ["邏輯運算", "邏輯運算"], ["體育", "體育"],
 ];
-function catalogPanel(ctx, onAdd = (code) => { ctx.addOffering(code); render(); }) {
+function catalogPanel(ctx, onAdd = (code) => { ctx.addOffering(code); render(); }, gaps = null) {
   const offerings = plannerState.lookups?.offerings;
   if (!offerings) return null;
   const state = plannerState.catalog;
@@ -929,8 +943,17 @@ function catalogPanel(ctx, onAdd = (code) => { ctx.addOffering(code); render(); 
     item.addEventListener("dragstart", (e) => { e.dataTransfer.setData("text/plain", o.code); e.dataTransfer.effectAllowed = "copy"; });
     return item;
   }));
+  // 能補到目前還缺的類別、而且還有組別沒加入的課
+  // 另外把已在候選裡的課其他組別也帶進來：換組常常能空出時段給別的課
+  const candidateCodes = new Set(ctx.candidates.map((c) => c.code).filter(Boolean));
+  const helpful = ctx.optionsFor && gaps?.size
+    ? Object.keys(offerings.courses).filter((code) => missingSections(code) > 0
+      && (ctx.optionsFor(code).some((k) => gaps.has(k)) || candidateCodes.has(code)))
+    : [];
+  const addHelpful = helpful.length && el("button", { type: "button", class: "mini primary", onclick: () => { helpful.forEach((code) => ctx.addOffering(code)); render(); } },
+    `加入所有能補「${[...gaps].map(ctx.optionLabel).join("、")}」的課（${helpful.length} 門）`);
   return section("catalog", `${offerings.term} 開課清單`,
-    el("div", { class: "planner-picks" }, filter, search),
+    el("div", { class: "planner-picks" }, filter, search, addHelpful || null),
     el("p", { class: "hint" }, `${rows.length} 門。多組的課會把每組都加入，由排課機器挑組。`),
     ctx.catalogNote ? el("p", { class: "hint" }, ctx.catalogNote) : null,
     list);
