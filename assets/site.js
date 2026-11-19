@@ -307,12 +307,13 @@ const STORAGE = {
   layer: "info-planner-layer",
   free: { nolan: "info-planner-free", ntnu: "info-planner-free-ntnu" },
   view: { nolan: "info-planner-view", ntnu: "info-planner-view-ntnu" },
+  assign: { nolan: "info-planner-assign", ntnu: "info-planner-assign-ntnu" },
   profile: "info-ntnu-planner",
   extra: "info-planner-extra-nolan",
 };
 const plannerState = {
   layer: null,
-  layers: { nolan: { mode: {}, pick: 0, view: null, free: null }, ntnu: { mode: {}, pick: 0, view: null, free: null } },
+  layers: { nolan: { mode: {}, pick: 0, view: null, free: null, assign: null }, ntnu: { mode: {}, pick: 0, view: null, free: null, assign: null } },
   profile: null,
   lookups: null,
   extra: null,
@@ -329,12 +330,14 @@ function layerState(layer) {
   const st = plannerState.layers[layer];
   st.free ??= new Set(readStore(STORAGE.free[layer], []));
   st.view ??= readStore(STORAGE.view[layer], "best") === "free" ? "free" : "best";
+  st.assign ??= readStore(STORAGE.assign[layer], {});
   return st;
 }
 function saveLayer(layer) {
   const st = layerState(layer);
   writeStore(STORAGE.free[layer], [...st.free]);
   writeStore(STORAGE.view[layer], st.view);
+  writeStore(STORAGE.assign[layer], st.assign);
   writeStore(STORAGE.layer, plannerState.layer);
 }
 
@@ -416,7 +419,8 @@ function nolanOptionsFor(code) {
   if (facts.deptCategory === "系必修") options.push("必修（地理系）");
   if (facts.deptCategory === "系選修") options.push("必選修（地理系）");
   if (facts.ge?.domain) options.push(`博雅課程/${facts.ge.domain}`);
-  if (facts.ge?.cross) options.push("跨域探索");
+  if (facts.ge?.cross && !(facts.ge.otherDeptOnly && /^GE[UC]/.test(facts.id))) options.push("跨域探索");
+  if (facts.ge?.selfLearning) options.push("自主學習（MOOCs）");
   if (facts.pe) options.push("基本能力課程");
   return options;
 }
@@ -527,10 +531,14 @@ function classifyCode(code, profile) {
   if (!id || !lookups) return null;
   const hit = { title: "", credits: "", counts: [], note: [] };
   const ge = lookups.ge.courses[id];
-  if (ge) {
+  const ownDept = profile.dept && plannerState.lookups.depts[profile.dept]?.deptPrefixes.some((p) => id.startsWith(p));
+  // 本系的專業課（課架裡本來就有）不能採計為通識
+  if (ge && !(ge.otherDeptOnly && ownDept)) {
     hit.title = ge.title; hit.credits = String(ge.credits);
     if (ge.domain) { hit.counts.push(`博雅・${ge.domain}`); hit.note.push(`通識・${ge.domain}`); }
-    if (ge.cross) { hit.counts.push("跨域探索"); hit.note.push("可算跨域"); }
+    // 標「※」的系上專業課只有外系學生能算跨域
+    if (ge.cross && !(ge.otherDeptOnly && ownDept)) { hit.counts.push("跨域探索"); hit.note.push(ge.otherDeptOnly ? "外系可算跨域" : "可算跨域"); }
+    if (ge.selfLearning) hit.note.push("自主學習（至多 4 學分，不算跨域）");
     hit.counts.push("通識（不限類別）");
   }
   if (/^00UP/.test(id)) { hit.counts.push("體育"); hit.credits ||= "1"; hit.note.push("體育"); }
@@ -665,7 +673,9 @@ function solvePlanner(ctx, st) {
     chosen.push(c);
   }
   const top = [];
-  const better = (a, b) => b.coverage - a.coverage || a.credits - b.credits || a.evening - b.evening || a.days - b.days;
+  // 補到的學分一樣多時，優先補必修（必修沒得替代，選修可以換別門）
+  const weight = Object.fromEntries(keys.map((k) => [k, /必修/.test(k) && !/選修/.test(k) ? 1 : 0]));
+  const better = (a, b) => b.coverage - a.coverage || b.weighted - a.weighted || a.credits - b.credits || a.evening - b.evening || a.days - b.days;
   let nodes = 0;
   let truncated = false;
   const walk = (i) => {
@@ -676,10 +686,11 @@ function solvePlanner(ctx, st) {
       if (bound < top[top.length - 1].coverage) return;
     }
     if (i === optional.length) {
-      const { coverage } = bestAssignment(chosen, ctx.needs);
+      const { coverage, tally } = bestAssignment(chosen, ctx.needs);
+      const weighted = keys.reduce((sum, k) => sum + Math.min(need[k], tally[k] ?? 0) * weight[k], 0);
       const evening = chosen.reduce((n, c) => n + c.slots.filter((s) => /[A-D]$/.test(s)).length, 0);
       const days = new Set(chosen.flatMap((c) => c.slots.map((s) => s[0]))).size;
-      top.push({ ids: chosen.map((c) => c.id), coverage, credits, evening, days });
+      top.push({ ids: chosen.map((c) => c.id), coverage, weighted, credits, evening, days });
       // 覆蓋最多 → 學分最少（不多修） → 晚上的課最少 → 上課天數最少
       top.sort(better);
       if (top.length > 6) top.pop();
@@ -729,8 +740,16 @@ function timetable(chosen, assign, tag) {
 }
 
 // 最佳模式／自由排課兩種檢視，兩個圖層共用
-function plannerView(ctx) {
-  const st = layerState(ctx.layer);
+function plannerView(baseCtx) {
+  const st = layerState(baseCtx.layer);
+  // 可算多類的課，使用者可以指定只算其中一類；沒指定就由機器挑
+  const ctx = {
+    ...baseCtx,
+    candidates: baseCtx.candidates.map((c) => {
+      const forced = st.assign[c.key];
+      return { ...c, allOptions: c.options, options: forced && c.options.includes(forced) ? [forced] : c.options };
+    }),
+  };
   const { needs, candidates } = ctx;
   const totalMissing = needs.reduce((sum, n) => sum + n.missing, 0);
   const tabs = (items, current, onPick, label) => el("div", { class: "planner-modes", role: "group", "aria-label": label },
@@ -754,7 +773,20 @@ function plannerView(ctx) {
     { label: "課程", view: (c) => [el("b", {}, c.title), (c.code || c.teacher) && el("span", { class: "sub" }, [c.code, c.teacher].filter(Boolean).join("・")), c.taken && el("span", { class: "status-tag" }, "已修／修習中")] },
     { label: "時間", className: "nowrap", view: (c) => c.time },
     { label: "學分", className: "nowrap", view: (c) => c.credits },
-    { label: "算入", view: (c) => c.options.map(ctx.optionLabel).join("／") },
+    { label: "算入", view: (c) => {
+      if (c.allOptions.length < 2) return c.allOptions.map(ctx.optionLabel).join("／");
+      const select = el("select", { class: "cell", "aria-label": `${c.title} 算入哪一類`, "data-focus-key": `assign-${c.key}` },
+        el("option", { value: "" }, `自動（${c.allOptions.map(ctx.optionLabel).join("／")}）`),
+        c.allOptions.map((o) => el("option", { value: o }, `只算 ${ctx.optionLabel(o)}`)));
+      select.value = st.assign[c.key] ?? "";
+      select.addEventListener("change", () => {
+        if (select.value) st.assign[c.key] = select.value; else delete st.assign[c.key];
+        st.pick = 0;
+        saveLayer(ctx.layer);
+        render();
+      });
+      return select;
+    } },
   ];
   const startFree = (keys) => { st.free = new Set(keys); st.view = "free"; saveLayer(ctx.layer); render(); };
   const removeColumn = { label: "", className: "nowrap", view: (c) => {

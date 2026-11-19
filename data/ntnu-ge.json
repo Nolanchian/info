@@ -1502,28 +1502,32 @@
    "cross": true
   },
   "0SUG539": {
-   "title": "自主學習：專題探究(需於前一學期提出申請，可修習 2 次)",
+   "title": "自主學習：專題探究",
    "domain": "",
    "credits": 2,
-   "cross": true
+   "cross": false,
+   "selfLearning": true
   },
   "0SUG540": {
    "title": "自主學習：MOOCs（一）",
    "domain": "",
    "credits": 2,
-   "cross": true
+   "cross": false,
+   "selfLearning": true
   },
   "0SUG541": {
    "title": "自主學習：MOOCs（二）",
    "domain": "",
    "credits": 2,
-   "cross": true
+   "cross": false,
+   "selfLearning": true
   },
   "0SUG542": {
    "title": "自主學習：自主探究",
    "domain": "",
    "credits": 2,
-   "cross": true
+   "cross": false,
+   "selfLearning": true
   },
   "0SUG543": {
    "title": "冒險觀光概論",
@@ -1541,7 +1545,8 @@
    "title": "電路學（一）",
    "domain": "",
    "credits": 3,
-   "cross": true
+   "cross": true,
+   "otherDeptOnly": true
   },
   "BIU0169": {
    "title": "普通生物學甲 /BIU0168 普通生物學甲(一)",
@@ -1559,121 +1564,141 @@
    "title": "國學概論",
    "domain": "",
    "credits": 2,
-   "cross": true
+   "cross": true,
+   "otherDeptOnly": true
   },
   "CLU1003": {
    "title": "華語文教學導論",
    "domain": "",
    "credits": 2,
-   "cross": true
+   "cross": true,
+   "otherDeptOnly": true
   },
   "CMU0176": {
    "title": "普通化學甲（一）  / CMU0177 普通化學甲（二） 114 學",
    "domain": "",
    "credits": 3,
-   "cross": true
+   "cross": true,
+   "otherDeptOnly": true
   },
   "E0U0001": {
    "title": "教育統計學（一）",
    "domain": "",
    "credits": 2,
-   "cross": true
+   "cross": true,
+   "otherDeptOnly": true
   },
   "EAU0154": {
    "title": "批判性思考與寫作/EAU0220 國際關係概論",
    "domain": "",
    "credits": 3,
-   "cross": true
+   "cross": true,
+   "otherDeptOnly": true
   },
   "EDU0154": {
    "title": "教育心理學",
    "domain": "",
    "credits": 2,
-   "cross": true
+   "cross": true,
+   "otherDeptOnly": true
   },
   "ESU0177": {
    "title": "地球科學概論（含實習）",
    "domain": "",
    "credits": 2,
-   "cross": true
+   "cross": true,
+   "otherDeptOnly": true
   },
   "GBU0001": {
    "title": "全球研究導論（一） (全球研究學士學位學程)",
    "domain": "",
    "credits": 3,
-   "cross": true
+   "cross": true,
+   "otherDeptOnly": true
   },
   "GEU0233": {
    "title": "地學通論（一）",
    "domain": "",
    "credits": 2,
-   "cross": true
+   "cross": true,
+   "otherDeptOnly": true
   },
   "GEU0234": {
    "title": "地學通論（二）",
    "domain": "",
    "credits": 2,
-   "cross": true
+   "cross": true,
+   "otherDeptOnly": true
   },
   "HGU0004": {
    "title": "人類發展 / HGU0191 家庭發展",
    "domain": "",
    "credits": 3,
-   "cross": true
+   "cross": true,
+   "otherDeptOnly": true
   },
   "ITU0010": {
    "title": "工業科技教育概論",
    "domain": "",
    "credits": 2,
-   "cross": true
+   "cross": true,
+   "otherDeptOnly": true
   },
   "MAU0160": {
    "title": "線性代數（一）",
    "domain": "",
    "credits": 2,
-   "cross": true
+   "cross": true,
+   "otherDeptOnly": true
   },
   "NSU0006": {
    "title": "營養學（一）(營養學程)",
    "domain": "",
    "credits": 2,
-   "cross": true
+   "cross": true,
+   "otherDeptOnly": true
   },
   "OEU0001": {
    "title": "光電工程概論/ OEU0025 生活半導體光電 (光電學程)",
    "domain": "",
    "credits": 2,
-   "cross": true
+   "cross": true,
+   "otherDeptOnly": true
   },
   "PAU0026": {
    "title": "藝術概論(表藝學程)",
    "domain": "",
    "credits": 2,
-   "cross": true
+   "cross": true,
+   "otherDeptOnly": true
   },
   "PCU0152": {
    "title": "普通心理學",
    "domain": "",
    "credits": 2,
-   "cross": true
+   "cross": true,
+   "otherDeptOnly": true
   },
   "PEU0003": {
    "title": "體育學原理",
    "domain": "",
    "credits": 2,
-   "cross": true
+   "cross": true,
+   "otherDeptOnly": true
   },
   "PHU0249": {
    "title": "普通物理甲（一）",
    "domain": "",
    "credits": 4,
-   "cross": true
+   "cross": true,
+   "otherDeptOnly": true
   },
   "VDU0004": {
    "title": "設計概論",
    "domain": "",
    "credits": 2,
-   "cross": true
+   "cross": true,
+   "otherDeptOnly": true
   }
  }
 }
