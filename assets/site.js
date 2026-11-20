@@ -708,7 +708,7 @@ function classifyCode(code, profile) {
       hit.title ||= course.title; hit.credits ||= String(course.credits);
       hit.counts.push(course.category); hit.note.push(course.category);
     } else if (inferDeptCategory(id, dept)) {
-      hit.counts.push("系選修"); hit.note.push(`系選修（${profile.year} 課架未列，依選課系統認定）`);
+      hit.counts.push("系選修"); hit.note.push("系選修");
     } else if (/^GEUE/.test(id)) {
       hit.note.push("教育專業課：超過 26 學分並申請才能列入系選修");
     }
