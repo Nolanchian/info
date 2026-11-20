@@ -291,32 +291,11 @@
     },
     {
       "type": "learning",
-      "title": "Towards Safe System Infrastructure",
-      "url": "",
-      "source": "Tingvall (2023)，C.R.O.W.",
-      "tags": [
-        "安全系統",
-        "零死亡願景"
-      ],
-      "note": ""
-    },
-    {
-      "type": "learning",
       "title": "A Ladder of Citizen Participation",
       "url": "https://doi.org/10.1080/01944366908977225",
       "source": "Arnstein (1969)",
       "tags": [
         "公民參與"
-      ],
-      "note": ""
-    },
-    {
-      "type": "learning",
-      "title": "Street-Level Bureaucracy, 30th Anniversary Edition",
-      "url": "",
-      "source": "Lipsky (2010)",
-      "tags": [
-        "公共行政"
       ],
       "note": ""
     }
