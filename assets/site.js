@@ -103,18 +103,44 @@ function editor(row, field) {
     row[field.field] = field.kind === "tags" ? value.split(/[、,，]\s*/).filter(Boolean) : value;
     markDirty();
   });
+  if (field.resort) {
+    // 日期欄：按 Enter 或離開欄位就整理格式、重新排序
+    let before = row[field.field] ?? "";
+    span.addEventListener("keydown", (event) => { if (event.key === "Enter") { event.preventDefault(); span.blur(); } });
+    span.addEventListener("blur", () => {
+      const value = normalizeDate(row[field.field] ?? "");
+      if (value === before && value === span.textContent) return;
+      row[field.field] = before = value;
+      markDirty(true);
+    });
+  }
   return span;
 }
 
-function rowControls(list, index) {
+/* ── 依日期排序（最新在前） ── */
+// 2026-11-20、2026/11/20、2026.5.8 → 2026.11.20；區間或其他寫法保留原樣
+function normalizeDate(text) {
+  const value = String(text).trim();
+  const m = value.match(/^(\d{4})[./-](\d{1,2})[./-](\d{1,2})$/);
+  return m ? `${m[1]}.${pad(m[2])}.${pad(m[3])}` : value;
+}
+// 取第一組「年.月(.日)」當排序依據；沒填日期的排最上面，方便剛新增的列填寫
+function dateKey(text) {
+  const m = String(text ?? "").match(/(\d{4})\D+(\d{1,2})(?:\D+(\d{1,2}))?/);
+  return m ? Number(m[1]) * 10000 + Number(m[2]) * 100 + Number(m[3] ?? 0) : Infinity;
+}
+const newestFirst = (field) => (a, b) => dateKey(b[field]) - dateKey(a[field]);
+const todayDots = () => today().replaceAll("-", ".");
+
+function rowControls(list, index, { movable = true } = {}) {
   const move = (delta) => {
     const [item] = list.splice(index, 1);
     list.splice(index + delta, 0, item);
     markDirty(true);
   };
   return el("td", { class: "rowctl" },
-    el("button", { type: "button", title: "上移", disabled: index === 0, onclick: () => move(-1) }, "↑"),
-    el("button", { type: "button", title: "下移", disabled: index === list.length - 1, onclick: () => move(1) }, "↓"),
+    movable && el("button", { type: "button", title: "上移", disabled: index === 0, onclick: () => move(-1) }, "↑"),
+    movable && el("button", { type: "button", title: "下移", disabled: index === list.length - 1, onclick: () => move(1) }, "↓"),
     el("button", { type: "button", class: "del", title: "刪除", onclick: () => {
       if (!confirm("刪除這一列？")) return;
       list.splice(index, 1);
@@ -123,14 +149,17 @@ function rowControls(list, index) {
 }
 
 // columns：瀏覽時的欄位；fields：編輯時每個欄位一格
-function dataTable({ list, columns, fields, newRow, rowProps }) {
+// sortBy：給了就每次畫面更新都依此排序（例如日期新到舊），編輯時也不顯示上下移
+function dataTable({ list, columns, fields, newRow, rowProps, sortBy, hint }) {
+  if (sortBy) list.sort(sortBy);
   if (isEditing) {
     const head = el("tr", {}, el("th", {}, "#"), fields.map((f) => el("th", {}, f.label)), el("th", {}, ""));
     const body = list.map((row, i) => el("tr", {},
       el("td", { class: "num" }, pad(i + 1)),
       fields.map((f) => el("td", {}, editor(row, f))),
-      rowControls(list, i)));
+      rowControls(list, i, { movable: !sortBy })));
     return el("div", {},
+      hint && el("p", { class: "hint" }, hint),
       el("div", { class: "edit-wrap" }, el("table", {}, el("thead", {}, head), el("tbody", {}, body))),
       el("button", { type: "button", class: "mini addrow", onclick: () => { list.push(newRow()); markDirty(true); } }, "＋ 新增一列"));
   }
@@ -199,8 +228,10 @@ function profileTables() {
         { label: "講題", view: (r) => r.title },
         { label: "", className: "nowrap", view: (r) => safeUrl(r.photos) && el("a", { class: "mini", href: safeUrl(r.photos), target: "_blank", rel: "noopener" }, "照片") },
       ],
-      fields: [{ field: "date", label: "日期" }, { field: "event", label: "場次" }, { field: "title", label: "講題" }, { field: "venue", label: "地點" }, { field: "photos", label: "照片連結" }],
-      newRow: () => ({ date: "", event: "", title: "", venue: "", photos: "" }),
+      fields: [{ field: "date", label: "日期", resort: true }, { field: "event", label: "場次" }, { field: "title", label: "講題" }, { field: "venue", label: "地點" }, { field: "photos", label: "照片連結" }],
+      newRow: () => ({ date: todayDots(), event: "", title: "", venue: "", photos: "" }),
+      sortBy: newestFirst("date"),
+      hint: "依日期自動排序，01 是最新的。日期寫 2026.11.20（區間可寫 2026.05.28–31），改完按 Enter 或點別處就會排到對的位置。",
     })),
     section("achievements", "倡議成果", dataTable({
       list: site.achievements,
