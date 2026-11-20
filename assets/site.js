@@ -700,6 +700,8 @@ function classifyCode(code, profile) {
     hit.counts.push("通識（不限類別）");
   }
   if (/^00UP/.test(id)) { hit.counts.push("體育"); hit.credits ||= "1"; hit.note.push("體育"); }
+  // 共同必修的中文（00UA8x）、英文（00UB）；00UA844 基礎華語是外籍生課程，不算
+  if (/^00UA8[A-Z]|^00UB/.test(id)) { hit.counts.push("中文英文"); hit.note.push("中文英文"); }
   const dept = profile.dept && lookups.depts[profile.dept];
   const curriculum = dept ? dept.years[profile.year] : null;
   if (dept && curriculum) {
