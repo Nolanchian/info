@@ -139,6 +139,13 @@
       "text": "依畢業學分缺口，從候選課程自動排出不衝堂的課表方案；也能以最佳方案為基礎自由增減課程。",
       "url": "planner.html",
       "repo": "https://github.com/Nolanchian/info"
+    },
+    {
+      "title": "個人頁面",
+      "image": "assets/tools/personal.jpg",
+      "text": "研究工具、畢業學分檢核與修課紀錄。僅限本人，需輸入密碼。",
+      "url": "research.html",
+      "repo": ""
     }
   ],
   "works": [

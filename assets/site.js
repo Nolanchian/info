@@ -3,7 +3,7 @@ const REPO = { owner: "Nolanchian", repo: "info", path: "data/site.json", branch
 const TOKEN_KEY = "info-gh-token";
 const PAGES = [
   { id: "profile", href: "index.html", label: "介紹" },
-  { id: "research", href: "research.html", label: "研究" },
+  { id: "research", href: "research.html", label: "個人頁面", hidden: true, parent: "tools" },
   { id: "tools", href: "tools.html", label: "工具" },
   { id: "library", href: "library.html", label: "資料庫" },
 ];
@@ -211,7 +211,54 @@ function profileTables() {
   ];
 }
 
-/* ── 研究頁 ── */
+/* ── 個人頁面密碼鎖 ──
+   只在畫面上擋住；site.json 是公開檔案，內容本身並沒有加密。 */
+const LOCK = { salt: "nolanchian-info-personal:", hash: "ba36581f10fcdf734faa986a69685876b5acb10bec588c465fed25b6e1785912", key: "info-personal-key" };
+const lockStore = {
+  get: () => { try { return sessionStorage.getItem(LOCK.key) || localStorage.getItem(LOCK.key) || ""; } catch { return ""; } },
+  set: (value, remember) => { try { (remember ? localStorage : sessionStorage).setItem(LOCK.key, value); } catch { /* 私密視窗：只在本次有效 */ } },
+  clear: () => { try { sessionStorage.removeItem(LOCK.key); localStorage.removeItem(LOCK.key); } catch { /* 忽略 */ } },
+};
+let personalUnlocked = lockStore.get() === LOCK.hash;
+
+async function sha256Hex(text) {
+  const buffer = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+  return [...new Uint8Array(buffer)].map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+
+function lockPersonal() {
+  lockStore.clear();
+  personalUnlocked = false;
+  render();
+}
+
+function lockPage() {
+  const input = el("input", { type: "password", inputmode: "numeric", autocomplete: "off", "aria-label": "密碼", placeholder: "密碼", class: "lock-input" });
+  const remember = el("input", { type: "checkbox", id: "lock-remember" });
+  const message = el("p", { class: "lock-msg", role: "alert" });
+  const form = el("form", { class: "lock-form", onsubmit: async (event) => {
+    event.preventDefault();
+    const hash = await sha256Hex(LOCK.salt + input.value.trim());
+    if (hash !== LOCK.hash) {
+      message.textContent = "密碼不正確";
+      input.select();
+      return;
+    }
+    lockStore.set(hash, remember.checked);
+    personalUnlocked = true;
+    render();
+  } },
+    el("div", { class: "lock-row" }, input, el("button", { type: "submit", class: "mini primary" }, "解鎖")),
+    el("label", { class: "lock-remember", for: "lock-remember" }, remember, " 記住這台裝置"),
+    message);
+  setTimeout(() => input.focus(), 0);
+  return [section("locked", "個人頁面", el("div", { class: "lock-box" },
+    el("p", { class: "lock-title" }, "🔒 這是 Nolan 的個人頁面"),
+    el("p", { class: "hint" }, "輸入密碼後才能查看研究工具、畢業學分檢核與修課紀錄。"),
+    form))];
+}
+
+/* ── 研究頁（個人頁面） ── */
 const sumCredits = (list) => list.reduce((total, c) => total + (Number(c.credits) || 0), 0);
 
 // 還缺 = 規定 − 已修 − 修習中（以本學期全數通過計），超修不倒扣
@@ -280,7 +327,8 @@ function researchPage() {
   const categories = [...new Set(courses.map((c) => c.category))];
   const summary = el("p", { class: "hint", id: "courses" }, `修課紀錄：${courses.length} 門・${creditText(courses)}`);
   const plannerLink = el("p", { class: "hint" }, el("a", { href: navHref("planner.html") }, "下學期排課試算 →"));
-  return [skills, requirementSection(courses, requirements), plannerLink, summary, ...categories.map((cat, i) => {
+  const lockBar = el("p", { class: "hint lock-bar" }, "🔒 個人頁面・已解鎖 ", el("button", { type: "button", class: "mini", onclick: lockPersonal }, "重新上鎖"));
+  return [lockBar, skills, requirementSection(courses, requirements), plannerLink, summary, ...categories.map((cat, i) => {
     const list = courses.filter((c) => c.category === cat);
     const hasDomain = list.some((c) => c.domain);
     return section(`course-${i + 1}`, `${cat}・${creditText(list)}`, dataTable({
@@ -1305,7 +1353,10 @@ function navHref(href) {
 function buildShell() {
   const topbar = el("header", { class: "topbar" }, el("div", { class: "in" },
     el("a", { class: "brand", href: navHref("index.html") }, site.profile.name, el("span", { class: "en" }, ` ${site.profile.nameEn}`)),
-    el("nav", {}, PAGES.map((p) => el("a", { href: navHref(p.href), "aria-current": p.id === page ? "page" : null }, p.label)))));
+    el("nav", {}, PAGES.filter((p) => !p.hidden).map((p) => el("a", {
+      href: navHref(p.href),
+      "aria-current": p.id === page || PAGES.find((x) => x.id === page)?.parent === p.id ? "page" : null,
+    }, p.label)))));
   const search = el("input", { type: "search", id: "search", placeholder: "搜尋本頁", "aria-label": "搜尋本頁", oninput: applyFilter, hidden: isEditing });
   const layout = el("div", { class: "layout" },
     el("aside", { class: "side" }, search, el("ul", { class: "toc", id: "toc" })),
@@ -1323,7 +1374,10 @@ function render() {
   const focusKey = document.activeElement?.dataset?.focusKey;
   const builders = { profile: profilePage, research: researchPage, planner: plannerPage, tools: toolsPage, library: libraryPage };
   const main = document.getElementById("main");
-  main.replaceChildren(...builders[page]());
+  const locked = page === "research" && !personalUnlocked;
+  main.replaceChildren(...(locked ? lockPage() : builders[page]()));
+  const searchBox = document.getElementById("search");
+  if (searchBox) searchBox.hidden = isEditing || locked;
   document.getElementById("toc").replaceChildren(...[...main.querySelectorAll(".sec[id]")]
     .filter((sec) => sec.querySelector("h2"))
     .map((sec) => el("li", {}, el("a", { href: `#${sec.id}` }, sec.querySelector("h2").firstChild.textContent.split("・")[0]))));

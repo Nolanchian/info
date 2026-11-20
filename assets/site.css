@@ -200,3 +200,15 @@ dialog .row{display:flex;gap:8px;justify-content:flex-end}
   .topbar .brand .en{display:none}
   .topbar nav a{padding:5px 7px;font-size:14px}
 }
+
+/* 個人頁面密碼鎖 */
+.lock-box{margin-top:12px;padding:28px 24px;background:var(--paper);border:2px solid var(--ink);max-width:460px}
+.lock-title{font-size:18px;font-weight:900;margin:0 0 4px}
+.lock-form{margin-top:16px;display:grid;gap:10px}
+.lock-row{display:flex;gap:8px;align-items:stretch}
+.lock-input{flex:1;min-width:0;padding:6px 10px;border:2px solid var(--ink);background:#fff;font-size:18px;letter-spacing:.3em}
+.lock-input:focus{outline:3px solid var(--lime)}
+.lock-row .mini{font-size:14px;padding:4px 16px}
+.lock-remember{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:6px;cursor:pointer}
+.lock-msg{margin:0;min-height:1.4em;color:#b3261e;font-weight:700;font-size:14px}
+.lock-bar{display:flex;align-items:center;gap:8px;margin:0 0 16px}
