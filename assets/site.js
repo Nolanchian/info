@@ -535,6 +535,18 @@ const candidateTitle = (c, fallback) => {
 };
 
 // 課號的客觀資料：通識領域、可否跨域、體育、在某系某年課架的類別、這學期的開課組別
+// 系上在選課系統開的選修課都算系選修：課程架構表會事後補列新開的課（例如 113 課架後來補進環境DNA、醫學地理）。
+// 例外：GEUE 教育專業課要超過 26 學分並申請才能列入系選修，不自動算。
+function inferDeptCategory(id, dept) {
+  if (!dept?.deptPrefixes.some((p) => id.startsWith(p)) || /^GEUE/.test(id)) return null;
+  if (plannerState.lookups?.offerings?.courses?.[id]?.kind === "選修") return "系選修";
+  // 這學期沒開：看較新年度的課架有沒有列為系選修
+  for (const y of Object.keys(dept.years).sort().reverse()) {
+    if (dept.years[y].courses?.[id]?.category === "系選修") return "系選修";
+  }
+  return null;
+}
+
 function courseFacts(code, deptId, year) {
   const id = String(code ?? "").trim().toUpperCase();
   const lookups = plannerState.lookups;
@@ -544,7 +556,7 @@ function courseFacts(code, deptId, year) {
     id,
     ge: lookups?.ge.courses[id] ?? null,
     pe: /^00UP/.test(id),
-    deptCategory: curriculum?.courses[id]?.category ?? null,
+    deptCategory: curriculum?.courses[id]?.category ?? (curriculum ? inferDeptCategory(id, dept) : null),
     offering: lookups?.offerings?.courses?.[id] ?? null,
   };
 }
@@ -695,9 +707,10 @@ function classifyCode(code, profile) {
     if (course) {
       hit.title ||= course.title; hit.credits ||= String(course.credits);
       hit.counts.push(course.category); hit.note.push(course.category);
-    } else if (dept.deptPrefixes.some((p) => id.startsWith(p))) {
-      // 系上開的課但不在該年度課架清單：不自動勾，提醒去確認
-      hit.note.push(`不在 ${profile.year} 學年度課架清單，是否算系選修請洽系辦`);
+    } else if (inferDeptCategory(id, dept)) {
+      hit.counts.push("系選修"); hit.note.push(`系選修（${profile.year} 課架未列，依選課系統認定）`);
+    } else if (/^GEUE/.test(id)) {
+      hit.note.push("教育專業課：超過 26 學分並申請才能列入系選修");
     }
   }
   const offering = lookups.offerings?.courses?.[id];
