@@ -154,7 +154,12 @@ body.editing [contenteditable]{outline:1px dashed #b5ad97;min-width:2em;display:
 body.editing [contenteditable]:focus{outline:2px solid var(--olive)}
 body.editing .rowctl{white-space:nowrap}
 .edit-wrap{overflow-x:auto}
-body.editing .edit-wrap td:not(.num):not(.rowctl){min-width:130px}
+body.editing .edit-wrap td:not(.num):not(.rowctl){min-width:130px;max-width:360px}
+/* 長網址沒有空格也能斷行，避免整欄被撐開、把刪除鈕擠出畫面 */
+body.editing .edit-wrap [contenteditable]{overflow-wrap:anywhere;word-break:break-word}
+/* 上移／下移／刪除固定在表格右側，表格再寬也看得到 */
+body.editing .edit-wrap td.rowctl,body.editing .edit-wrap thead th:last-child{position:sticky;right:0;z-index:1;background:var(--paper);box-shadow:-8px 0 8px -8px rgba(0,0,0,.25)}
+body.editing .edit-wrap thead th:last-child{background:var(--cream)}
 .rowctl button{border:1px solid var(--ink);background:var(--paper);cursor:pointer;width:24px;height:24px;line-height:1;font-size:13px}
 .rowctl button:hover{background:var(--lime)}
 .rowctl button.del:hover{background:var(--pink)}
