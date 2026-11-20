@@ -1,5 +1,8 @@
 // 三頁共用：讀 data/site.json 產生內容；網址加 ?edit 進入編輯模式，儲存時用 GitHub API 直接 commit 回 repo。
 const REPO = { owner: "Nolanchian", repo: "info", path: "data/site.json", branch: "main" };
+// 個人頁面的資料（研究工具、修課紀錄、畢業學分規定）放在私人 repo，要有 token 才讀得到
+const PRIVATE = { owner: "Nolanchian", repo: "info-private", path: "personal.json", branch: "main" };
+const PERSONAL_KEYS = ["skills", "courses", "requirements"];
 const TOKEN_KEY = "info-gh-token";
 const PAGES = [
   { id: "profile", href: "index.html", label: "介紹" },
@@ -242,8 +245,60 @@ function profileTables() {
   ];
 }
 
-/* ── 個人頁面密碼鎖 ──
-   只在畫面上擋住；site.json 是公開檔案，內容本身並沒有加密。 */
+/* ── 個人頁面：密碼鎖＋私人資料 ──
+   密碼只是畫面上的第一道門；資料本身放在私人 repo，沒有 token 的裝置讀不到。 */
+const personal = { state: "idle", error: "", snapshot: "" }; // idle | loading | ok | notoken | error
+const personalJson = () => `${JSON.stringify(Object.fromEntries(PERSONAL_KEYS.map((k) => [k, site[k] ?? []])), null, 2)}\n`;
+
+function explainPrivateError(status) {
+  if (status === 401) return "token 無效或已過期";
+  if (status === 403 || status === 404) return `讀不到 ${PRIVATE.owner}/${PRIVATE.repo}：請確認 repo 已建立、裡面有 ${PRIVATE.path}，且 token 有這個 repo 的 Contents 權限`;
+  return `GitHub 回應 ${status}`;
+}
+
+async function loadPersonal() {
+  const token = storage("get");
+  if (!token) { personal.state = "notoken"; return; }
+  personal.state = "loading";
+  try {
+    const response = await ghFetch(token, {}, PRIVATE);
+    if (!response.ok) throw new Error(explainPrivateError(response.status));
+    const data = JSON.parse(fromBase64((await response.json()).content));
+    for (const key of PERSONAL_KEYS) site[key] = Array.isArray(data[key]) ? data[key] : [];
+    personal.snapshot = personalJson();
+    personal.state = "ok";
+  } catch (error) {
+    personal.state = "error";
+    personal.error = error.message;
+  }
+}
+
+// 需要個人資料的頁面呼叫；第一次會去讀，讀完重畫
+function ensurePersonal() {
+  if (personal.state === "idle") loadPersonal().then(render);
+  return personal.state === "ok";
+}
+
+function personalStatus() {
+  const retry = () => { personal.state = "idle"; render(); };
+  const body = {
+    idle: [el("p", {}, "讀取私人資料中…")],
+    loading: [el("p", {}, "讀取私人資料中…")],
+    notoken: [
+      el("p", { class: "lock-title" }, "這台裝置還沒設定 GitHub token"),
+      el("p", { class: "hint" }, `個人資料存在私人 repo（${PRIVATE.owner}/${PRIVATE.repo}），要用你的 token 才讀得到。`),
+      el("button", { type: "button", class: "mini primary", onclick: () => askToken(true).then((t) => { if (t) retry(); }) }, "設定 token"),
+    ],
+    error: [
+      el("p", { class: "lock-title" }, "讀取私人資料失敗"),
+      el("p", { class: "hint" }, personal.error),
+      el("div", { class: "lock-row" },
+        el("button", { type: "button", class: "mini", onclick: () => askToken(true).then((t) => { if (t) retry(); }) }, "重新設定 token"),
+        el("button", { type: "button", class: "mini primary", onclick: retry }, "重試")),
+    ],
+  }[personal.state];
+  return [section("personal-status", "個人頁面", el("div", { class: "lock-box" }, body))];
+}
 const LOCK = { salt: "nolanchian-info-personal:", hash: "ba36581f10fcdf734faa986a69685876b5acb10bec588c465fed25b6e1785912", key: "info-personal-key" };
 const lockStore = {
   get: () => { try { return sessionStorage.getItem(LOCK.key) || localStorage.getItem(LOCK.key) || ""; } catch { return ""; } },
@@ -325,6 +380,7 @@ function requirementSection(courses, requirements) {
 }
 
 function researchPage() {
+  if (!ensurePersonal()) return personalStatus();
   const skills = section("skills", "研究工具", dataTable({
     list: site.skills ??= [],
     columns: [
@@ -1205,6 +1261,7 @@ function ensureLookups() {
 
 function plannerPage() {
   site.planner ??= { term: "", candidates: [] };
+  ensurePersonal();
   const planner = site.planner;
   if (!ensureLookups()) return [el("p", { class: "empty-note" }, "載入課號資料中…")];
   if (isEditing) {
@@ -1238,8 +1295,15 @@ function plannerPage() {
       catalogPanel(editCtx, (code) => editCtx.addOffering(code)),
     ].filter(Boolean);
   }
-  plannerState.layer ??= readStore(STORAGE.layer, "nolan") === "ntnu" ? "ntnu" : "nolan";
-  if (plannerState.layer === "nolan") return plannerView(nolanContext());
+  // 沒有 token 的訪客讀不到 Nolan 版的學分資料，預設改用師大通用版
+  plannerState.layer ??= readStore(STORAGE.layer, storage("get") ? "nolan" : "ntnu") === "ntnu" ? "ntnu" : "nolan";
+  if (plannerState.layer === "nolan") {
+    const note = personal.state === "ok" ? null : el("p", { class: "hint" },
+      personal.state === "loading" || personal.state === "idle"
+        ? "讀取 Nolan 版的學分資料中…"
+        : "Nolan 版的學分缺口存在私人資料，這台裝置讀不到；其他人請切換到「師大通用版」。");
+    return [note, ...plannerView(nolanContext())].filter(Boolean);
+  }
   plannerState.profile ??= loadProfile();
   return [...plannerView(ntnuContext()), ...ntnuEditors()];
 }
@@ -1444,8 +1508,27 @@ function leaveEditing() {
   location.href = location.pathname;
 }
 
+// 公開的 site.json 一律不含個人資料
 function serialize() {
-  return `${JSON.stringify(site, null, 2)}\n`;
+  const publicSite = Object.fromEntries(Object.entries(site).filter(([key]) => !PERSONAL_KEYS.includes(key)));
+  return `${JSON.stringify(publicSite, null, 2)}\n`;
+}
+
+// 個人資料有改才寫回私人 repo
+async function savePersonal(token) {
+  if (personal.state !== "ok" || personalJson() === personal.snapshot) return false;
+  const current = await ghFetch(token, {}, PRIVATE);
+  if (!current.ok) throw new Error(explainPrivateError(current.status));
+  const { sha, content } = await current.json();
+  if (normalizeJson(fromBase64(content)) !== normalizeJson(personal.snapshot)
+    && !confirm("私人 repo 的個人資料比你開啟時還新，確定要覆蓋嗎？")) throw new Error("已取消儲存個人資料");
+  const response = await ghFetch(token, {
+    method: "PUT",
+    body: JSON.stringify({ message: "透過編輯模式更新個人資料", content: toBase64(personalJson()), sha, branch: PRIVATE.branch }),
+  }, PRIVATE);
+  if (!response.ok) throw new Error(explainPrivateError(response.status));
+  personal.snapshot = personalJson();
+  return true;
 }
 
 function askToken(force = false) {
@@ -1456,7 +1539,7 @@ function askToken(force = false) {
     const dialog = el("dialog", {},
       el("h3", {}, "GitHub token"),
       el("p", {}, "到 ", el("a", { href: "https://github.com/settings/personal-access-tokens/new", target: "_blank", rel: "noopener" }, "GitHub 建立 fine-grained token"),
-        "：Repository access 只選 ", el("b", {}, `${REPO.owner}/${REPO.repo}`), "，Permissions 的 Contents 設 Read and write。token 只存在這台瀏覽器。"),
+        "：Repository access 選 ", el("b", {}, `${REPO.owner}/${REPO.repo}`), " 和 ", el("b", {}, `${PRIVATE.owner}/${PRIVATE.repo}`), "，Permissions 的 Contents 設 Read and write。token 只存在這台瀏覽器。"),
       input,
       el("div", { class: "row" },
         existing && el("button", { type: "button", class: "mini", onclick: () => { storage("clear"); dialog.close(); resolve(""); setStatus("已清除 token"); } }, "清除"),
@@ -1473,8 +1556,8 @@ function askToken(force = false) {
   });
 }
 
-function ghFetch(token, init = {}) {
-  return fetch(`https://api.github.com/repos/${REPO.owner}/${REPO.repo}/contents/${REPO.path}?ref=${REPO.branch}`, {
+function ghFetch(token, init = {}, target = REPO) {
+  return fetch(`https://api.github.com/repos/${target.owner}/${target.repo}/contents/${target.path}?ref=${target.branch}`, {
     cache: "no-store",
     ...init,
     headers: { Accept: "application/vnd.github+json", Authorization: `Bearer ${token}`, ...(init.headers ?? {}) },
@@ -1512,8 +1595,9 @@ async function save() {
     });
     if (!response.ok) throw new Error(explainGithubError(response.status));
     loadedSnapshot = normalizeJson(serialize());
+    const savedPersonal = await savePersonal(token);
     dirty = false;
-    setStatus("已儲存到 GitHub，約 1 分鐘後線上版更新", "ok");
+    setStatus(savedPersonal ? "已儲存到 GitHub（個人資料存到私人 repo），約 1 分鐘後線上版更新" : "已儲存到 GitHub，約 1 分鐘後線上版更新", "ok");
   } catch (error) {
     setStatus(`儲存失敗：${error.message}`, "err");
   }
